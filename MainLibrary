@@ -1,0 +1,2151 @@
+local BlacklistedKeys = {
+	Enum.KeyCode.W,
+	Enum.KeyCode.A,
+	Enum.KeyCode.S,
+	Enum.KeyCode.D,
+	Enum.KeyCode.LeftShift,
+	Enum.KeyCode.Space
+}
+
+local DefaultTheme = {
+	SectionColor = Color3.fromRGB(15, 15, 15), --sections
+	Background = Color3.fromRGB(27, 27, 27), -- main ui
+	ThemeColor = Color3.fromRGB(0, 150, 70), -- typically green
+	TextColor = Color3.fromRGB(243, 243, 243), -- non focussed textc
+	BackgroundSubColor = Color3.fromRGB(20, 20, 20) -- color behind sections
+}
+local taken = false
+
+local WindowTable = {} 
+
+local LibName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
+
+function WindowTable:ToggleUI()
+	if game.Players.LocalPlayer.PlayerGui[LibName].Enabled then
+		game.Players.LocalPlayer.PlayerGui[LibName].Enabled = false
+	else
+		game.Players.LocalPlayer.PlayerGui[LibName].Enabled = true
+	end
+end
+
+
+function WindowTable:CreatePrompt(config)
+	local message = config.Message or config.message or "Message"
+	local isPrompt = config.Prompt or config.prompt or false
+	local green
+	local red
+	local DoesGoAway = config.GoAway or config.goaway or false
+	if isPrompt then
+		green = config.Green or config.yes or config.green or config.Yes or "Yes"
+		red = config.Red or config.No or config.red or config.no or "No"	
+	else
+		DoesGoAway = true
+	end
+	local NotificationDuration = config.Time or config.time or config.Duration or config.duration or 5
+	local callback = config.callback or config.Callback or function() end
+	
+	function createUI(name)
+		local instances = {
+			["ImageLabel_20"] = Instance.new("ImageLabel"),
+			["ImageLabel_10"] = Instance.new("ImageLabel"),
+			["ImageLabel_21"] = Instance.new("ImageLabel"),
+			["ImageLabel_3"] = Instance.new("ImageLabel"),
+			["Frame_8"] = Instance.new("Frame"),
+			["ImageLabel_5"] = Instance.new("ImageLabel"),
+			["ImageLabel_8"] = Instance.new("ImageLabel"),
+			["ImageLabel_2"] = Instance.new("ImageLabel"),
+			["ImageLabel_12"] = Instance.new("ImageLabel"),
+			["ImageLabel_19"] = Instance.new("ImageLabel"),
+			["Frame_5"] = Instance.new("Frame"),
+			["ImageLabel_6"] = Instance.new("ImageLabel"),
+			["TextButton_2"] = Instance.new("TextButton"),
+			["ImageLabel_22"] = Instance.new("ImageLabel"),
+			["TextLabel_4"] = Instance.new("TextLabel"),
+			["Frame_11"] = Instance.new("Frame"),
+			["ImageLabel_24"] = Instance.new("ImageLabel"),
+			["Frame_6"] = Instance.new("Frame"),
+			["Frame_7"] = Instance.new("Frame"),
+			["ImageLabel_14"] = Instance.new("ImageLabel"),
+			["Frame_10"] = Instance.new("Frame"),
+			["TextLabel_2"] = Instance.new("TextLabel"),
+			["Frame_9"] = Instance.new("Frame"),
+			["Frame_4"] = Instance.new("Frame"),
+			["UICorner_2"] = Instance.new("UICorner"),
+			["ImageLabel_18"] = Instance.new("ImageLabel"),
+			["UICorner_1"] = Instance.new("UICorner"),
+			["ImageLabel_1"] = Instance.new("ImageLabel"),
+			["ImageLabel_23"] = Instance.new("ImageLabel"),
+			["ImageLabel_9"] = Instance.new("ImageLabel"),
+			["ImageLabel_16"] = Instance.new("ImageLabel"),
+			["TextLabel_1"] = Instance.new("TextLabel"),
+			["Frame_2"] = Instance.new("Frame"),
+			["Frame_3"] = Instance.new("Frame"),
+			["TextLabel_3"] = Instance.new("TextLabel"),
+			["ImageLabel_15"] = Instance.new("ImageLabel"),
+			["ImageLabel_11"] = Instance.new("ImageLabel"),
+			["ImageLabel_4"] = Instance.new("ImageLabel"),
+			["ImageLabel_17"] = Instance.new("ImageLabel"),
+			["Frame_1"] = Instance.new("Frame"),
+			["ImageLabel_7"] = Instance.new("ImageLabel"),
+			["TextButton_1"] = Instance.new("TextButton"),
+			["ImageLabel_13"] = Instance.new("ImageLabel"),
+		}
+
+
+		instances.Frame_1.Parent = game.Players.LocalPlayer.PlayerGui[LibName].Notifications
+		instances.Frame_1.BackgroundColor3 = Color3.new(0.105882, 0.105882, 0.105882)
+		instances.Frame_1.BorderSizePixel = 0
+		instances.Frame_1.Position = UDim2.new(0,0,0,0)
+		instances.Frame_1.Size = UDim2.new(0, 209, 0, 102)
+		instances.Frame_1.Name = 'Prompt'
+
+		instances.Frame_2.Parent = instances.Frame_1
+		instances.Frame_2.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.Frame_2.BackgroundTransparency = 1
+		instances.Frame_2.Size = UDim2.new(1, 0, 1, 0)
+		instances.Frame_2.Name = 'Shadow'
+
+		instances.Frame_3.Parent = instances.Frame_2
+		instances.Frame_3.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.Frame_3.BackgroundTransparency = 1
+		instances.Frame_3.Size = UDim2.new(1, 0, 1, 0)
+		instances.Frame_3.Name = 'Shadow6'
+
+		instances.ImageLabel_1.Parent = instances.Frame_3
+		instances.ImageLabel_1.Image = 'rbxassetid://2715140280'
+		instances.ImageLabel_1.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_1.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_1.AnchorPoint = Vector2.new(1, 0)
+		instances.ImageLabel_1.BackgroundColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_1.BackgroundTransparency = 1
+		instances.ImageLabel_1.BorderSizePixel = 0
+		instances.ImageLabel_1.Size = UDim2.new(0, 6, 1, 0)
+		instances.ImageLabel_1.Name = 'L'
+
+		instances.ImageLabel_2.Parent = instances.Frame_3
+		instances.ImageLabel_2.Image = 'rbxassetid://2715141619'
+		instances.ImageLabel_2.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_2.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_2.BackgroundColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_2.BackgroundTransparency = 1
+		instances.ImageLabel_2.BorderSizePixel = 0
+		instances.ImageLabel_2.Position = UDim2.new(1, 0, 0, 0)
+		instances.ImageLabel_2.Size = UDim2.new(0, 6, 1, 0)
+		instances.ImageLabel_2.Name = 'R'
+
+		instances.ImageLabel_3.Parent = instances.Frame_3
+		instances.ImageLabel_3.Image = 'rbxassetid://2715138063'
+		instances.ImageLabel_3.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_3.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_3.AnchorPoint = Vector2.new(0, 1)
+		instances.ImageLabel_3.BackgroundColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_3.BackgroundTransparency = 1
+		instances.ImageLabel_3.BorderSizePixel = 0
+		instances.ImageLabel_3.Size = UDim2.new(1, 0, 0, 6)
+		instances.ImageLabel_3.Name = 'T'
+
+		instances.ImageLabel_4.Parent = instances.Frame_3
+		instances.ImageLabel_4.Image = 'rbxassetid://2715137474'
+		instances.ImageLabel_4.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_4.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_4.BackgroundColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_4.BackgroundTransparency = 1
+		instances.ImageLabel_4.BorderSizePixel = 0
+		instances.ImageLabel_4.Position = UDim2.new(0, 0, 1, 0)
+		instances.ImageLabel_4.Size = UDim2.new(1, 0, 0, 6)
+		instances.ImageLabel_4.Name = 'B'
+
+		instances.ImageLabel_5.Parent = instances.Frame_3
+		instances.ImageLabel_5.Image = 'rbxassetid://2715199828'
+		instances.ImageLabel_5.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_5.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_5.AnchorPoint = Vector2.new(1, 0)
+		instances.ImageLabel_5.BackgroundColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_5.BackgroundTransparency = 1
+		instances.ImageLabel_5.BorderSizePixel = 0
+		instances.ImageLabel_5.Position = UDim2.new(0, 0, 1, 0)
+		instances.ImageLabel_5.Size = UDim2.new(0, 6, 0, 6)
+		instances.ImageLabel_5.Name = 'LB'
+
+		instances.ImageLabel_6.Parent = instances.Frame_3
+		instances.ImageLabel_6.Image = 'rbxassetid://2715200973'
+		instances.ImageLabel_6.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_6.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_6.BackgroundColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_6.BackgroundTransparency = 1
+		instances.ImageLabel_6.BorderSizePixel = 0
+		instances.ImageLabel_6.Position = UDim2.new(1, 0, 1, 0)
+		instances.ImageLabel_6.Size = UDim2.new(0, 6, 0, 6)
+		instances.ImageLabel_6.Name = 'RB'
+
+		instances.ImageLabel_7.Parent = instances.Frame_3
+		instances.ImageLabel_7.Image = 'rbxassetid://2715201545'
+		instances.ImageLabel_7.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_7.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_7.AnchorPoint = Vector2.new(0, 1)
+		instances.ImageLabel_7.BackgroundColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_7.BackgroundTransparency = 1
+		instances.ImageLabel_7.BorderSizePixel = 0
+		instances.ImageLabel_7.Position = UDim2.new(1, 0, 0, 0)
+		instances.ImageLabel_7.Size = UDim2.new(0, 6, 0, 6)
+		instances.ImageLabel_7.Name = 'RT'
+
+		instances.ImageLabel_8.Parent = instances.Frame_3
+		instances.ImageLabel_8.Image = 'rbxassetid://2715200507'
+		instances.ImageLabel_8.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_8.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_8.AnchorPoint = Vector2.new(1, 1)
+		instances.ImageLabel_8.BackgroundColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_8.BackgroundTransparency = 1
+		instances.ImageLabel_8.BorderSizePixel = 0
+		instances.ImageLabel_8.Size = UDim2.new(0, 6, 0, 6)
+		instances.ImageLabel_8.Name = 'LT'
+
+		instances.Frame_4.Parent = instances.Frame_2
+		instances.Frame_4.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.Frame_4.BackgroundTransparency = 1
+		instances.Frame_4.Size = UDim2.new(1, 0, 1, 0)
+		instances.Frame_4.Name = 'Shadow8'
+
+		instances.ImageLabel_9.Parent = instances.Frame_4
+		instances.ImageLabel_9.Image = 'rbxassetid://2715140280'
+		instances.ImageLabel_9.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_9.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_9.AnchorPoint = Vector2.new(1, 0)
+		instances.ImageLabel_9.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_9.BackgroundTransparency = 1
+		instances.ImageLabel_9.BorderSizePixel = 0
+		instances.ImageLabel_9.Size = UDim2.new(0, 8, 1, 0)
+		instances.ImageLabel_9.Name = 'L'
+
+		instances.ImageLabel_10.Parent = instances.Frame_4
+		instances.ImageLabel_10.Image = 'rbxassetid://2715141619'
+		instances.ImageLabel_10.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_10.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_10.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_10.BackgroundTransparency = 1
+		instances.ImageLabel_10.BorderSizePixel = 0
+		instances.ImageLabel_10.Position = UDim2.new(1, 0, 0, 0)
+		instances.ImageLabel_10.Size = UDim2.new(0, 8, 1, 0)
+		instances.ImageLabel_10.Name = 'R'
+
+		instances.ImageLabel_11.Parent = instances.Frame_4
+		instances.ImageLabel_11.Image = 'rbxassetid://2715138063'
+		instances.ImageLabel_11.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_11.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_11.AnchorPoint = Vector2.new(0, 1)
+		instances.ImageLabel_11.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_11.BackgroundTransparency = 1
+		instances.ImageLabel_11.BorderSizePixel = 0
+		instances.ImageLabel_11.Size = UDim2.new(1, 0, 0, 8)
+		instances.ImageLabel_11.Name = 'T'
+
+		instances.ImageLabel_12.Parent = instances.Frame_4
+		instances.ImageLabel_12.Image = 'rbxassetid://2715137474'
+		instances.ImageLabel_12.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_12.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_12.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_12.BackgroundTransparency = 1
+		instances.ImageLabel_12.BorderSizePixel = 0
+		instances.ImageLabel_12.Position = UDim2.new(0, 0, 1, 0)
+		instances.ImageLabel_12.Size = UDim2.new(1, 0, 0, 8)
+		instances.ImageLabel_12.Name = 'B'
+
+		instances.ImageLabel_13.Parent = instances.Frame_4
+		instances.ImageLabel_13.Image = 'rbxassetid://2715199828'
+		instances.ImageLabel_13.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_13.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_13.AnchorPoint = Vector2.new(1, 0)
+		instances.ImageLabel_13.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_13.BackgroundTransparency = 1
+		instances.ImageLabel_13.BorderSizePixel = 0
+		instances.ImageLabel_13.Position = UDim2.new(0, 0, 1, 0)
+		instances.ImageLabel_13.Size = UDim2.new(0, 8, 0, 8)
+		instances.ImageLabel_13.Name = 'LB'
+
+		instances.ImageLabel_14.Parent = instances.Frame_4
+		instances.ImageLabel_14.Image = 'rbxassetid://2715200973'
+		instances.ImageLabel_14.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_14.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_14.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_14.BackgroundTransparency = 1
+		instances.ImageLabel_14.BorderSizePixel = 0
+		instances.ImageLabel_14.Position = UDim2.new(1, 0, 1, 0)
+		instances.ImageLabel_14.Size = UDim2.new(0, 8, 0, 8)
+		instances.ImageLabel_14.Name = 'RB'
+
+		instances.ImageLabel_15.Parent = instances.Frame_4
+		instances.ImageLabel_15.Image = 'rbxassetid://2715201545'
+		instances.ImageLabel_15.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_15.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_15.AnchorPoint = Vector2.new(0, 1)
+		instances.ImageLabel_15.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_15.BackgroundTransparency = 1
+		instances.ImageLabel_15.BorderSizePixel = 0
+		instances.ImageLabel_15.Position = UDim2.new(1, 0, 0, 0)
+		instances.ImageLabel_15.Size = UDim2.new(0, 8, 0, 8)
+		instances.ImageLabel_15.Name = 'RT'
+
+		instances.ImageLabel_16.Parent = instances.Frame_4
+		instances.ImageLabel_16.Image = 'rbxassetid://2715200507'
+		instances.ImageLabel_16.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_16.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_16.AnchorPoint = Vector2.new(1, 1)
+		instances.ImageLabel_16.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_16.BackgroundTransparency = 1
+		instances.ImageLabel_16.BorderSizePixel = 0
+		instances.ImageLabel_16.Size = UDim2.new(0, 8, 0, 8)
+		instances.ImageLabel_16.Name = 'LT'
+
+		instances.Frame_5.Parent = instances.Frame_2
+		instances.Frame_5.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.Frame_5.BackgroundTransparency = 1
+		instances.Frame_5.Size = UDim2.new(1, 0, 1, 0)
+		instances.Frame_5.Name = 'shadow4'
+
+		instances.ImageLabel_17.Parent = instances.Frame_5
+		instances.ImageLabel_17.Image = 'rbxassetid://2715140280'
+		instances.ImageLabel_17.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_17.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_17.AnchorPoint = Vector2.new(1, 0)
+		instances.ImageLabel_17.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_17.BackgroundTransparency = 1
+		instances.ImageLabel_17.BorderSizePixel = 0
+		instances.ImageLabel_17.Size = UDim2.new(0, 4, 1, 0)
+		instances.ImageLabel_17.Name = 'L'
+
+		instances.ImageLabel_18.Parent = instances.Frame_5
+		instances.ImageLabel_18.Image = 'rbxassetid://2715141619'
+		instances.ImageLabel_18.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_18.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_18.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_18.BackgroundTransparency = 1
+		instances.ImageLabel_18.BorderSizePixel = 0
+		instances.ImageLabel_18.Position = UDim2.new(1, 0, 0, 0)
+		instances.ImageLabel_18.Size = UDim2.new(0, 4, 1, 0)
+		instances.ImageLabel_18.Name = 'R'
+
+		instances.ImageLabel_19.Parent = instances.Frame_5
+		instances.ImageLabel_19.Image = 'rbxassetid://2715138063'
+		instances.ImageLabel_19.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_19.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_19.AnchorPoint = Vector2.new(0, 1)
+		instances.ImageLabel_19.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_19.BackgroundTransparency = 1
+		instances.ImageLabel_19.BorderSizePixel = 0
+		instances.ImageLabel_19.Size = UDim2.new(1, 0, 0, 4)
+		instances.ImageLabel_19.Name = 'T'
+
+		instances.ImageLabel_20.Parent = instances.Frame_5
+		instances.ImageLabel_20.Image = 'rbxassetid://2715137474'
+		instances.ImageLabel_20.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_20.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_20.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_20.BackgroundTransparency = 1
+		instances.ImageLabel_20.BorderSizePixel = 0
+		instances.ImageLabel_20.Position = UDim2.new(0, 0, 1, 0)
+		instances.ImageLabel_20.Size = UDim2.new(1, 0, 0, 4)
+		instances.ImageLabel_20.Name = 'B'
+
+		instances.ImageLabel_21.Parent = instances.Frame_5
+		instances.ImageLabel_21.Image = 'rbxassetid://2715199828'
+		instances.ImageLabel_21.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_21.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_21.AnchorPoint = Vector2.new(1, 0)
+		instances.ImageLabel_21.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_21.BackgroundTransparency = 1
+		instances.ImageLabel_21.BorderSizePixel = 0
+		instances.ImageLabel_21.Position = UDim2.new(0, 0, 1, 0)
+		instances.ImageLabel_21.Size = UDim2.new(0, 4, 0, 4)
+		instances.ImageLabel_21.Name = 'LB'
+
+		instances.ImageLabel_22.Parent = instances.Frame_5
+		instances.ImageLabel_22.Image = 'rbxassetid://2715200973'
+		instances.ImageLabel_22.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_22.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_22.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_22.BackgroundTransparency = 1
+		instances.ImageLabel_22.BorderSizePixel = 0
+		instances.ImageLabel_22.Position = UDim2.new(1, 0, 1, 0)
+		instances.ImageLabel_22.Size = UDim2.new(0, 4, 0, 4)
+		instances.ImageLabel_22.Name = 'RB'
+
+		instances.ImageLabel_23.Parent = instances.Frame_5
+		instances.ImageLabel_23.Image = 'rbxassetid://2715201545'
+		instances.ImageLabel_23.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_23.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_23.AnchorPoint = Vector2.new(0, 1)
+		instances.ImageLabel_23.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_23.BackgroundTransparency = 1
+		instances.ImageLabel_23.BorderSizePixel = 0
+		instances.ImageLabel_23.Position = UDim2.new(1, 0, 0, 0)
+		instances.ImageLabel_23.Size = UDim2.new(0, 4, 0, 4)
+		instances.ImageLabel_23.Name = 'RT'
+
+		instances.ImageLabel_24.Parent = instances.Frame_5
+		instances.ImageLabel_24.Image = 'rbxassetid://2715200507'
+		instances.ImageLabel_24.ImageColor3 = Color3.new(0, 0, 0)
+		instances.ImageLabel_24.ImageTransparency = 0.800000011920929
+		instances.ImageLabel_24.AnchorPoint = Vector2.new(1, 1)
+		instances.ImageLabel_24.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.ImageLabel_24.BackgroundTransparency = 1
+		instances.ImageLabel_24.BorderSizePixel = 0
+		instances.ImageLabel_24.Size = UDim2.new(0, 4, 0, 4)
+		instances.ImageLabel_24.Name = 'LT'
+
+		instances.Frame_6.Parent = instances.Frame_1
+		instances.Frame_6.BackgroundColor3 = Color3.new(0, 0.588235, 0.27451)
+		instances.Frame_6.BorderSizePixel = 0
+		instances.Frame_6.Position = UDim2.new(0, 0, 0, 23)
+		instances.Frame_6.Size = UDim2.new(1, 0, 0.019607843831181526, 0)
+
+		instances.Frame_7.Parent = instances.Frame_1
+		instances.Frame_7.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.Frame_7.BackgroundTransparency = 1
+		instances.Frame_7.BorderSizePixel = 0
+		instances.Frame_7.Position = UDim2.new(0, 0, 0.28471699357032776, 0)
+		instances.Frame_7.Size = UDim2.new(1, 0, 0.7127659320831299, 0)
+		instances.Frame_7.Name = 'workspace'
+
+		instances.TextButton_1.Parent = instances.Frame_7
+		instances.TextButton_1.Font = Enum.Font.SourceSans
+		instances.TextButton_1.Text = ''
+		instances.TextButton_1.TextColor3 = Color3.new(0, 0, 0)
+		instances.TextButton_1.TextSize = 14
+		instances.TextButton_1.BackgroundColor3 = Color3.new(0, 0.588235, 0.27451)
+		instances.TextButton_1.Position = UDim2.new(0.035062216222286224, 0, 0.6077183485031128, 0)
+		instances.TextButton_1.Size = UDim2.new(0, 84, 0, 20)
+		instances.TextButton_1.ZIndex = 3
+		instances.TextButton_1.Name = 'Yes'
+		instances.TextButton_1.AutoButtonColor = false
+		
+		instances.UICorner_1.Parent = instances.TextButton_1
+		instances.UICorner_1.CornerRadius = UDim.new(0, 2)
+
+		instances.Frame_8.Parent = instances.TextButton_1
+		instances.Frame_8.BackgroundColor3 = Color3.new(0, 0, 0)
+		instances.Frame_8.BackgroundTransparency = 1
+		instances.Frame_8.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+		instances.Frame_8.BorderSizePixel = 0
+		instances.Frame_8.Size = UDim2.new(1, 0, 1, 0)
+		instances.Frame_8.ZIndex = 2
+		instances.Frame_8.Name = 'Shadow'
+
+		instances.TextLabel_1.Parent = instances.TextButton_1
+		instances.TextLabel_1.Font = Enum.Font.Gotham
+		instances.TextLabel_1.Text = tostring(green) or "Yes"
+		instances.TextLabel_1.TextColor3 = Color3.new(0.952941, 0.952941, 0.952941)
+		instances.TextLabel_1.TextSize = 15
+		instances.TextLabel_1.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.TextLabel_1.BackgroundTransparency = 1
+		instances.TextLabel_1.BorderSizePixel = 0
+		instances.TextLabel_1.Position = UDim2.new(0, 1, 0, 1)
+		instances.TextLabel_1.Size = UDim2.new(0, 83, 0, 19)
+
+		instances.TextButton_2.Parent = instances.Frame_7
+		instances.TextButton_2.Font = Enum.Font.SourceSans
+		instances.TextButton_2.Text = ''
+		instances.TextButton_2.TextColor3 = Color3.new(0, 0, 0)
+		instances.TextButton_2.TextSize = 14
+		instances.TextButton_2.BackgroundColor3 = Color3.new(0.87451, 0.341176, 0.290196)
+		instances.TextButton_2.Position = UDim2.new(0.5613780617713928, 0, 0.6077183485031128, 0)
+		instances.TextButton_2.Size = UDim2.new(0, 84, 0, 20)
+		instances.TextButton_2.ZIndex = 3
+		instances.TextButton_2.Name = 'No'
+		instances.TextButton_2.AutoButtonColor = false
+		
+		instances.UICorner_2.Parent = instances.TextButton_2
+		instances.UICorner_2.CornerRadius = UDim.new(0, 2)
+
+		instances.Frame_9.Parent = instances.TextButton_2
+		instances.Frame_9.BackgroundColor3 = Color3.new(0, 0, 0)
+		instances.Frame_9.BackgroundTransparency = 1
+		instances.Frame_9.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+		instances.Frame_9.BorderSizePixel = 0
+		instances.Frame_9.Size = UDim2.new(1, 0, 1, 0)
+		instances.Frame_9.ZIndex = 2
+		instances.Frame_9.Name = 'Shadow'
+
+		instances.TextLabel_2.Parent = instances.TextButton_2
+		instances.TextLabel_2.Font = Enum.Font.Gotham
+		instances.TextLabel_2.Text = tostring(red) or "No"
+		instances.TextLabel_2.TextColor3 = Color3.new(0.952941, 0.952941, 0.952941)
+		instances.TextLabel_2.TextSize = 15
+		instances.TextLabel_2.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.TextLabel_2.BackgroundTransparency = 1
+		instances.TextLabel_2.BorderSizePixel = 0
+		instances.TextLabel_2.Position = UDim2.new(0, 1, 0, 1)
+		instances.TextLabel_2.Size = UDim2.new(0, 83, 0, 19)
+
+		instances.Frame_10.Parent = instances.Frame_7
+		instances.Frame_10.BackgroundColor3 = Color3.new(0.952941, 0.952941, 0.952941)
+		instances.Frame_10.BackgroundTransparency = 1
+		instances.Frame_10.BorderSizePixel = 0
+		instances.Frame_10.Position = UDim2.new(0.035062216222286224, 0, 0, 0)
+		instances.Frame_10.Size = UDim2.new(0, 193, 0, 36)
+		instances.Frame_10.Name = 'text'
+
+		instances.TextLabel_3.Parent = instances.Frame_10
+		instances.TextLabel_3.Name = "MessageHere"
+		instances.TextLabel_3.Font = Enum.Font.Gotham
+		instances.TextLabel_3.Text = message
+		instances.TextLabel_3.TextColor3 = Color3.new(0.952941, 0.952941, 0.952941)
+		instances.TextLabel_3.TextSize = 15
+		instances.TextLabel_3.TextWrapped = true
+		instances.TextLabel_3.TextYAlignment = Enum.TextYAlignment.Top
+		instances.TextLabel_3.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.TextLabel_3.BackgroundTransparency = 1
+		instances.TextLabel_3.Position = UDim2.new(-0.03796892613172531, 0, 0.06693776696920395, 0)
+		instances.TextLabel_3.Size = UDim2.new(0, 209, 0, 33)
+
+		instances.Frame_11.Parent = instances.Frame_1
+		instances.Frame_11.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.Frame_11.BackgroundTransparency = 1
+		instances.Frame_11.BorderSizePixel = 0
+		instances.Frame_11.Size = UDim2.new(0, 209, 0, 23)
+		instances.Frame_11.Name = 'Title'
+
+		instances.TextLabel_4.Parent = instances.Frame_11
+		instances.TextLabel_4.Font = Enum.Font.Gotham
+		instances.TextLabel_4.RichText = true
+		instances.TextLabel_4.Text = 'Prompt:'
+		instances.TextLabel_4.TextColor3 = Color3.new(0.952941, 0.952941, 0.952941)
+		instances.TextLabel_4.TextSize = 16
+		instances.TextLabel_4.TextWrapped = true
+		instances.TextLabel_4.TextXAlignment = Enum.TextXAlignment.Left
+		instances.TextLabel_4.BackgroundColor3 = Color3.new(1, 1, 1)
+		instances.TextLabel_4.BackgroundTransparency = 1
+		instances.TextLabel_4.BorderSizePixel = 0
+		instances.TextLabel_4.Position = UDim2.new(0.035062216222286224, 0, 0, 0)
+		instances.TextLabel_4.Size = UDim2.new(0, 201, 0, 23)
+
+		return instances.Frame_1
+	end
+	
+	local Notifications = game.Players.LocalPlayer.PlayerGui[LibName]:FindFirstChild("Notifications"):GetChildren()
+	if #Notifications >= 5 then
+		Notifications[1]:TweenPosition(UDim2.new(1.5, 0, Notifications[1].Position.Y.Scale, 0),"InOut","Linear",0.2,true);wait(0.2)
+		Notifications[1]:Destroy()
+		for i,v in pairs(Notifications) do if v ~= nil then
+				v:TweenPosition(UDim2.new(1, -209, v.Position.Y.Scale - 0.195, 0),"InOut","Linear",0.2,true)
+			end
+		end
+		local frame = createUI(tostring(#Notifications+1))
+		if not isPrompt then
+			for i, v in pairs(frame:GetDescendants()) do
+				if v:IsA("TextLabel") and v.Text == "Prompt:" then
+					v.Text = "Notification:"
+				end
+				if v:IsA("TextLabel") and v.Name == "MessageHere" then
+					v.Size = UDim2.new(0, 209,0, 61)
+				end
+				if v:IsA("TextButton") and v.Name == "Yes" or v.Name == "No" then
+					v.Visible = false
+				end
+			end
+		end
+		frame.Position = UDim2.new(1, 209,0.757, 0)
+		wait(0.1)
+		frame:TweenPosition(UDim2.new(1, -209,0.757, 0),"InOut","Linear",0.2,true)
+		wait(0.4)
+	else
+		for i,v in pairs(Notifications) do
+			v:TweenPosition(UDim2.new(1, -209, v.Position.Y.Scale - 0.195, 0),"InOut","Linear",0.2,true)
+		end
+		local frame = createUI(tostring(#Notifications+1))
+		if not isPrompt then
+			for i, v in pairs(frame:GetDescendants()) do
+				if v:IsA("TextLabel") and v.Text == "Prompt:" then
+					v.Text = "Notification:"
+				end
+				if v:IsA("TextLabel") and v.Name == "MessageHere" then
+					v.Size = UDim2.new(0, 209,0, 61)
+				end
+				if v:IsA("TextButton") and v.Name == "Yes" or v.Name == "No" then
+					v.Visible = false
+				end
+			end
+		end
+		frame.Position = UDim2.new(1, 209,0.757, 0)
+		wait(0.1)
+		frame:TweenPosition(UDim2.new(1, -209,0.757, 0),"InOut","Linear",0.2,true)
+		wait(0.4)
+		
+
+		
+		for i, v in pairs(frame:GetDescendants()) do
+			if v:IsA("TextButton") and v:FindFirstChild("Shadow") then
+				v.MouseEnter:Connect(function()
+					game.TweenService:Create(v:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						BackgroundTransparency = 0.8
+					}):Play()
+				end)
+				v.MouseLeave:Connect(function()
+					game.TweenService:Create(v:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						BackgroundTransparency = 1
+					}):Play()
+				end)
+				v.MouseButton1Click:Connect(function()
+					callback(tostring(v.Name))
+					frame:TweenPosition(UDim2.new(1.5, 0, frame.Position.Y.Scale, 0),"InOut","Linear",0.2,true);wait(0.2)
+					frame:Destroy()
+				end)
+			end
+		end
+		
+		
+		if DoesGoAway then
+			delay(NotificationDuration,function()
+				local pos = frame.Position.Y.Scale
+				frame:TweenPosition(UDim2.new(1.5, 0, frame.Position.Y.Scale, 0),"InOut","Linear",0.2,true);wait(0.2)
+				frame:Destroy()
+				--wait(0.1)
+				--for i,v in pairs(Notifications) do
+				--	v:TweenPosition(UDim2.new(1, -209, v.Position.Y.Scale + pos + 0.195, 0),"InOut","Linear",0.2,true)
+				--end
+			end)	
+		end
+	end
+end
+
+
+function WindowTable:CreateWindow(config)
+	CurrentTheme = config.Theme or config.theme or DefaultTheme
+	local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
+	local instances = {
+		["UIListLayout_1"] = Instance.new("UIListLayout"),
+		["Frame_2"] = Instance.new("Frame"),
+		["ImageLabel_17"] = Instance.new("ImageLabel"),
+		["ImageLabel_9"] = Instance.new("ImageLabel"),
+		["ImageLabel_19"] = Instance.new("ImageLabel"),
+		["TextLabel_1"] = Instance.new("TextLabel"),
+		["Frame_7"] = Instance.new("Frame"),
+		["LocalScript_1"] = Instance.new("LocalScript"),
+		["ImageLabel_3"] = Instance.new("ImageLabel"),
+		["ImageLabel_5"] = Instance.new("ImageLabel"),
+		["Folder_1"] = Instance.new("Folder"),
+		["ImageLabel_14"] = Instance.new("ImageLabel"),
+		["ScrollingFrame_1"] = Instance.new("ScrollingFrame"),
+		["ImageLabel_20"] = Instance.new("ImageLabel"),
+		["ImageLabel_18"] = Instance.new("ImageLabel"),
+		["ImageLabel_12"] = Instance.new("ImageLabel"),
+		["ImageLabel_2"] = Instance.new("ImageLabel"),
+		["ImageLabel_7"] = Instance.new("ImageLabel"),
+		["ImageLabel_8"] = Instance.new("ImageLabel"),
+		["UIListLayout_2"] = Instance.new("UIListLayout"),
+		["Frame_8"] = Instance.new("Frame"),
+		["ImageLabel_15"] = Instance.new("ImageLabel"),
+		["ImageLabel_11"] = Instance.new("ImageLabel"),
+		["ImageLabel_13"] = Instance.new("ImageLabel"),
+		["Frame_5"] = Instance.new("Frame"),
+		["ImageLabel_23"] = Instance.new("ImageLabel"),
+		["Frame_6"] = Instance.new("Frame"),
+		["ImageLabel_4"] = Instance.new("ImageLabel"),
+		["ImageLabel_10"] = Instance.new("ImageLabel"),
+		["ImageLabel_22"] = Instance.new("ImageLabel"),
+		["UIPadding_2"] = Instance.new("UIPadding"),
+		["ImageLabel_16"] = Instance.new("ImageLabel"),
+		["ImageLabel_21"] = Instance.new("ImageLabel"),
+		["Frame_4"] = Instance.new("Frame"),
+		["UIPadding_1"] = Instance.new("UIPadding"),
+		["ImageLabel_1"] = Instance.new("ImageLabel"),
+		["ImageLabel_24"] = Instance.new("ImageLabel"),
+		["Frame_3"] = Instance.new("Frame"),
+		["Frame_1"] = Instance.new("Frame"),
+		["ImageLabel_6"] = Instance.new("ImageLabel"),
+		["Folder_2"] = Instance.new("Folder",screenGui),
+	}
+	
+	instances.Folder_2.Name = "Notifications"
+
+	screenGui.Name = LibName
+	screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+	instances.Frame_1.Parent = screenGui
+	instances.Frame_1.BackgroundColor3 = CurrentTheme.Background
+	instances.Frame_1.BorderSizePixel = 0
+	instances.Frame_1.Position = UDim2.new(0, 339, 0, 149)
+	instances.Frame_1.Size = UDim2.new(0, 444, 0, 313)
+	instances.Frame_1.Name = 'Main'
+	
+	instances.LocalScript_1.Parent = instances.Frame_1
+	
+	
+	instances.Frame_2.Parent = instances.Frame_1
+	instances.Frame_2.BackgroundColor3 = Color3.new(0.0784314, 0.0784314, 0.0784314)
+	instances.Frame_2.BorderSizePixel = 0
+	instances.Frame_2.Position = UDim2.new(0.2567567527294159, 0, 0.08131273835897446, 0)
+	instances.Frame_2.Size = UDim2.new(0.7207207083702087, 0, 0.8916602730751038, 0)
+	instances.Frame_2.Name = 'Right'
+
+	instances.Frame_3.Parent = instances.Frame_1
+	instances.Frame_3.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.Frame_3.BackgroundTransparency = 1
+	instances.Frame_3.Size = UDim2.new(1, 0, 1, 0)
+	instances.Frame_3.Name = 'Shadow'
+
+	instances.Frame_4.Parent = instances.Frame_3
+	instances.Frame_4.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.Frame_4.BackgroundTransparency = 1
+	instances.Frame_4.Size = UDim2.new(1, 0, 1, 0)
+	instances.Frame_4.Name = 'Shadow6'
+
+	instances.ImageLabel_1.Parent = instances.Frame_4
+	instances.ImageLabel_1.Image = 'rbxassetid://2715140280'
+	instances.ImageLabel_1.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_1.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_1.AnchorPoint = Vector2.new(1, 0)
+	instances.ImageLabel_1.BackgroundColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_1.BackgroundTransparency = 1
+	instances.ImageLabel_1.BorderSizePixel = 0
+	instances.ImageLabel_1.Size = UDim2.new(0, 6, 1, 0)
+	instances.ImageLabel_1.Name = 'L'
+
+	instances.ImageLabel_2.Parent = instances.Frame_4
+	instances.ImageLabel_2.Image = 'rbxassetid://2715141619'
+	instances.ImageLabel_2.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_2.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_2.BackgroundColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_2.BackgroundTransparency = 1
+	instances.ImageLabel_2.BorderSizePixel = 0
+	instances.ImageLabel_2.Position = UDim2.new(1, 0, 0, 0)
+	instances.ImageLabel_2.Size = UDim2.new(0, 6, 1, 0)
+	instances.ImageLabel_2.Name = 'R'
+
+	instances.ImageLabel_3.Parent = instances.Frame_4
+	instances.ImageLabel_3.Image = 'rbxassetid://2715138063'
+	instances.ImageLabel_3.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_3.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_3.AnchorPoint = Vector2.new(0, 1)
+	instances.ImageLabel_3.BackgroundColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_3.BackgroundTransparency = 1
+	instances.ImageLabel_3.BorderSizePixel = 0
+	instances.ImageLabel_3.Size = UDim2.new(1, 0, 0, 6)
+	instances.ImageLabel_3.Name = 'T'
+
+	instances.ImageLabel_4.Parent = instances.Frame_4
+	instances.ImageLabel_4.Image = 'rbxassetid://2715137474'
+	instances.ImageLabel_4.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_4.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_4.BackgroundColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_4.BackgroundTransparency = 1
+	instances.ImageLabel_4.BorderSizePixel = 0
+	instances.ImageLabel_4.Position = UDim2.new(0, 0, 1, 0)
+	instances.ImageLabel_4.Size = UDim2.new(1, 0, 0, 6)
+	instances.ImageLabel_4.Name = 'B'
+
+	instances.ImageLabel_5.Parent = instances.Frame_4
+	instances.ImageLabel_5.Image = 'rbxassetid://2715199828'
+	instances.ImageLabel_5.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_5.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_5.AnchorPoint = Vector2.new(1, 0)
+	instances.ImageLabel_5.BackgroundColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_5.BackgroundTransparency = 1
+	instances.ImageLabel_5.BorderSizePixel = 0
+	instances.ImageLabel_5.Position = UDim2.new(0, 0, 1, 0)
+	instances.ImageLabel_5.Size = UDim2.new(0, 6, 0, 6)
+	instances.ImageLabel_5.Name = 'LB'
+
+	instances.ImageLabel_6.Parent = instances.Frame_4
+	instances.ImageLabel_6.Image = 'rbxassetid://2715200973'
+	instances.ImageLabel_6.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_6.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_6.BackgroundColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_6.BackgroundTransparency = 1
+	instances.ImageLabel_6.BorderSizePixel = 0
+	instances.ImageLabel_6.Position = UDim2.new(1, 0, 1, 0)
+	instances.ImageLabel_6.Size = UDim2.new(0, 6, 0, 6)
+	instances.ImageLabel_6.Name = 'RB'
+
+	instances.ImageLabel_7.Parent = instances.Frame_4
+	instances.ImageLabel_7.Image = 'rbxassetid://2715201545'
+	instances.ImageLabel_7.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_7.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_7.AnchorPoint = Vector2.new(0, 1)
+	instances.ImageLabel_7.BackgroundColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_7.BackgroundTransparency = 1
+	instances.ImageLabel_7.BorderSizePixel = 0
+	instances.ImageLabel_7.Position = UDim2.new(1, 0, 0, 0)
+	instances.ImageLabel_7.Size = UDim2.new(0, 6, 0, 6)
+	instances.ImageLabel_7.Name = 'RT'
+
+	instances.ImageLabel_8.Parent = instances.Frame_4
+	instances.ImageLabel_8.Image = 'rbxassetid://2715200507'
+	instances.ImageLabel_8.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_8.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_8.AnchorPoint = Vector2.new(1, 1)
+	instances.ImageLabel_8.BackgroundColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_8.BackgroundTransparency = 1
+	instances.ImageLabel_8.BorderSizePixel = 0
+	instances.ImageLabel_8.Size = UDim2.new(0, 6, 0, 6)
+	instances.ImageLabel_8.Name = 'LT'
+
+	instances.Frame_5.Parent = instances.Frame_3
+	instances.Frame_5.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.Frame_5.BackgroundTransparency = 1
+	instances.Frame_5.Size = UDim2.new(1, 0, 1, 0)
+	instances.Frame_5.Name = 'Shadow8'
+
+	instances.ImageLabel_9.Parent = instances.Frame_5
+	instances.ImageLabel_9.Image = 'rbxassetid://2715140280'
+	instances.ImageLabel_9.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_9.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_9.AnchorPoint = Vector2.new(1, 0)
+	instances.ImageLabel_9.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_9.BackgroundTransparency = 1
+	instances.ImageLabel_9.BorderSizePixel = 0
+	instances.ImageLabel_9.Size = UDim2.new(0, 8, 1, 0)
+	instances.ImageLabel_9.Name = 'L'
+
+	instances.ImageLabel_10.Parent = instances.Frame_5
+	instances.ImageLabel_10.Image = 'rbxassetid://2715141619'
+	instances.ImageLabel_10.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_10.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_10.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_10.BackgroundTransparency = 1
+	instances.ImageLabel_10.BorderSizePixel = 0
+	instances.ImageLabel_10.Position = UDim2.new(1, 0, 0, 0)
+	instances.ImageLabel_10.Size = UDim2.new(0, 8, 1, 0)
+	instances.ImageLabel_10.Name = 'R'
+
+	instances.ImageLabel_11.Parent = instances.Frame_5
+	instances.ImageLabel_11.Image = 'rbxassetid://2715138063'
+	instances.ImageLabel_11.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_11.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_11.AnchorPoint = Vector2.new(0, 1)
+	instances.ImageLabel_11.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_11.BackgroundTransparency = 1
+	instances.ImageLabel_11.BorderSizePixel = 0
+	instances.ImageLabel_11.Size = UDim2.new(1, 0, 0, 8)
+	instances.ImageLabel_11.Name = 'T'
+
+	instances.ImageLabel_12.Parent = instances.Frame_5
+	instances.ImageLabel_12.Image = 'rbxassetid://2715137474'
+	instances.ImageLabel_12.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_12.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_12.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_12.BackgroundTransparency = 1
+	instances.ImageLabel_12.BorderSizePixel = 0
+	instances.ImageLabel_12.Position = UDim2.new(0, 0, 1, 0)
+	instances.ImageLabel_12.Size = UDim2.new(1, 0, 0, 8)
+	instances.ImageLabel_12.Name = 'B'
+
+	instances.ImageLabel_13.Parent = instances.Frame_5
+	instances.ImageLabel_13.Image = 'rbxassetid://2715199828'
+	instances.ImageLabel_13.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_13.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_13.AnchorPoint = Vector2.new(1, 0)
+	instances.ImageLabel_13.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_13.BackgroundTransparency = 1
+	instances.ImageLabel_13.BorderSizePixel = 0
+	instances.ImageLabel_13.Position = UDim2.new(0, 0, 1, 0)
+	instances.ImageLabel_13.Size = UDim2.new(0, 8, 0, 8)
+	instances.ImageLabel_13.Name = 'LB'
+
+	instances.ImageLabel_14.Parent = instances.Frame_5
+	instances.ImageLabel_14.Image = 'rbxassetid://2715200973'
+	instances.ImageLabel_14.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_14.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_14.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_14.BackgroundTransparency = 1
+	instances.ImageLabel_14.BorderSizePixel = 0
+	instances.ImageLabel_14.Position = UDim2.new(1, 0, 1, 0)
+	instances.ImageLabel_14.Size = UDim2.new(0, 8, 0, 8)
+	instances.ImageLabel_14.Name = 'RB'
+
+	instances.ImageLabel_15.Parent = instances.Frame_5
+	instances.ImageLabel_15.Image = 'rbxassetid://2715201545'
+	instances.ImageLabel_15.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_15.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_15.AnchorPoint = Vector2.new(0, 1)
+	instances.ImageLabel_15.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_15.BackgroundTransparency = 1
+	instances.ImageLabel_15.BorderSizePixel = 0
+	instances.ImageLabel_15.Position = UDim2.new(1, 0, 0, 0)
+	instances.ImageLabel_15.Size = UDim2.new(0, 8, 0, 8)
+	instances.ImageLabel_15.Name = 'RT'
+
+	instances.ImageLabel_16.Parent = instances.Frame_5
+	instances.ImageLabel_16.Image = 'rbxassetid://2715200507'
+	instances.ImageLabel_16.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_16.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_16.AnchorPoint = Vector2.new(1, 1)
+	instances.ImageLabel_16.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_16.BackgroundTransparency = 1
+	instances.ImageLabel_16.BorderSizePixel = 0
+	instances.ImageLabel_16.Size = UDim2.new(0, 8, 0, 8)
+	instances.ImageLabel_16.Name = 'LT'
+
+	instances.Frame_6.Parent = instances.Frame_3
+	instances.Frame_6.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.Frame_6.BackgroundTransparency = 1
+	instances.Frame_6.Size = UDim2.new(1, 0, 1, 0)
+	instances.Frame_6.Name = 'shadow4'
+
+	instances.ImageLabel_17.Parent = instances.Frame_6
+	instances.ImageLabel_17.Image = 'rbxassetid://2715140280'
+	instances.ImageLabel_17.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_17.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_17.AnchorPoint = Vector2.new(1, 0)
+	instances.ImageLabel_17.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_17.BackgroundTransparency = 1
+	instances.ImageLabel_17.BorderSizePixel = 0
+	instances.ImageLabel_17.Size = UDim2.new(0, 4, 1, 0)
+	instances.ImageLabel_17.Name = 'L'
+
+	instances.ImageLabel_18.Parent = instances.Frame_6
+	instances.ImageLabel_18.Image = 'rbxassetid://2715141619'
+	instances.ImageLabel_18.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_18.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_18.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_18.BackgroundTransparency = 1
+	instances.ImageLabel_18.BorderSizePixel = 0
+	instances.ImageLabel_18.Position = UDim2.new(1, 0, 0, 0)
+	instances.ImageLabel_18.Size = UDim2.new(0, 4, 1, 0)
+	instances.ImageLabel_18.Name = 'R'
+
+	instances.ImageLabel_19.Parent = instances.Frame_6
+	instances.ImageLabel_19.Image = 'rbxassetid://2715138063'
+	instances.ImageLabel_19.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_19.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_19.AnchorPoint = Vector2.new(0, 1)
+	instances.ImageLabel_19.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_19.BackgroundTransparency = 1
+	instances.ImageLabel_19.BorderSizePixel = 0
+	instances.ImageLabel_19.Size = UDim2.new(1, 0, 0, 4)
+	instances.ImageLabel_19.Name = 'T'
+
+	instances.ImageLabel_20.Parent = instances.Frame_6
+	instances.ImageLabel_20.Image = 'rbxassetid://2715137474'
+	instances.ImageLabel_20.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_20.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_20.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_20.BackgroundTransparency = 1
+	instances.ImageLabel_20.BorderSizePixel = 0
+	instances.ImageLabel_20.Position = UDim2.new(0, 0, 1, 0)
+	instances.ImageLabel_20.Size = UDim2.new(1, 0, 0, 4)
+	instances.ImageLabel_20.Name = 'B'
+
+	instances.ImageLabel_21.Parent = instances.Frame_6
+	instances.ImageLabel_21.Image = 'rbxassetid://2715199828'
+	instances.ImageLabel_21.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_21.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_21.AnchorPoint = Vector2.new(1, 0)
+	instances.ImageLabel_21.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_21.BackgroundTransparency = 1
+	instances.ImageLabel_21.BorderSizePixel = 0
+	instances.ImageLabel_21.Position = UDim2.new(0, 0, 1, 0)
+	instances.ImageLabel_21.Size = UDim2.new(0, 4, 0, 4)
+	instances.ImageLabel_21.Name = 'LB'
+
+	instances.ImageLabel_22.Parent = instances.Frame_6
+	instances.ImageLabel_22.Image = 'rbxassetid://2715200973'
+	instances.ImageLabel_22.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_22.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_22.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_22.BackgroundTransparency = 1
+	instances.ImageLabel_22.BorderSizePixel = 0
+	instances.ImageLabel_22.Position = UDim2.new(1, 0, 1, 0)
+	instances.ImageLabel_22.Size = UDim2.new(0, 4, 0, 4)
+	instances.ImageLabel_22.Name = 'RB'
+
+	instances.ImageLabel_23.Parent = instances.Frame_6
+	instances.ImageLabel_23.Image = 'rbxassetid://2715201545'
+	instances.ImageLabel_23.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_23.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_23.AnchorPoint = Vector2.new(0, 1)
+	instances.ImageLabel_23.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_23.BackgroundTransparency = 1
+	instances.ImageLabel_23.BorderSizePixel = 0
+	instances.ImageLabel_23.Position = UDim2.new(1, 0, 0, 0)
+	instances.ImageLabel_23.Size = UDim2.new(0, 4, 0, 4)
+	instances.ImageLabel_23.Name = 'RT'
+
+	instances.ImageLabel_24.Parent = instances.Frame_6
+	instances.ImageLabel_24.Image = 'rbxassetid://2715200507'
+	instances.ImageLabel_24.ImageColor3 = Color3.new(0, 0, 0)
+	instances.ImageLabel_24.ImageTransparency = 0.800000011920929
+	instances.ImageLabel_24.AnchorPoint = Vector2.new(1, 1)
+	instances.ImageLabel_24.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.ImageLabel_24.BackgroundTransparency = 1
+	instances.ImageLabel_24.BorderSizePixel = 0
+	instances.ImageLabel_24.Size = UDim2.new(0, 4, 0, 4)
+	instances.ImageLabel_24.Name = 'LT'
+
+	instances.Frame_7.Parent = instances.Frame_1
+	instances.Frame_7.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.Frame_7.BackgroundTransparency = 1
+	instances.Frame_7.BorderSizePixel = 0
+	instances.Frame_7.Size = UDim2.new(0, 444, 0, 25)
+	instances.Frame_7.Name = 'Top'
+
+	instances.TextLabel_1.Parent = instances.Frame_7
+	instances.TextLabel_1.Font = Enum.Font.Gotham
+	instances.TextLabel_1.Text = tostring(config.Title) or "Untitled"
+	instances.TextLabel_1.TextColor3 = CurrentTheme.TextColor --Color3.new(0.952941, 0.952941, 0.952941)
+	instances.TextLabel_1.TextSize = 14
+	instances.TextLabel_1.TextXAlignment = Enum.TextXAlignment.Left
+	instances.TextLabel_1.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.TextLabel_1.BackgroundTransparency = 1
+	instances.TextLabel_1.BorderSizePixel = 0
+	instances.TextLabel_1.Position = UDim2.new(0.022522522136569023, 0, 0, 0)
+	instances.TextLabel_1.Size = UDim2.new(0, 253, 0, 25)
+
+	instances.Frame_8.Parent = instances.Frame_1
+	instances.Frame_8.BackgroundColor3 = Color3.new(1, 1, 1)
+	instances.Frame_8.BackgroundTransparency = 1
+	instances.Frame_8.BorderSizePixel = 0
+	instances.Frame_8.Position = UDim2.new(0, 0, 0.07987220585346222, 0)
+	instances.Frame_8.Size = UDim2.new(0, 114, 0, 279)
+	instances.Frame_8.Name = 'TabButtons'
+
+	instances.UIListLayout_2.Parent = instances.Frame_8
+	instances.UIListLayout_2.Padding = UDim.new(0, 10)
+	instances.UIListLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	instances.UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
+
+	instances.UIPadding_2.Parent = instances.Frame_8
+	instances.UIPadding_2.PaddingLeft = UDim.new(0, 12)
+	instances.UIPadding_2.PaddingTop = UDim.new(0, 5)
+	
+	instances.Folder_1.Parent = instances.Frame_2
+	instances.Folder_1.Name = 'pagesFolder'
+	
+	
+	function Code_LocalScript_1() --LocalScript
+		local script = instances.LocalScript_1
+
+		local UserInputService = game:GetService("UserInputService")
+
+		local gui = script.Parent
+
+		local dragging
+		local dragInput
+		local dragStart
+		local startPos
+
+		local function update(input)
+			local delta = input.Position - dragStart
+			gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+		end
+
+		gui.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+				dragging = true
+				dragStart = input.Position
+				startPos = gui.Position
+
+				input.Changed:Connect(function()
+					if input.UserInputState == Enum.UserInputState.End then
+						dragging = false
+					end
+				end)
+			end
+		end)
+
+		gui.InputChanged:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+				dragInput = input
+			end
+		end)
+
+		UserInputService.InputChanged:Connect(function(input)
+			if input == dragInput and dragging then
+				update(input)
+			end
+		end)
+	end
+	coroutine.wrap(Code_LocalScript_1)()
+	
+	
+	local TabHandler = {}
+
+	function TabHandler:CreateTab(config)
+		local tabname = config.Title or "New Tab"
+		local scrollingbar = config.ScrollBar
+		
+		--local newPage = Instance.new("ScrollingFrame") 
+		--local elementsListing = Instance.new("UIListLayout") 
+		local uiPadding = Instance.new("UIPadding")
+		
+		local TabInstances = {
+			["PageFrame"] = Instance.new("Frame"),
+			["TextButton_1"] = Instance.new("TextButton"),
+			["UICorner_1"] = Instance.new("UICorner"),
+			["UIListLayout_1"] = Instance.new("UIListLayout"),
+			["ScrollingFrame_1"] = Instance.new("ScrollingFrame")
+		}
+		
+		TabInstances.ScrollingFrame_1.BackgroundColor3 = CurrentTheme.BackgroundSubColor
+		
+		TabInstances.TextButton_1.Parent = instances.Frame_8
+		TabInstances.TextButton_1.Font = Enum.Font.Gotham
+		TabInstances.TextButton_1.Text = tabname
+		--TabInstances.TextButton_1.TextColor3 = Color3.new(0.952941, 0.952941, 0.952941)
+		TabInstances.TextButton_1.TextSize = 14
+		TabInstances.TextButton_1.TextXAlignment = Enum.TextXAlignment.Left
+		TabInstances.TextButton_1.BackgroundColor3 = Color3.new(1, 1, 1)
+		TabInstances.TextButton_1.BackgroundTransparency = 1
+		TabInstances.TextButton_1.Position = UDim2.new(0.08771929889917374, 0, 0.05017921328544617, 0)
+		TabInstances.TextButton_1.Size = UDim2.new(0, 104, 0, 27)
+		TabInstances.TextButton_1.Name = tabname
+
+		TabInstances.PageFrame.Parent = TabInstances.TextButton_1
+		--TabInstances.PageFrame.BackgroundColor3 = Color3.new(0, 0.631373, 0.294118)
+		TabInstances.PageFrame.BorderSizePixel = 0
+		--TabInstances.PageFrame.Position = UDim2.new(0, 0, 0, 24)
+		--TabInstances.PageFrame.Size = UDim2.new(0.25, 0, 0.07407407462596893, 0)
+		if taken == false then
+			if config.Default then
+				TabInstances.TextButton_1.TextColor3 = Color3.new(0.952941, 0.952941, 0.952941)
+				TabInstances.ScrollingFrame_1.Visible = true
+				TabInstances.PageFrame.BackgroundColor3 = Color3.new(0, 0.631373, 0.294118)
+				TabInstances.PageFrame.Position = UDim2.new(0, 0, 0, 24)
+				TabInstances.PageFrame.Size = UDim2.new(0.25, 0, 0.07407407462596893, 0)
+				taken = true
+			else
+				TabInstances.TextButton_1.TextColor3 = Color3.fromRGB(207, 207, 207)
+				TabInstances.ScrollingFrame_1.Visible = false
+				TabInstances.PageFrame.BackgroundColor3 = Color3.new(0, 0.631373, 0.294118)
+				TabInstances.PageFrame.Position = UDim2.new(0, 0, 0, 24)
+				TabInstances.PageFrame.Size = UDim2.new(0, 0, 0.07407407462596893, 0)
+			end
+		else
+			TabInstances.TextButton_1.TextColor3 = Color3.fromRGB(207, 207, 207)
+			TabInstances.ScrollingFrame_1.Visible = false
+			TabInstances.PageFrame.BackgroundColor3 = Color3.new(0, 0.631373, 0.294118)
+			TabInstances.PageFrame.Position = UDim2.new(0, 0, 0, 24)
+			TabInstances.PageFrame.Size = UDim2.new(0, 0, 0.07407407462596893, 0)
+		end
+		
+
+		
+		local newPage = TabInstances.ScrollingFrame_1
+		
+		TabInstances.UICorner_1.Parent = instances.PageFrame
+		TabInstances.UICorner_1.CornerRadius = UDim.new(0, 4)
+		TabInstances.TextButton_1.MouseButton1Click:Connect(function()
+			for i,v in next, instances.Folder_1:GetChildren() do
+				v.Visible = false
+			end 
+			TabInstances.ScrollingFrame_1.Visible = true
+
+			--Animations Below  -- Optional
+			for i,v in pairs(instances.Frame_8:GetChildren()) do
+				if v:IsA("TextButton") then
+					game.TweenService:Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						TextColor3 = Color3.fromRGB(207,207,207)
+					}):Play()
+					game.TweenService:Create(v:FindFirstChild("Frame"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						Size = UDim2.new(0, 0, 0.07407407462596893, 0)
+					}):Play()
+				end
+			end
+			game.TweenService:Create(TabInstances.TextButton_1, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+				TextColor3 = Color3.fromRGB(255,255,255)
+			}):Play()
+			game.TweenService:Create(TabInstances.TextButton_1:FindFirstChild("Frame"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+				Size = UDim2.new(0.25, 0, 0.07407407462596893, 0)
+			}):Play()
+		end)
+		
+		
+		--TabInstances.ScrollingFrame_1.Name = "newPage"
+		--TabInstances.ScrollingFrame_1.Parent = instances.Folder_1.Parent
+		--TabInstances.ScrollingFrame_1.Active = true
+		--TabInstances.ScrollingFrame_1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		--TabInstances.ScrollingFrame_1.BackgroundTransparency = 1.000
+		--TabInstances.ScrollingFrame_1.Size = UDim2.new(1, 0, 1, 0)
+		--TabInstances.ScrollingFrame_1.ScrollBarThickness = 0
+		--TabInstances.ScrollingFrame_1.ZIndex = 5
+		
+		TabInstances.ScrollingFrame_1.Name = "newPage"
+		TabInstances.ScrollingFrame_1.Parent = instances.Folder_1
+		TabInstances.ScrollingFrame_1.Active = true
+		TabInstances.ScrollingFrame_1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		TabInstances.ScrollingFrame_1.BackgroundTransparency = 1.000
+		TabInstances.ScrollingFrame_1.BorderSizePixel = 0
+		TabInstances.ScrollingFrame_1.Size = UDim2.new(1, 0, 1, 0)
+		TabInstances.ScrollingFrame_1.CanvasPosition = Vector2.new(0, 0)
+		TabInstances.ScrollingFrame_1.CanvasSize = UDim2.new(0, 0, 0, 419)
+		TabInstances.ScrollingFrame_1.ScrollBarThickness = 0
+		
+		if scrollingbar == true then
+			newPage.ScrollBarThickness = 5
+		end
+
+		TabInstances.UIListLayout_1.Name = "elementsListing"
+		TabInstances.UIListLayout_1.Parent = newPage
+		TabInstances.UIListLayout_1.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		TabInstances.UIListLayout_1.SortOrder = Enum.SortOrder.LayoutOrder
+		TabInstances.UIListLayout_1.Padding = UDim.new(0, 15)
+		
+		uiPadding.Parent = newPage
+		uiPadding.PaddingLeft = UDim.new(0, 8)
+		uiPadding.PaddingTop = UDim.new(0, 20)
+		
+		local SectionHandler = {}
+
+		function SectionHandler:CreateSection(config, callback)
+			local Title = config.Title or "Untitled"
+			
+			local sectioninstances = {
+				["TextLabel_1"] = Instance.new("TextLabel"),
+				["UIListLayout_1"] = Instance.new("UIListLayout"),
+				["Frame_3"] = Instance.new("Frame"),
+				["UIPadding_1"] = Instance.new("UIPadding"),
+				["UICorner_1"] = Instance.new("UICorner"),
+				["Frame_2"] = Instance.new("Frame"),
+				["Frame_1"] = Instance.new("Frame"),
+			}
+			
+			sectioninstances.Frame_1.Parent = newPage
+			sectioninstances.Frame_1.BackgroundColor3 = CurrentTheme.SectionColor
+			sectioninstances.Frame_1.BorderSizePixel = 0
+			sectioninstances.Frame_1.Position = UDim2.new(0, 20, 0, 14)
+			sectioninstances.Frame_1.Size = UDim2.new(0, 280, 0, 202)
+			sectioninstances.Frame_1.Name = Title
+
+			sectioninstances.UICorner_1.Parent = sectioninstances.Frame_1
+			sectioninstances.UICorner_1.CornerRadius = UDim.new(0, 4)
+
+			sectioninstances.Frame_2.Parent = sectioninstances.Frame_1
+			sectioninstances.Frame_2.BackgroundColor3 = Color3.new(1, 1, 1)
+			sectioninstances.Frame_2.BackgroundTransparency = 1
+			sectioninstances.Frame_2.BorderSizePixel = 0
+			sectioninstances.Frame_2.Size = UDim2.new(0, 280, 0, 26)
+			sectioninstances.Frame_2.Name = 'TitleFrame'
+
+			sectioninstances.TextLabel_1.Parent = sectioninstances.Frame_2
+			sectioninstances.TextLabel_1.Font = Enum.Font.Gotham
+			sectioninstances.TextLabel_1.Text = Title
+			sectioninstances.TextLabel_1.TextColor3 =CurrentTheme.TextColor --Color3.new(0.952941, 0.952941, 0.952941)
+			sectioninstances.TextLabel_1.TextSize = 14
+			sectioninstances.TextLabel_1.TextXAlignment = Enum.TextXAlignment.Left
+			sectioninstances.TextLabel_1.BackgroundColor3 = Color3.new(1, 1, 1)
+			sectioninstances.TextLabel_1.BackgroundTransparency = 1
+			sectioninstances.TextLabel_1.Position = UDim2.new(0, 9, 0, 0)
+			sectioninstances.TextLabel_1.Size = UDim2.new(0, 75, 0, 27)
+			sectioninstances.TextLabel_1.Name = 'Title'
+
+			sectioninstances.Frame_3.Parent = sectioninstances.Frame_1
+			sectioninstances.Frame_3.BackgroundColor3 = Color3.new(1, 1, 1)
+			sectioninstances.Frame_3.BackgroundTransparency = 1
+			sectioninstances.Frame_3.BorderSizePixel = 0
+			sectioninstances.Frame_3.Position = UDim2.new(0, 0, 0, 26)
+			sectioninstances.Frame_3.Size = UDim2.new(1, 0, 0.8712871074676514, 0)
+			sectioninstances.Frame_3.Name = 'workspace'
+
+			sectioninstances.UIPadding_1.Parent = sectioninstances.Frame_3
+			sectioninstances.UIPadding_1.PaddingLeft = UDim.new(0, 11)
+			sectioninstances.UIPadding_1.PaddingTop = UDim.new(0, 0)
+
+			sectioninstances.UIListLayout_1.Parent = sectioninstances.Frame_3
+			
+			--newPage.CanvasSize = Vector2.new(0,0,0,TabInstances.UIListLayout_1.AbsoluteContentSize + 30)
+			--coroutine.wrap(function()
+			--	while wait(0.5) do
+			--		print(newPage:FindFirstChild("elementsListing"))
+			--		local size = newPage:FindFirstChild("elementsListing").AbsoluteContentSize;
+			--		local padding = newPage:FindFirstChild("elementsListing").Parent.UIPadding;
+
+			--		size = size + Vector2.new(0, padding.PaddingBottom.Offset + (padding.PaddingTop.Offset + 25));
+			--		newPage.CanvasSize = UDim2.new(0, size.X, 0, size.Y)
+			--	end
+			--end)()
+			
+			sectioninstances.Frame_3:FindFirstChildOfClass("UIListLayout"):GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+				local size = sectioninstances.Frame_3:FindFirstChildOfClass("UIListLayout").AbsoluteContentSize
+				local padding = sectioninstances.Frame_3:FindFirstChildOfClass("UIListLayout").Parent.UIPadding
+
+				size = size + Vector2.new(0, padding.PaddingBottom.Offset + (padding.PaddingTop.Offset + (26 + 15 )))
+				game.TweenService:Create(sectioninstances.Frame_1, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					Size = UDim2.new(0, 280, 0, size.Y + 10)
+				}):Play()
+				game.TweenService:Create(sectioninstances.Frame_3, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					Size = UDim2.new(1,0, 0, size.Y - 26)
+				}):Play()
+			end)			
+			
+			TabInstances.ScrollingFrame_1:FindFirstChild("elementsListing"):GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+				local size = TabInstances.ScrollingFrame_1:FindFirstChild("elementsListing").AbsoluteContentSize
+				local padding = TabInstances.ScrollingFrame_1:FindFirstChild("elementsListing").Parent.UIPadding
+
+				size = size + Vector2.new(0, padding.PaddingBottom.Offset + (padding.PaddingTop.Offset + 20))
+				game.TweenService:Create(TabInstances.ScrollingFrame_1, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					CanvasSize = UDim2.new(0, size.X, 0, size.Y)
+				}):Play()
+			end)
+			
+			local ElementHandler = {}
+
+			function ElementHandler:CreateButton(config)
+				local btnText = config.Text or config.text or "Text Button"
+				callback = config.callback or config.Callback or function() end   
+				local ButtonFunction = {}
+				
+				local buttoninstances = {
+					["UICorner_1"] = Instance.new("UICorner"),
+					["TextLabel_1"] = Instance.new("TextLabel"),
+					["Frame_1"] = Instance.new("Frame"),
+					["Frame_2"] = Instance.new("Frame"),
+					["ImageButton_1"] = Instance.new("ImageButton"),
+					["TextButton_1"] = Instance.new("TextButton"),
+					["ImageLabel_1"] = Instance.new("ImageLabel"),
+				}
+				
+				buttoninstances.Frame_1.Parent = sectioninstances.Frame_3
+				buttoninstances.Frame_1.BackgroundColor3 = Color3.new(1, 1, 1)
+				buttoninstances.Frame_1.BackgroundTransparency = 1
+				buttoninstances.Frame_1.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+				buttoninstances.Frame_1.BorderSizePixel = 0
+				buttoninstances.Frame_1.Position = UDim2.new(0, 9, 0, 84)
+				buttoninstances.Frame_1.Size = UDim2.new(0, 240, 0, 36)
+				buttoninstances.Frame_1.Name = 'Button'
+
+				buttoninstances.TextButton_1.Parent = buttoninstances.Frame_1
+				buttoninstances.TextButton_1.AutoButtonColor = false
+				buttoninstances.TextButton_1.Font = Enum.Font.SourceSans
+				buttoninstances.TextButton_1.Text = ''
+				buttoninstances.TextButton_1.Position = UDim2.new(-0.008, 0,0.222, 0)
+				buttoninstances.TextButton_1.TextColor3 = Color3.new(0, 0, 0)
+				buttoninstances.TextButton_1.TextSize = 14
+				buttoninstances.TextButton_1.BackgroundColor3 = CurrentTheme.ThemeColor-- Color3.new(0, 0.588235, 0.27451)
+				buttoninstances.TextButton_1.Size = UDim2.new(0, 241, 0, 20)
+				
+				buttoninstances.TextButton_1.MouseEnter:Connect(function()
+					game.TweenService:Create(buttoninstances.TextButton_1:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						BackgroundTransparency = 0.8
+					}):Play()
+				end)
+				buttoninstances.TextButton_1.MouseLeave:Connect(function()
+					game.TweenService:Create(buttoninstances.TextButton_1:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						BackgroundTransparency = 1
+					}):Play()
+				end)
+				
+				
+				buttoninstances.UICorner_1.Parent = buttoninstances.TextButton_1
+				buttoninstances.UICorner_1.CornerRadius = UDim.new(0, 2)
+
+				buttoninstances.ImageButton_1.Parent = buttoninstances.TextButton_1
+				buttoninstances.ImageButton_1.Image = 'rbxassetid://3926305904'
+				buttoninstances.ImageButton_1.ImageColor3 = CurrentTheme.TextColor
+				buttoninstances.ImageButton_1.ImageRectOffset = Vector2.new(204, 964)
+				buttoninstances.ImageButton_1.ImageRectSize = Vector2.new(36, 36)
+				buttoninstances.ImageButton_1.Active = false
+				buttoninstances.ImageButton_1.BackgroundTransparency = 1
+				buttoninstances.ImageButton_1.Position = UDim2.new(0, 220, 0, 1)
+				buttoninstances.ImageButton_1.Selectable = false
+				buttoninstances.ImageButton_1.Size = UDim2.new(0, 16, 0, 16)
+				buttoninstances.ImageButton_1.ZIndex = 2
+				buttoninstances.ImageButton_1.AutoButtonColor = false
+				buttoninstances.ImageButton_1.Archivable = false
+				buttoninstances.ImageButton_1.Name = 'mouse'
+
+				buttoninstances.TextLabel_1.Parent = buttoninstances.TextButton_1
+				buttoninstances.TextLabel_1.Font = Enum.Font.Gotham
+				buttoninstances.TextLabel_1.Text = btnText
+				buttoninstances.TextLabel_1.TextColor3 = CurrentTheme.TextColor
+				buttoninstances.TextLabel_1.TextSize = 15
+				buttoninstances.TextLabel_1.TextXAlignment = Enum.TextXAlignment.Left
+				buttoninstances.TextLabel_1.BackgroundColor3 = Color3.new(1, 1, 1)
+				buttoninstances.TextLabel_1.BackgroundTransparency = 1
+				buttoninstances.TextLabel_1.BorderSizePixel = 0
+				buttoninstances.TextLabel_1.Position = UDim2.new(0, 7, 0, 0)
+				buttoninstances.TextLabel_1.Size = UDim2.new(0, 232, 0, 19)
+				
+				buttoninstances.Frame_2.Parent = buttoninstances.TextButton_1
+				buttoninstances.Frame_2.BackgroundColor3 = Color3.new(0, 0, 0)
+				buttoninstances.Frame_2.BackgroundTransparency = 1
+				buttoninstances.Frame_2.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+				buttoninstances.Frame_2.BorderSizePixel = 0
+				buttoninstances.Frame_2.Size = UDim2.new(0, 240, 0, 20)
+				buttoninstances.Frame_2.ZIndex = 2
+				buttoninstances.Frame_2.Name = 'Shadow'
+				
+				buttoninstances.TextButton_1.MouseButton1Click:Connect(function()
+					callback()
+				end)
+				
+				function ButtonFunction:UpdateButton(str)
+					str = tostring(str) or "Button"
+					buttoninstances.TextLabel_1.Text = tostring(str)
+				end
+				return ButtonFunction
+			end
+			
+			function ElementHandler:CreateToggle(config)
+				local btnText = config.Text or config.text or "Toggle"
+				local callback = config.callback or config.Callback or function() end   
+
+				local toggleinstance = {
+					["TextLabel_1"] = Instance.new("TextLabel"),
+					["ImageButton_1"] = Instance.new("ImageButton"),
+					["Frame_2"] = Instance.new("Frame"),
+					["UICorner_1"] = Instance.new("UICorner"),
+					["Frame_1"] = Instance.new("Frame"),
+				}
+
+				toggleinstance.Frame_1.Parent = sectioninstances.Frame_3
+				toggleinstance.Frame_1.BackgroundColor3 = Color3.new(1, 1, 1)
+				toggleinstance.Frame_1.BackgroundTransparency = 1
+				toggleinstance.Frame_1.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+				toggleinstance.Frame_1.BorderSizePixel = 0
+				toggleinstance.Frame_1.Position = UDim2.new(0, 0, 0, 93)
+				toggleinstance.Frame_1.Size = UDim2.new(0, 240, 0, 36)
+				toggleinstance.Frame_1.ZIndex = 5
+				toggleinstance.Frame_1.Name = 'Toggler'
+
+				toggleinstance.Frame_2.Parent = toggleinstance.Frame_1
+				toggleinstance.Frame_2.BackgroundColor3 = Color3.new(0.0588235, 0.0588235, 0.0588235)
+				toggleinstance.Frame_2.BorderColor3 = Color3.new(0.27451, 0.27451, 0.27451)
+				toggleinstance.Frame_2.BorderSizePixel = 2
+				toggleinstance.Frame_2.Position = UDim2.new(0, 0, 0.3125, 0)
+				toggleinstance.Frame_2.Size = UDim2.new(0, 16, 0, 16)
+				toggleinstance.Frame_2.ZIndex = 5
+				toggleinstance.Frame_2.Name = 'Outline'
+
+				toggleinstance.ImageButton_1.Parent = toggleinstance.Frame_2
+				toggleinstance.ImageButton_1.Image = 'rbxassetid://3926305904'
+				toggleinstance.ImageButton_1.ImageRectOffset = Vector2.new(312, 4)
+				toggleinstance.ImageButton_1.ImageRectSize = Vector2.new(24, 24)
+				toggleinstance.ImageButton_1.BackgroundColor3 = CurrentTheme.ThemeColor
+				toggleinstance.ImageButton_1.LayoutOrder = 1
+				toggleinstance.ImageButton_1.Position = UDim2.new(-0.0625, 0, -0.0625, 0)
+				toggleinstance.ImageButton_1.Size = UDim2.new(0, 18, 0, 18)
+				toggleinstance.ImageButton_1.ZIndex = 2
+				toggleinstance.ImageButton_1.Name = 'Toggle'
+
+				toggleinstance.UICorner_1.Parent = toggleinstance.ImageButton_1
+				toggleinstance.UICorner_1.CornerRadius = UDim.new(0, 2)
+
+				toggleinstance.TextLabel_1.Parent = toggleinstance.Frame_1
+				toggleinstance.TextLabel_1.Font = Enum.Font.Gotham
+				toggleinstance.TextLabel_1.Text = config.Title
+				toggleinstance.TextLabel_1.TextColor3 = CurrentTheme.TextColor
+				toggleinstance.TextLabel_1.TextSize = 14
+				toggleinstance.TextLabel_1.TextXAlignment = Enum.TextXAlignment.Left
+				toggleinstance.TextLabel_1.BackgroundColor3 = Color3.new(1, 1, 1)
+				toggleinstance.TextLabel_1.BackgroundTransparency = 1
+				toggleinstance.TextLabel_1.Position = UDim2.new(0.12916666269302368, 0, 0.29797980189323425, 0)
+				toggleinstance.TextLabel_1.Size = UDim2.new(0, 76, 0, 18)
+				
+
+				local Shadow = Instance.new("Frame")
+
+				Shadow.Name = "Shadow"
+				Shadow.Parent = toggleinstance.Frame_2
+				Shadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+				Shadow.BackgroundTransparency = 0.700
+				Shadow.BorderColor3 = Color3.fromRGB(27, 42, 53)
+				Shadow.Position = UDim2.new(-0.125, 0,-0.063, 0)
+				Shadow.BorderSizePixel = 0
+				Shadow.Size = UDim2.new(1.187, 0,1.155, 0)
+				Shadow.ZIndex = 2
+				Shadow.BackgroundTransparency = 1
+
+				
+				if config.Default and config.Default == true then
+					tog = true
+					toggleinstance.ImageButton_1.BackgroundTransparency = 0
+					toggleinstance.ImageButton_1.ImageTransparency = 0
+				else
+					tog = false
+					toggleinstance.ImageButton_1.BackgroundTransparency = 1
+					toggleinstance.ImageButton_1.ImageTransparency = 1
+				end
+				
+				toggleinstance.ImageButton_1.MouseEnter:Connect(function()
+					game.TweenService:Create(toggleinstance.Frame_2:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						BackgroundTransparency = 0.8
+					}):Play()
+				end)
+				toggleinstance.ImageButton_1.MouseLeave:Connect(function()
+					game.TweenService:Create(toggleinstance.Frame_2:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						BackgroundTransparency = 1
+					}):Play()
+				end)				
+				
+				toggleinstance.ImageButton_1.MouseButton1Click:Connect(function()
+					tog = not tog
+					callback(tog)
+					if tog then 
+						game.TweenService:Create(toggleinstance.ImageButton_1, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							BackgroundTransparency = 0
+						}):Play()
+						game.TweenService:Create(toggleinstance.ImageButton_1, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							ImageTransparency = 0
+						}):Play()
+					else
+						game.TweenService:Create(toggleinstance.ImageButton_1, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							BackgroundTransparency = 1
+						}):Play()
+						game.TweenService:Create(toggleinstance.ImageButton_1, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							ImageTransparency = 1
+						}):Play()
+					end
+				end)
+			end
+			function ElementHandler:CreateSlider(config)
+				local btnText = config.Text or config.text or "Slider"
+				local callback = config.callback or config.Callback or function() end   
+				local Min = config.Min or config.min or 0
+				local Max = config.Max or config.max or 100
+				local Default = config.Default or config.default or 16
+				
+				local sliderinstances = {
+					["TextLabel_2"] = Instance.new("TextLabel"),
+					["TextLabel_1"] = Instance.new("TextLabel"),
+					["Frame_3"] = Instance.new("Frame"),
+					["UICorner_2"] = Instance.new("UICorner"),
+					["Frame_2"] = Instance.new("Frame"),
+					["UICorner_1"] = Instance.new("UICorner"),
+					["TextButton_1"] = Instance.new("TextButton"),
+					["Frame_4"] = Instance.new("Frame"),
+					["Frame_1"] = Instance.new("Frame"),
+					["UICorner_3"] = Instance.new("UICorner"),
+				}
+				
+				sliderinstances.Frame_1.Parent = sectioninstances.Frame_3
+				sliderinstances.Frame_1.BackgroundColor3 = Color3.new(1, 1, 1)
+				sliderinstances.Frame_1.BackgroundTransparency = 1
+				sliderinstances.Frame_1.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+				sliderinstances.Frame_1.Position = UDim2.new(0, 9, 0, 4)
+				sliderinstances.Frame_1.Size = UDim2.new(0, 240, 0, 40)
+				sliderinstances.Frame_1.ZIndex = 5
+				sliderinstances.Frame_1.Name = 'Slider'
+
+				sliderinstances.TextLabel_1.Parent = sliderinstances.Frame_1
+				sliderinstances.TextLabel_1.Font = Enum.Font.Gotham
+				sliderinstances.TextLabel_1.Text = '45'
+				sliderinstances.TextLabel_1.TextColor3 = CurrentTheme.TextColor
+				sliderinstances.TextLabel_1.TextSize = 12
+				sliderinstances.TextLabel_1.TextXAlignment = Enum.TextXAlignment.Right
+				sliderinstances.TextLabel_1.BackgroundColor3 = Color3.new(1, 1, 1)
+				sliderinstances.TextLabel_1.BackgroundTransparency = 1
+				sliderinstances.TextLabel_1.Position = UDim2.new(0.8291666507720947, 0, -0.05000000074505806, 0)
+				sliderinstances.TextLabel_1.Size = UDim2.new(0, 35, 0, 28)
+				sliderinstances.TextLabel_1.Name = 'Number'
+
+				sliderinstances.TextLabel_2.Parent = sliderinstances.Frame_1
+				sliderinstances.TextLabel_2.Font = Enum.Font.Gotham
+				sliderinstances.TextLabel_2.Text = btnText
+				sliderinstances.TextLabel_2.TextColor3 = CurrentTheme.TextColor
+				sliderinstances.TextLabel_2.TextSize = 12
+				sliderinstances.TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+				sliderinstances.TextLabel_2.BackgroundColor3 = Color3.new(1, 1, 1)
+				sliderinstances.TextLabel_2.BackgroundTransparency = 1
+				sliderinstances.TextLabel_2.Position = UDim2.new(-0.004183955956250429, 0, -0.05000000074505806, 0)
+				sliderinstances.TextLabel_2.Size = UDim2.new(0, 183, 0, 28)
+
+
+				sliderinstances.TextButton_1.Parent = sliderinstances.Frame_1
+				sliderinstances.TextButton_1.Font = Enum.Font.SourceSans
+				sliderinstances.TextButton_1.Text = ''
+				sliderinstances.TextButton_1.TextColor3 = Color3.new(0, 0, 0)
+				sliderinstances.TextButton_1.TextSize = 14
+				sliderinstances.TextButton_1.BackgroundColor3 = Color3.new(0.27451, 0.27451, 0.27451)
+				sliderinstances.TextButton_1.BorderSizePixel = 0
+				sliderinstances.TextButton_1.Position = UDim2.new(-0.00800000037997961, 0, 0.675000011920929, 0)
+				sliderinstances.TextButton_1.Size = UDim2.new(0, 240, 0, 13)
+
+				sliderinstances.UICorner_1.Parent = sliderinstances.TextButton_1
+				sliderinstances.UICorner_1.CornerRadius = UDim.new(0, 2)
+
+				sliderinstances.UICorner_2.Parent = sliderinstances.TextButton_1
+				sliderinstances.UICorner_2.CornerRadius = UDim.new(0, 2)
+
+				sliderinstances.Frame_3.Parent = sliderinstances.TextButton_1
+				sliderinstances.Frame_3.BackgroundColor3 = Color3.new(0.117647, 0.117647, 0.117647)
+				sliderinstances.Frame_3.BorderSizePixel = 0
+				sliderinstances.Frame_3.Position = UDim2.new(0, 1, 0, 1)
+				sliderinstances.Frame_3.Size = UDim2.new(0, 237, 0, 11)
+				sliderinstances.Frame_3.Name = 'Black'
+
+				sliderinstances.Frame_4.Parent = sliderinstances.TextButton_1
+				sliderinstances.Frame_4.BackgroundColor3 = CurrentTheme.ThemeColor
+				sliderinstances.Frame_4.BorderSizePixel = 0
+				sliderinstances.Frame_4.Position = UDim2.new(0, 1, 0, 1)
+				sliderinstances.Frame_4.Selectable = true
+				sliderinstances.Frame_4.Size = UDim2.new(0.987500011920929, 0, 0, 11)
+				sliderinstances.Frame_4.Name = 'Green'
+
+				sliderinstances.UICorner_3.Parent = sliderinstances.Frame_4
+				sliderinstances.UICorner_3.CornerRadius = UDim.new(0, 2)
+				
+				local Val = sliderinstances.TextLabel_1
+				local SliderFrame = sliderinstances.TextButton_1
+				local MousePressed = false
+				local Green = sliderinstances.Frame_4
+
+				local held = false
+				local step = 0
+				local percentage = 0
+				local function snap(number, factor)
+					if factor == 0 then
+						return number
+					else
+						return math.floor(number/factor+0.5)*factor
+					end	
+				end
+				if Default and Default >= 0 then
+					Green.Size = UDim2.new(Default / Max,-(Green.Size.X.Offset*0.5),0, 11)
+					Val.Text = (math.floor((0 + (Max - 0) * math.clamp(Default / Max,0,1)) * Max) / Max)
+				end
+
+				SliderFrame.MouseButton1Down:Connect(function()
+					held = true
+					MousePressed = true
+
+				end)
+
+				game:GetService("UserInputService").InputEnded:Connect(function(input, gp)
+					if input.UserInputType == Enum.UserInputType.MouseButton1 then
+						held = false
+						MousePressed = false
+					end
+				end)
+
+				SliderFrame.MouseEnter:connect(function()
+					repeat
+						wait()
+						if MousePressed then
+							held = true
+						end
+					until Green.MouseLeave
+				end)
+				Green.MouseEnter:connect(function()
+					repeat
+						wait()
+						if MousePressed then
+							held = true
+						end
+					until SliderFrame.MouseLeave
+				end)
+
+				game:GetService("RunService").RenderStepped:connect(function(delta)
+					if held then
+						local MousePos = game:GetService("UserInputService"):GetMouseLocation().X
+						local BtnPos = Green.Position
+						local SliderSize = SliderFrame.AbsoluteSize.X
+						local SliderPos = SliderFrame.AbsolutePosition.X
+						local pos = snap((MousePos-SliderPos)/SliderSize,step)
+						percentage = math.clamp(pos,0,1)
+						game.TweenService:Create(Green, TweenInfo.new(0.05, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							Size = UDim2.new(percentage,-(Green.Size.X.Offset*0.5),0, 11)
+						}):Play()
+						local bry = (math.floor((0 + (Max - 0) * percentage) * Max) / Max)
+						local final = math.floor(bry)
+						Val.Text = final
+						callback(final)
+						if Min >= final then
+							Val.Text = Val.Text..Min
+							callback(final)
+						end
+					end
+				end)
+				
+			end
+			
+			function ElementHandler:CreateKeybind(config)
+				local btnText = config.Text or config.text or "Keybind"
+				local callback = config.callback or config.Callback or function() end   
+				local DefaultKey = Enum.KeyCode[config.Default] or config.default or Enum.KeyCode.Q
+				
+				if not DefaultKey then
+					return
+				end
+				
+				if not table.find(BlacklistedKeys,DefaultKey) then
+					DefaultKey = DefaultKey
+				else
+					DefaultKey = Enum.KeyCode.Q
+				end
+				
+				local bindinstances = {
+					["TextLabel_1"] = Instance.new("TextLabel"),
+					["Frame_2"] = Instance.new("Frame"),
+					["Frame_1"] = Instance.new("Frame"),
+					["UICorner_1"] = Instance.new("UICorner"),
+					["TextLabel_2"] = Instance.new("TextLabel"),
+					["TextButton_1"] = Instance.new("TextButton"),
+					["LocalScript_1"] = Instance.new("LocalScript"),
+				}
+				
+				bindinstances.Frame_1.Parent = sectioninstances.Frame_3
+				bindinstances.Frame_1.BackgroundColor3 = Color3.new(1, 1, 1)
+				bindinstances.Frame_1.BackgroundTransparency = 1
+				bindinstances.Frame_1.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+				bindinstances.Frame_1.BorderSizePixel = 0
+				bindinstances.Frame_1.LayoutOrder = 3
+				bindinstances.Frame_1.Position = UDim2.new(0, 0, 0, 20) 
+				bindinstances.Frame_1.Size = UDim2.new(0, 240, 0, 33)
+				bindinstances.Frame_1.ZIndex = 5
+				bindinstances.Frame_1.Name = 'Keybind'
+
+				bindinstances.Frame_2.Parent = bindinstances.Frame_1
+				bindinstances.Frame_2.BackgroundColor3 = Color3.new(0.0588235, 0.0588235, 0.0588235)
+				bindinstances.Frame_2.BorderColor3 = Color3.new(0.27451, 0.27451, 0.27451)
+				bindinstances.Frame_2.BorderSizePixel = 2
+				bindinstances.Frame_2.Position = UDim2.new(0, 0, 0.3125, 0)
+				bindinstances.Frame_2.Size = UDim2.new(0, 33, 0, 16)
+				bindinstances.Frame_2.Name = 'Outline'
+
+				bindinstances.TextButton_1.Parent = bindinstances.Frame_2
+				bindinstances.TextButton_1.Font = Enum.Font.SourceSans
+				bindinstances.TextButton_1.Text = ''
+				bindinstances.TextButton_1.TextColor3 = Color3.new(0, 0, 0)
+				bindinstances.TextButton_1.AutoButtonColor = false
+				bindinstances.TextButton_1.TextSize = 14
+				bindinstances.TextButton_1.BackgroundColor3 = CurrentTheme.ThemeColor
+				bindinstances.TextButton_1.BorderSizePixel = 0
+				bindinstances.TextButton_1.Position = UDim2.new(-0.06300048530101776, 0, -0.06299972534179688, 0)
+				bindinstances.TextButton_1.Size = UDim2.new(0, 36, 0, 18)
+
+				bindinstances.UICorner_1.Parent = bindinstances.TextButton_1
+				bindinstances.UICorner_1.CornerRadius = UDim.new(0, 2)
+
+				bindinstances.TextLabel_1.Parent = bindinstances.TextButton_1
+				bindinstances.TextLabel_1.Font = Enum.Font.Gotham
+				bindinstances.TextLabel_1.Text = DefaultKey.Name
+				bindinstances.TextLabel_1.TextColor3 = CurrentTheme.TextColor
+				bindinstances.TextLabel_1.TextScaled = true
+				bindinstances.TextLabel_1.TextSize = 15
+				bindinstances.TextLabel_1.TextWrapped = true
+				bindinstances.TextLabel_1.BackgroundColor3 = Color3.new(1, 1, 1)
+				bindinstances.TextLabel_1.BackgroundTransparency = 1
+				bindinstances.TextLabel_1.Size = UDim2.new(1, 0, 0.949999988079071, 0)
+				bindinstances.TextLabel_1.Position = UDim2.fromOffset(0,1)
+
+				bindinstances.LocalScript_1.Parent = bindinstances.TextButton_1
+
+				bindinstances.TextLabel_2.Parent = bindinstances.Frame_1
+				bindinstances.TextLabel_2.Font = Enum.Font.Gotham
+				bindinstances.TextLabel_2.Text = 'Keybind'
+				bindinstances.TextLabel_2.TextColor3 = CurrentTheme.TextColor
+				bindinstances.TextLabel_2.TextSize = 14
+				bindinstances.TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+				bindinstances.TextLabel_2.BackgroundColor3 = Color3.new(1, 1, 1)
+				bindinstances.TextLabel_2.BackgroundTransparency = 1
+				bindinstances.TextLabel_2.Position = UDim2.new(0.18299999833106995, 0, 0.2800000011920929, 0)
+				bindinstances.TextLabel_2.Size = UDim2.new(0, 76, 0, 22)
+				
+				local Shadow = Instance.new("Frame")
+
+				Shadow.Name = "Shadow"
+				Shadow.Parent = bindinstances.TextButton_1
+				Shadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+				Shadow.BackgroundTransparency = 1
+				Shadow.BorderColor3 = Color3.fromRGB(27, 42, 53)
+				Shadow.BorderSizePixel = 0
+				Shadow.Position = UDim2.new(8.4771051e-07, 0, 0, 0)
+				Shadow.Size = UDim2.new(0, 36, 0, 20)
+				Shadow.ZIndex = 2
+				
+
+				bindinstances.TextButton_1.MouseEnter:Connect(function()
+					game.TweenService:Create(bindinstances.TextButton_1:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						BackgroundTransparency = 0.8
+					}):Play()
+				end)
+				bindinstances.TextButton_1.MouseLeave:Connect(function()
+					game.TweenService:Create(bindinstances.TextButton_1:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						BackgroundTransparency = 1
+					}):Play()
+				end)		
+				
+				local Key = DefaultKey
+				local Listening = false
+				game:GetService("UserInputService").InputBegan:Connect(function(Input, IsTyping)
+					if IsTyping then return end
+					if Input.KeyCode == Key then
+						callback()
+					end
+					if Listening == true then
+						if not table.find(BlacklistedKeys,Input.KeyCode) then
+							Key = Input.KeyCode
+						else
+							Key = Enum.KeyCode.Q
+						end
+
+						Listening = false
+						if Key.Name == "LeftControl" then
+							bindinstances.TextLabel_1.Text = "LControl"
+						elseif Key.Name == "RightControl" then
+							bindinstances.TextLabel_1.Text = "RControl"
+						elseif Key.Name == "LeftShift" then
+							bindinstances.TextLabel_1.Text = "LShift"
+						elseif Key.Name == "RightShift" then
+							bindinstances.TextLabel_1.Text = "RShift"
+						else
+							bindinstances.TextLabel_1.Text = Key.Name
+						end
+
+					end
+				end)
+
+				bindinstances.TextButton_1.MouseButton1Click:Connect(function()
+					Listening = true
+					bindinstances.TextLabel_1.Text = ".."
+				end)
+				
+			end
+			
+			function ElementHandler:CreateDropdown(config)
+				local DropdownFunction = {}
+				local btnText = config.Text or config.text or "Dropdown"
+				local callback = config.callback or config.Callback or function() end   
+				local array = config.array or config.Array or {}
+				local opened
+
+				local dropdown = {
+					["UICorner_1"] = Instance.new("UICorner"),
+					["ImageLabel_1"] = Instance.new("ImageLabel"),
+					["Frame_2"] = Instance.new("Frame"),
+					["UIListLayout_1"] = Instance.new("UIListLayout"),
+					["TextLabel_1"] = Instance.new("TextLabel"),
+					["TextButton_1"] = Instance.new("TextButton"),
+					["Frame_1"] = Instance.new("Frame"),
+					["Frame_3"] = Instance.new("Frame"),
+					["UICorner_2"] = Instance.new("UICorner"),
+					["UIPadding_1"] = Instance.new("UIPadding")
+				}
+
+
+				dropdown.Frame_1.Parent = sectioninstances.Frame_3
+				dropdown.Frame_1.BackgroundColor3 = Color3.new(1, 1, 1)
+				dropdown.Frame_1.BackgroundTransparency = 1
+				dropdown.Frame_1.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+				dropdown.Frame_1.BorderSizePixel = 0
+				dropdown.Frame_1.Position = UDim2.new(0, 1, 0, 84)
+				dropdown.Frame_1.Size = UDim2.new(0, 240, 0, 33)
+				dropdown.Frame_1.Name = 'Dropdown'
+
+				dropdown.TextButton_1.Parent = dropdown.Frame_1
+				dropdown.TextButton_1.Font = Enum.Font.SourceSans
+				dropdown.TextButton_1.Text = ''
+				dropdown.TextButton_1.TextColor3 = Color3.new(0, 0, 0)
+				dropdown.TextButton_1.TextSize = 14
+				dropdown.TextButton_1.BackgroundColor3 = CurrentTheme.ThemeColor
+				dropdown.TextButton_1.Position = UDim2.new(0, -2, 0, 7)
+				dropdown.TextButton_1.Size = UDim2.new(0, 240, 0, 20)
+				dropdown.TextButton_1.AutoButtonColor = false
+
+				dropdown.UICorner_1.Parent = dropdown.TextButton_1
+				dropdown.UICorner_1.CornerRadius = UDim.new(0, 2)
+
+				dropdown.Frame_2.Parent = dropdown.TextButton_1
+				dropdown.Frame_2.BackgroundColor3 = Color3.new(0, 0, 0)
+				dropdown.Frame_2.BackgroundTransparency = 1
+				dropdown.Frame_2.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+				dropdown.Frame_2.BorderSizePixel = 0
+				dropdown.Frame_2.Size = UDim2.new(0, 240, 0, 20)
+				dropdown.Frame_2.ZIndex = 2
+				dropdown.Frame_2.Name = 'Shadow'
+
+				dropdown.TextLabel_1.Parent = dropdown.TextButton_1
+				dropdown.TextLabel_1.Font = Enum.Font.Gotham
+				dropdown.TextLabel_1.Text = btnText
+				dropdown.TextLabel_1.TextColor3 = CurrentTheme.TextColor
+				dropdown.TextLabel_1.TextSize = 15
+				dropdown.TextLabel_1.TextXAlignment = Enum.TextXAlignment.Left
+				dropdown.TextLabel_1.BackgroundColor3 = Color3.new(1, 1, 1)
+				dropdown.TextLabel_1.BackgroundTransparency = 1
+				dropdown.TextLabel_1.BorderSizePixel = 0
+				dropdown.TextLabel_1.Position = UDim2.new(0, 3, 0, 0)
+				dropdown.TextLabel_1.Size = UDim2.new(0, 225, 0, 19)
+
+				dropdown.ImageLabel_1.Parent = dropdown.TextButton_1
+				dropdown.ImageLabel_1.Image = 'rbxassetid://3926307971'
+				dropdown.ImageLabel_1.ImageRectOffset = Vector2.new(164, 524)
+				dropdown.ImageLabel_1.ImageRectSize = Vector2.new(36, 36)
+				dropdown.ImageLabel_1.BackgroundColor3 = Color3.new(1, 1, 1)
+				dropdown.ImageLabel_1.BackgroundTransparency = 1
+				dropdown.ImageLabel_1.Position = UDim2.new(0.9129999876022339, 0, 0, 0)
+				dropdown.ImageLabel_1.Rotation = 0
+				dropdown.ImageLabel_1.Size = UDim2.new(0, 19, 0, 19)
+				dropdown.ImageLabel_1.Name = 'arrow'
+
+				dropdown.Frame_3.Parent = dropdown.TextButton_1
+				dropdown.Frame_3.BackgroundColor3 = Color3.new(1, 1, 1)
+				dropdown.Frame_3.BackgroundTransparency = 1
+				dropdown.Frame_3.BorderSizePixel = 0
+				dropdown.Frame_3.Position = UDim2.new(0, 2, 0, 20)
+				dropdown.Frame_3.Size = UDim2.new(0, 236, 0, 0)
+				dropdown.Frame_3.Name = 'HoldingFrame'
+
+				dropdown.UICorner_2.Parent = dropdown.Frame_3
+				dropdown.UICorner_2.CornerRadius = UDim.new(0, 2)
+
+				dropdown.UIListLayout_1.Parent = dropdown.Frame_3
+				dropdown.UIListLayout_1.SortOrder = Enum.SortOrder.LayoutOrder
+				
+				dropdown.UIPadding_1.Parent = dropdown.Frame_3
+				
+
+				local UIPadding = Instance.new("UIPadding")
+				local UIListLayout = Instance.new("UIListLayout")
+
+				UIPadding.Parent = dropdown.Frame_1
+				UIPadding.PaddingLeft = UDim.new(0, -2)
+				UIPadding.PaddingTop = UDim.new(0, 5)
+
+				UIListLayout.Parent = dropdown.Frame_1
+				UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+				
+				for i,v in next, array do
+					local TextButton = Instance.new("TextButton")
+					local UICorner = Instance.new("UICorner")
+					local Shadow = Instance.new("Frame")
+					local TextLabel = Instance.new("TextLabel")
+					
+					TextButton.Name = tostring(v)
+					TextButton.Parent = dropdown.Frame_3
+					TextButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+					TextButton.Size = UDim2.new(0, 236, 0, 0) -- x = 0,15
+					TextButton.ZIndex = 2
+					TextButton.AutoButtonColor = false
+					TextButton.Font = Enum.Font.SourceSans
+					TextButton.Text = ""
+					TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+					TextButton.TextSize = 14.000
+					TextButton.Visible = true
+					
+					UICorner.CornerRadius = UDim.new(0, 2)
+					UICorner.Parent = TextButton
+
+					Shadow.Name = "Shadow"
+					Shadow.Parent = TextButton
+					Shadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+					Shadow.BackgroundTransparency = 1.000
+					Shadow.BorderColor3 = Color3.fromRGB(27, 42, 53)
+					Shadow.BorderSizePixel = 0
+					Shadow.Size = UDim2.new(1, 0, 1, 0)
+					Shadow.ZIndex = 2
+
+					TextLabel.Parent = TextButton
+					TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+					TextLabel.BackgroundTransparency = 1.000
+					TextLabel.BorderSizePixel = 0
+					TextLabel.Size = UDim2.new(1, 0, 1, 0)
+					TextLabel.Font = Enum.Font.Gotham
+					TextLabel.Text = tostring(v)
+					TextLabel.TextColor3 = Color3.fromRGB(243, 243, 243)
+					TextLabel.TextSize = 15.000
+					TextLabel.TextTransparency = 1
+					TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+					
+					TextButton.MouseEnter:Connect(function()
+						game.TweenService:Create(TextButton:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							BackgroundTransparency = 0.8
+						}):Play()
+					end)
+					TextButton.MouseLeave:Connect(function()
+						game.TweenService:Create(TextButton:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							BackgroundTransparency = 1
+						}):Play()
+					end)
+					TextButton.MouseButton1Click:Connect(function()
+						callback(tostring(TextButton.Name))
+						dropdown.TextLabel_1.Text = btnText
+						dropdown.TextLabel_1.Text = dropdown.TextLabel_1.Text..": "..tostring(TextButton.Name)
+						opened = false
+						for i, v in pairs(dropdown.Frame_3:GetChildren()) do
+							if v:IsA("TextButton") then
+								game.TweenService:Create(v, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+									Size = UDim2.new(0, 236, 0, 0)
+								}):Play()
+								game.TweenService:Create(v:FindFirstChildOfClass("TextLabel"), TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+									TextTransparency = 1
+								}):Play()
+								--v.Visible = false
+							end
+						end	
+						game.TweenService:Create(dropdown.ImageLabel_1, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							Rotation = 0
+						}):Play()
+					end)
+				end
+				--local function UpdateList()
+				--	for i, v in pairs(dropdown.Frame_3:GetChildren()) do
+				--		if v:IsA("TextButton") then
+				--			v:Destroy()
+				--		end
+				--	end
+				--	for i, v in pairs(array) do
+				--		NewBut(dropdown.Frame_3,tostring(v))
+				--	end
+				--end
+				--UpdateList()
+				
+				dropdown.Frame_3:FindFirstChildOfClass("UIListLayout"):GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+					local size = dropdown.Frame_3:FindFirstChildOfClass("UIListLayout").AbsoluteContentSize
+					local padding = dropdown.Frame_3:FindFirstChildOfClass("UIListLayout").Parent.UIPadding
+
+					size = size + Vector2.new(0, padding.PaddingBottom.Offset + (padding.PaddingTop.Offset))
+					game.TweenService:Create(dropdown.Frame_3, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						Size = UDim2.new(0, 236, 0, size.Y + 2)
+					}):Play()
+					game.TweenService:Create(dropdown.Frame_1, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						Size = UDim2.new(0, 240, 0, size.Y + 33)
+					}):Play()
+				end)
+				
+				dropdown.TextButton_1.MouseButton1Click:Connect(function()
+					--UpdateList()
+					if opened then
+						game.TweenService:Create(dropdown.ImageLabel_1, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							Rotation = 0
+						}):Play()
+						opened = false
+						for i, v in pairs(dropdown.Frame_3:GetChildren()) do
+							if v:IsA("TextButton") then
+								game.TweenService:Create(v, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+									Size = UDim2.new(0, 236, 0, 0)
+								}):Play()
+								game.TweenService:Create(v:FindFirstChildOfClass("TextLabel"), TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+									TextTransparency = 1
+								}):Play()
+								--v.Visible = false
+							end
+						end
+						dropdown.Frame_3.BackgroundTransparency = 1
+					else
+						game.TweenService:Create(dropdown.ImageLabel_1, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							Rotation = -180
+						}):Play()
+						opened = true
+						for i, v in pairs(dropdown.Frame_3:GetChildren()) do
+							if v:IsA("TextButton") then
+								--v.Visible = true
+								game.TweenService:Create(v, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+									Size = UDim2.new(0, 236, 0, 15)
+								}):Play()
+								game.TweenService:Create(v:FindFirstChildOfClass("TextLabel"), TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+									TextTransparency = 0
+								}):Play()
+							end
+						end
+						dropdown.Frame_3.BackgroundTransparency = 1
+					end
+				end)
+
+				dropdown.TextButton_1.MouseEnter:Connect(function()
+					game.TweenService:Create(dropdown.TextButton_1:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						BackgroundTransparency = 0.8
+					}):Play()
+				end)
+				dropdown.TextButton_1.MouseLeave:Connect(function()
+					game.TweenService:Create(dropdown.TextButton_1:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+						BackgroundTransparency = 1
+					}):Play()
+				end)		
+				
+				function DropdownFunction:UpdateDropdown(newList)
+					newList = newList or {}
+					dropdown.TextLabel_1.Text = btnText
+					for i,v in next, dropdown.Frame_3:GetChildren() do
+						if v:IsA("TextButton") then
+							v:Destroy()
+						end
+					end
+					for i, v in pairs(newList) do
+						local TextButton = Instance.new("TextButton")
+						local UICorner = Instance.new("UICorner")
+						local Shadow = Instance.new("Frame")
+						local TextLabel = Instance.new("TextLabel")
+
+						TextButton.Name = tostring(v)
+						TextButton.Parent = dropdown.Frame_3
+						TextButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+						if opened then
+							num = 15
+							TextLabel.TextTransparency = 0
+						else
+							num = 0
+							TextLabel.TextTransparency = 1
+						end
+						TextButton.Size = UDim2.new(0, 236, 0, num) -- x = 
+						TextButton.ZIndex = 2
+						TextButton.AutoButtonColor = false
+						TextButton.Font = Enum.Font.SourceSans
+						TextButton.Text = ""
+						TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+						TextButton.TextSize = 14.000
+						TextButton.Visible = true
+
+						UICorner.CornerRadius = UDim.new(0, 2)
+						UICorner.Parent = TextButton
+
+						Shadow.Name = "Shadow"
+						Shadow.Parent = TextButton
+						Shadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+						Shadow.BackgroundTransparency = 1.000
+						Shadow.BorderColor3 = Color3.fromRGB(27, 42, 53)
+						Shadow.BorderSizePixel = 0
+						Shadow.Size = UDim2.new(1, 0, 1, 0)
+						Shadow.ZIndex = 2
+
+						TextLabel.Parent = TextButton
+						TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+						TextLabel.BackgroundTransparency = 1.000
+						TextLabel.BorderSizePixel = 0
+						TextLabel.Size = UDim2.new(1, 0, 1, 0)
+						TextLabel.Font = Enum.Font.Gotham
+						TextLabel.Text = tostring(v)
+						TextLabel.TextColor3 = Color3.fromRGB(243, 243, 243)
+						TextLabel.TextSize = 15.000
+						TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+						TextButton.MouseEnter:Connect(function()
+							game.TweenService:Create(TextButton:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+								BackgroundTransparency = 0.8
+							}):Play()
+						end)
+						TextButton.MouseLeave:Connect(function()
+							game.TweenService:Create(TextButton:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+								BackgroundTransparency = 1
+							}):Play()
+						end)
+						TextButton.MouseButton1Click:Connect(function()
+							callback(tostring(TextButton.Name))
+							dropdown.TextLabel_1.Text = btnText
+							dropdown.TextLabel_1.Text = dropdown.TextLabel_1.Text..": "..tostring(TextButton.Name)
+							opened = false
+							for i, v in pairs(dropdown.Frame_3:GetChildren()) do
+								if v:IsA("TextButton") then
+									game.TweenService:Create(v, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+										Size = UDim2.new(0, 236, 0, 0)
+									}):Play()
+									game.TweenService:Create(v:FindFirstChildOfClass("TextLabel"), TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+										TextTransparency = 1
+									}):Play()
+									--v.Visible = false
+								end
+							end	
+							game.TweenService:Create(dropdown.ImageLabel_1, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+								Rotation = 0
+							}):Play()	
+						end)
+					end
+				end
+				return DropdownFunction
+
+			end
+
+			return ElementHandler
+			
+		end
+
+		return SectionHandler
+		
+		
+	end
+	
+	
+	return TabHandler
+	
+end
+return WindowTable
+

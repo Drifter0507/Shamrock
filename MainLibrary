@@ -1198,6 +1198,7 @@ function WindowTable:CreateWindow(config)
 
 		function SectionHandler:CreateSection(config, callback)
 			local Title = config.Title or "Untitled"
+			local OrderNumber = config.Order or config.order or 10
 			
 			local sectioninstances = {
 				["TextLabel_1"] = Instance.new("TextLabel"),
@@ -1215,6 +1216,7 @@ function WindowTable:CreateWindow(config)
 			sectioninstances.Frame_1.Position = UDim2.new(0, 20, 0, 14)
 			sectioninstances.Frame_1.Size = UDim2.new(0, 280, 0, 202)
 			sectioninstances.Frame_1.Name = Title
+			sectioninstances.Frame_1.LayoutOrder = tonumber(OrderNumber)
 
 			sectioninstances.UICorner_1.Parent = sectioninstances.Frame_1
 			sectioninstances.UICorner_1.CornerRadius = UDim.new(0, 4)

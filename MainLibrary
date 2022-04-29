@@ -632,6 +632,18 @@ function WindowTable:CreateWindow(config)
 	wait(0.4)
 	_G.FewofiwegngreRG452 = LibName
 	
+	WindowTable:CreatePrompt({
+		Message = "Version 1.0 Loaded",
+		Prompt = false,
+		Yes = "Yes Button Text",
+		No = "No Button Text",
+		GoAway = true,
+		Duration = 5,
+		Callback = function()
+
+		end,
+	}) 
+	
 	CurrentTheme = config.Theme or config.theme or DefaultTheme
 	local screenGui = Instance.new("ScreenGui", game:GetService("CoreGui"))
 	local instances = {
@@ -2178,18 +2190,6 @@ function WindowTable:CreateWindow(config)
 	return TabHandler
 	
 end
-
-WindowTable:CreatePrompt({
-	Message = "Version 1.0 Loaded",
-	Prompt = false,
-	Yes = "Yes Button Text",
-	No = "No Button Text",
-	GoAway = true,
-	Duration = 5,
-	Callback = function()
-
-	end,
-}) 
 
 return WindowTable
 

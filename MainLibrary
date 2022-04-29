@@ -1253,6 +1253,7 @@ function WindowTable:CreateWindow(config)
 			sectioninstances.UIPadding_1.PaddingTop = UDim.new(0, 0)
 
 			sectioninstances.UIListLayout_1.Parent = sectioninstances.Frame_3
+			sectioninstances.UIListLayout_1.SortOrder = Enum.SortOrder.LayoutOrder
 			
 			--newPage.CanvasSize = Vector2.new(0,0,0,TabInstances.UIListLayout_1.AbsoluteContentSize + 30)
 			--coroutine.wrap(function()

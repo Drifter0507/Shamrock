@@ -686,6 +686,16 @@ function WindowTable:CreateWindow(config)
 	spawn(function()
 		wait(1)
 		screenGui.Enabled = true
+		WindowTable:CreatePrompt({
+			Message = "Version 1.0 Loaded",
+			Prompt = false,
+			Yes = "Yes Button Text",
+			No = "No Button Text",
+			GoAway = true,
+			Duration = 5,
+			Callback = function()
+
+			end,})
 	end)
 	
 	instances.Frame_1.Parent = screenGui

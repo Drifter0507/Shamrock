@@ -673,7 +673,7 @@ function WindowTable:CreateWindow(config)
 	screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	game:GetService("CoreGui")[tostring(_G.FewofiwegngreRG452)].Enabled = false
 	coroutine.wrap(function()
-		wait(1.5)
+		wait(5)
 		game:GetService("CoreGui")[tostring(_G.FewofiwegngreRG452)].Enabled = true
 	end)()
 	

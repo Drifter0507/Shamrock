@@ -610,6 +610,9 @@ end
 
 
 function WindowTable:CreateWindow(config)
+	if game:GetService("CoreGui")[LibName] then
+		game:GetService("CoreGui")[LibName]:Destroy() = false
+	end
 	CurrentTheme = config.Theme or config.theme or DefaultTheme
 	local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
 	local instances = {

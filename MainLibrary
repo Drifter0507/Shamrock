@@ -21,10 +21,10 @@ local WindowTable = {}
 local LibName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
 
 function WindowTable:ToggleUI()
-	if game.Players.LocalPlayer.PlayerGui[LibName].Enabled then
-		game.Players.LocalPlayer.PlayerGui[LibName].Enabled = false
+	if game:GetService("CoreGui")[LibName].Enabled then
+		game:GetService("CoreGui")[LibName].Enabled = false
 	else
-		game.Players.LocalPlayer.PlayerGui[LibName].Enabled = true
+		game:GetService("CoreGui")[LibName].Enabled = true
 	end
 end
 
@@ -92,7 +92,7 @@ function WindowTable:CreatePrompt(config)
 		}
 
 
-		instances.Frame_1.Parent = game.Players.LocalPlayer.PlayerGui[LibName].Notifications
+		instances.Frame_1.Parent = game:GetService("CoreGui")[LibName].Notifications
 		instances.Frame_1.BackgroundColor3 = Color3.new(0.105882, 0.105882, 0.105882)
 		instances.Frame_1.BorderSizePixel = 0
 		instances.Frame_1.Position = UDim2.new(0,0,0,0)
@@ -522,7 +522,7 @@ function WindowTable:CreatePrompt(config)
 		return instances.Frame_1
 	end
 	
-	local Notifications = game.Players.LocalPlayer.PlayerGui[LibName]:FindFirstChild("Notifications"):GetChildren()
+	local Notifications = game:GetService("CoreGui")[LibName]:FindFirstChild("Notifications"):GetChildren()
 	if #Notifications >= 5 then
 		Notifications[1]:TweenPosition(UDim2.new(1.5, 0, Notifications[1].Position.Y.Scale, 0),"InOut","Linear",0.2,true);wait(0.2)
 		Notifications[1]:Destroy()
@@ -2149,3 +2149,74 @@ function WindowTable:CreateWindow(config)
 end
 return WindowTable
 
+
+--local Window = WindowTable:CreateWindow({Title = "Ar Du Galen"})
+--local tab1 = Window:CreateTab({Title = "Free", Default = true, ScrollBar = true})
+--local tab2 = Window:CreateTab({Title = "Paid", ScrollBar = true})
+
+
+--Library:CreatePrompt({
+--	Message = "Text Here",
+--	Prompt = true,
+--	Yes = "Yes Button Text",
+--	No = "No Button Text",
+--	GoAway = false,
+--	Duration = 5,
+--	Callback = function()
+
+--	end,
+--}) 
+
+--Library:ToggleUI()
+
+--Library:CreateWindow({
+--	Title = "Title Text Here"
+--})
+
+--Window:CreateTab({
+--	Title = "Tab Text Here", 
+--	Default = true, --only set one to true
+--	ScrollBar = true -- shows(doesnt) scrollbar
+--})
+
+--Tab:CreateSection({
+--	Title = "OwOski"
+--})
+--Section:CreateButton({
+--	Text = "fe",
+--	Callback = function()
+--		print("hi")
+--	end
+--})
+--Section:CreateToggle({
+--	Title = "fe",
+--	Callback = function()
+--		print("hi")
+--	end
+--})
+
+--Section:CreateSlider({
+--	Text = "Slider Text",
+--	Min = 0,
+--	Max = 100,
+--	Default = 16,
+--	Callback = function()
+--		print("hi")
+--	end
+--})
+--Section:CreateKeybind({
+--	Text = "Keybind Text",
+--	DefaultKey = "K",
+--	Callback = function()
+--		print("hi")
+--	end
+--})
+--Section:CreateDropdown({
+--	Text = "Dropdown Text",
+--	Array = {"Orange","Bananas"},
+--	Callback = function()
+
+--	end,
+--})
+
+--Dropdown:UpdateDropdown(NewArray)

@@ -671,11 +671,11 @@ function WindowTable:CreateWindow(config)
 
 	screenGui.Name = LibName
 	screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-	game:GetService("CoreGui")[tostring(_G.FewofiwegngreRG452)].Enabled = false
-	coroutine.wrap(function()
-		wait(5)
-		game:GetService("CoreGui")[tostring(_G.FewofiwegngreRG452)].Enabled = true
-	end)()
+	screenGui.Enabled = false
+	spawn(function()
+		wait(1)
+		screenGui.Enabled = true
+	end)
 	
 	instances.Frame_1.Parent = screenGui
 	instances.Frame_1.BackgroundColor3 = CurrentTheme.Background

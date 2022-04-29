@@ -1310,7 +1310,7 @@ function WindowTable:CreateWindow(config)
 
 			function ElementHandler:CreateButton(config)
 				local btnText = config.Text or config.text or "Text Button"
-				callback = config.callback or config.Callback or function() end   
+				local callback = config.callback or config.Callback or function() end   
 				local ButtonFunction = {}
 				
 				local buttoninstances = {

@@ -1217,6 +1217,7 @@ function WindowTable:CreateWindow(config)
 			sectioninstances.Frame_1.Size = UDim2.new(0, 280, 0, 202)
 			sectioninstances.Frame_1.Name = Title
 			sectioninstances.Frame_1.LayoutOrder = tonumber(OrderNumber)
+			print(sectioninstances.Frame_1.LayoutOrder)
 
 			sectioninstances.UICorner_1.Parent = sectioninstances.Frame_1
 			sectioninstances.UICorner_1.CornerRadius = UDim.new(0, 4)

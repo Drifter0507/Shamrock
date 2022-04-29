@@ -621,7 +621,7 @@ function WindowTable:CreateWindow(config)
 	wait(0.4)
 	_G.FewofiwegngreRG452 = LibName
 	CurrentTheme = config.Theme or config.theme or DefaultTheme
-	local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
+	local screenGui = Instance.new("ScreenGui", game:GetService("CoreGui"))
 	local instances = {
 		["UIListLayout_1"] = Instance.new("UIListLayout"),
 		["Frame_2"] = Instance.new("Frame"),

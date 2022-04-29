@@ -23,15 +23,22 @@ local WindowTable = {}
 local LibName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
 
 function WindowTable:ToggleUI()
-	if game:GetService("CoreGui")[LibName].Enabled then
-		game:GetService("CoreGui")[LibName].Enabled = false
+	if game:GetService("CoreGui")[_G.FewofiwegngreRG452].Enabled then
+		game:GetService("CoreGui")[_G.FewofiwegngreRG452].Enabled = false
 	else
-		game:GetService("CoreGui")[LibName].Enabled = true
+		game:GetService("CoreGui")[_G.FewofiwegngreRG452].Enabled = true
 	end
 end
 
 
 function WindowTable:CreatePrompt(config)
+	local TempGui
+	if not game:GetService("CoreGui")[_G.FewofiwegngreRG452]:FindFirstChild("Notifications") then
+		TempGui = Instance.new("ScreenGui",game:GetService("CoreGui"))
+		TempGui.Name = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
+		local TempFolder = Instance.new("Folder",TempGui)
+		TempFolder.Name = "Notifications"
+	end
 	local message = config.Message or config.message or "Message"
 	local isPrompt = config.Prompt or config.prompt or false
 	local green
@@ -94,7 +101,7 @@ function WindowTable:CreatePrompt(config)
 		}
 
 
-		instances.Frame_1.Parent = game:GetService("CoreGui")[LibName].Notifications
+		instances.Frame_1.Parent = game:GetService("CoreGui")[_G.FewofiwegngreRG452].Notifications or TempGui
 		instances.Frame_1.BackgroundColor3 = Color3.new(0.105882, 0.105882, 0.105882)
 		instances.Frame_1.BorderSizePixel = 0
 		instances.Frame_1.Position = UDim2.new(0,0,0,0)
@@ -523,8 +530,12 @@ function WindowTable:CreatePrompt(config)
 
 		return instances.Frame_1
 	end
-	
-	local Notifications = game:GetService("CoreGui")[LibName]:FindFirstChild("Notifications"):GetChildren()
+	local Notifications
+	if not game:GetService("CoreGui")[_G.FewofiwegngreRG452]:FindFirstChild("Notifications") then
+		Notifications = TempGui:FindFirstChild("Notifications")
+	else
+		Notifications = game:GetService("CoreGui")[_G.FewofiwegngreRG452]:FindFirstChild("Notifications"):GetChildren()
+	end
 	if #Notifications >= 5 then
 		Notifications[1]:TweenPosition(UDim2.new(1.5, 0, Notifications[1].Position.Y.Scale, 0),"InOut","Linear",0.2,true);wait(0.2)
 		Notifications[1]:Destroy()
@@ -669,7 +680,7 @@ function WindowTable:CreateWindow(config)
 	
 	instances.Folder_2.Name = "Notifications"
 
-	screenGui.Name = LibName
+	screenGui.Name = _G.FewofiwegngreRG452
 	screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	screenGui.Enabled = false
 	spawn(function()

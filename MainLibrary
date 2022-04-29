@@ -620,6 +620,7 @@ function WindowTable:CreateWindow(config)
 	spawn(deleteit)
 	wait(0.4)
 	_G.FewofiwegngreRG452 = LibName
+	
 	CurrentTheme = config.Theme or config.theme or DefaultTheme
 	local screenGui = Instance.new("ScreenGui", game:GetService("CoreGui"))
 	local instances = {
@@ -670,7 +671,12 @@ function WindowTable:CreateWindow(config)
 
 	screenGui.Name = LibName
 	screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
+	game:GetService("CoreGui")[tostring(_G.FewofiwegngreRG452)].Enabled = false
+	coroutine.wrap(function()
+		wait(1.5)
+		game:GetService("CoreGui")[tostring(_G.FewofiwegngreRG452)].Enabled = true
+	end)()
+	
 	instances.Frame_1.Parent = screenGui
 	instances.Frame_1.BackgroundColor3 = CurrentTheme.Background
 	instances.Frame_1.BorderSizePixel = 0

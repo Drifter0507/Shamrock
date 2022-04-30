@@ -528,7 +528,7 @@ function WindowTable:CreatePrompt(config)
 		Notifications[1]:TweenPosition(UDim2.new(1.5, 0, Notifications[1].Position.Y.Scale, 0),"InOut","Linear",0.2,true);wait(0.2)
 		Notifications[1]:Destroy()
 		for i,v in pairs(Notifications) do if v ~= nil then
-				v:TweenPosition(UDim2.new(1, -209, v.Position.Y.Scale - 0.195, 0),"InOut","Linear",0.2,true)
+				v:TweenPosition(UDim2.new(1, -209, v.Position.Y.Scale - 0.1, 0),"InOut","Linear",0.2,true)
 			end
 		end
 		local frame = createUI(tostring(#Notifications+1))
@@ -551,7 +551,7 @@ function WindowTable:CreatePrompt(config)
 		wait(0.4)
 	else
 		for i,v in pairs(Notifications) do
-			v:TweenPosition(UDim2.new(1, -209, v.Position.Y.Scale - 0.195, 0),"InOut","Linear",0.2,true)
+			v:TweenPosition(UDim2.new(1, -209, v.Position.Y.Scale - 0.1, 0),"InOut","Linear",0.2,true)
 		end
 		local frame = createUI(tostring(#Notifications+1))
 		if not isPrompt then
@@ -572,7 +572,6 @@ function WindowTable:CreatePrompt(config)
 		frame:TweenPosition(UDim2.new(1, -209,0.757, 0),"InOut","Linear",0.2,true)
 		wait(0.4)
 		
-
 		
 		for i, v in pairs(frame:GetDescendants()) do
 			if v:IsA("TextButton") and v:FindFirstChild("Shadow") then
@@ -2250,3 +2249,4 @@ return WindowTable
 --})
 
 --Dropdown:UpdateDropdown(NewArray)
+

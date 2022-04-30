@@ -1498,7 +1498,6 @@ function WindowTable:CreateWindow(config)
 				
 				toggleinstance.ImageButton_1.MouseButton1Click:Connect(function()
 					tog = not tog
-					callback(tog)
 					if tog then 
 						game.TweenService:Create(toggleinstance.ImageButton_1, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 							BackgroundTransparency = 0
@@ -1514,6 +1513,7 @@ function WindowTable:CreateWindow(config)
 							ImageTransparency = 1
 						}):Play()
 					end
+					callback(tog)
 				end)
 			end
 			function ElementHandler:CreateSlider(config)

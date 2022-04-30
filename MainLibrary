@@ -1483,7 +1483,11 @@ function WindowTable:CreateWindow(config)
 					toggleinstance.ImageButton_1.BackgroundTransparency = 1
 					toggleinstance.ImageButton_1.ImageTransparency = 1
 				end
-				
+				if not config.Default then
+					tog = false
+					toggleinstance.ImageButton_1.BackgroundTransparency = 1
+					toggleinstance.ImageButton_1.ImageTransparency = 1
+				end
 				toggleinstance.ImageButton_1.MouseEnter:Connect(function()
 					game.TweenService:Create(toggleinstance.Frame_2:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 						BackgroundTransparency = 0.8

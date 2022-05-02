@@ -1231,7 +1231,6 @@ function WindowTable:CreateWindow(config)
 			sectioninstances.Frame_1.Size = UDim2.new(0, 280, 0, 202)
 			sectioninstances.Frame_1.Name = Title
 			sectioninstances.Frame_1.LayoutOrder = tonumber(OrderNumber)
-			print(sectioninstances.Frame_1.LayoutOrder)
 
 			sectioninstances.UICorner_1.Parent = sectioninstances.Frame_1
 			sectioninstances.UICorner_1.CornerRadius = UDim.new(0, 4)
@@ -2413,8 +2412,8 @@ function WindowTable:CreateWindow(config)
 						local xPos = (mouseX-minXPos)/xPixelSize
 
 						Picker.Position = UDim2.new(xPos,0,0,0)
-
 						ColorShower.BackgroundColor3 = getColor(xPos,ColorKeyPoints)
+						callback(getColor(xPos,ColorKeyPoints))
 						local Color = ColorSequence.new{
 							ColorSequenceKeypoint.new(0,Color3.fromRGB(255,255,255)),
 							ColorSequenceKeypoint.new(0.5,getColor(xPos,ColorKeyPoints)),
@@ -2468,7 +2467,9 @@ return WindowTable
 --local sec = tab1:CreateSection({
 --	Title = "OwOski"
 --})
---sec:CreateColorPicker({Title = "Gay sex"})
+--sec:CreateColorPicker({Title = "Gay sex", callback = function(returnval)
+--	print(returnval)
+--end,})
 
 
 --Library:CreatePrompt({

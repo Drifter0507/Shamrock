@@ -23,10 +23,10 @@ local WindowTable = {}
 local LibName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
 
 function WindowTable:ToggleUI()
-	if game:GetService("CoreGui")[_G.FewofiwegngreRG452].Enabled then
-		game:GetService("CoreGui")[_G.FewofiwegngreRG452].Enabled = false
+	if game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled then
+		game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled = false
 	else
-		game:GetService("CoreGui")[_G.FewofiwegngreRG452].Enabled = true
+		game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled = true
 	end
 end
 
@@ -94,7 +94,7 @@ function WindowTable:CreatePrompt(config)
 		}
 
 
-		instances.Frame_1.Parent = game:GetService("CoreGui")[_G.FewofiwegngreRG452].Notifications
+		instances.Frame_1.Parent = game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Notifications
 		instances.Frame_1.BackgroundColor3 = Color3.new(0.105882, 0.105882, 0.105882)
 		instances.Frame_1.BorderSizePixel = 0
 		instances.Frame_1.Position = UDim2.new(0,0,0,0)
@@ -523,7 +523,7 @@ function WindowTable:CreatePrompt(config)
 
 		return instances.Frame_1
 	end
-	local Notifications = game:GetService("CoreGui")[_G.FewofiwegngreRG452]:FindFirstChild("Notifications"):GetChildren()
+	local Notifications = game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452]:FindFirstChild("Notifications"):GetChildren()
 	if #Notifications >= 5 then
 		Notifications[1]:TweenPosition(UDim2.new(1.5, 0, Notifications[1].Position.Y.Scale, 0),"InOut","Linear",0.2,true);wait(0.2)
 		Notifications[1]:Destroy()
@@ -611,8 +611,8 @@ end
 
 function WindowTable:CreateWindow(config)
 	function deleteit()
-		if game:GetService("CoreGui"):FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
-			game:GetService("CoreGui")[tostring(_G.FewofiwegngreRG452)]:Destroy()
+		if game.Players.LocalPlayer.PlayerGui:FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
+			game.Players.LocalPlayer.PlayerGui[tostring(_G.FewofiwegngreRG452)]:Destroy()
 		end
 	end
 	spawn(deleteit)
@@ -620,7 +620,7 @@ function WindowTable:CreateWindow(config)
 	_G.FewofiwegngreRG452 = LibName
 	
 	CurrentTheme = config.Theme or config.theme or DefaultTheme
-	local screenGui = Instance.new("ScreenGui", game:GetService("CoreGui"))
+	local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
 	local instances = {
 		["UIListLayout_1"] = Instance.new("UIListLayout"),
 		["Frame_2"] = Instance.new("Frame"),
@@ -1483,7 +1483,7 @@ function WindowTable:CreateWindow(config)
 					toggleinstance.ImageButton_1.BackgroundTransparency = 1
 					toggleinstance.ImageButton_1.ImageTransparency = 1
 				end
-				if not config.Default then
+				if not config.Default or config.Default == false then
 					tog = false
 					toggleinstance.ImageButton_1.BackgroundTransparency = 1
 					toggleinstance.ImageButton_1.ImageTransparency = 1
@@ -2165,7 +2165,285 @@ function WindowTable:CreateWindow(config)
 				return DropdownFunction
 
 			end
+			
+			function ElementHandler:CreateColorPicker(config)
+				local btnText = config.Text or config.text or "Color Picker"
+				local callback = config.callback or config.Callback or function() end   
+				local opened
+				
+				local ColorPickerInstances = {
+					["Frame_8"] = Instance.new("Frame"),
+					["UICorner_2"] = Instance.new("UICorner"),
+					["Frame_2"] = Instance.new("Frame"),
+					["Frame_7"] = Instance.new("Frame"),
+					["TextButton_1"] = Instance.new("TextButton"),
+					["UICorner_1"] = Instance.new("UICorner"),
+					["TextLabel_1"] = Instance.new("TextLabel"),
+					["UIGradient_1"] = Instance.new("UIGradient"),
+					["TextLabel_2"] = Instance.new("TextLabel"),
+					["LocalScript_1"] = Instance.new("LocalScript"),
+					["LocalScript_2"] = Instance.new("LocalScript"),
+					["Frame_3"] = Instance.new("Frame"),
+					["Frame_5"] = Instance.new("Frame"),
+					["Frame_4"] = Instance.new("Frame"),
+					["TextButton_2"] = Instance.new("TextButton"),
+					["UICorner_3"] = Instance.new("UICorner"),
+					["Frame_1"] = Instance.new("Frame"),
+					["Frame_6"] = Instance.new("Frame"),
+					["TextButton_3"] = Instance.new("TextButton"),
+				}
+				ColorPickerInstances.Frame_1.Parent = sectioninstances.Frame_3
+				ColorPickerInstances.Frame_1.BackgroundColor3 = Color3.new(1, 1, 1)
+				ColorPickerInstances.Frame_1.BackgroundTransparency = 1
+				ColorPickerInstances.Frame_1.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+				ColorPickerInstances.Frame_1.BorderSizePixel = 0
+				ColorPickerInstances.Frame_1.LayoutOrder = 3
+				ColorPickerInstances.Frame_1.Position = UDim2.new(0, 0, 0, 20)
+				ColorPickerInstances.Frame_1.Size = UDim2.new(0, 240, 0, 0) 
+				ColorPickerInstances.Frame_1.ZIndex = 5
+				ColorPickerInstances.Frame_1.Name = 'ColorPicker'
 
+				ColorPickerInstances.Frame_2.Parent = ColorPickerInstances.Frame_1
+				ColorPickerInstances.Frame_2.BackgroundColor3 = Color3.new(0.0588235, 0.0588235, 0.0588235)
+				ColorPickerInstances.Frame_2.BorderColor3 = Color3.new(0.27451, 0.27451, 0.27451)
+				ColorPickerInstances.Frame_2.BorderSizePixel = 2
+				ColorPickerInstances.Frame_2.Position = UDim2.new(0.7833333015441895, 0, 0.3433033227920532, 0)
+				ColorPickerInstances.Frame_2.Size = UDim2.new(0, 48, 0, 16)
+				ColorPickerInstances.Frame_2.ZIndex = 0
+				ColorPickerInstances.Frame_2.Name = 'Outline'
+
+				ColorPickerInstances.TextButton_1.Parent = ColorPickerInstances.Frame_2
+				ColorPickerInstances.TextButton_1.Font = Enum.Font.SourceSans
+				ColorPickerInstances.TextButton_1.Text = ''
+				ColorPickerInstances.TextButton_1.TextColor3 = Color3.new(0, 0, 0)
+				ColorPickerInstances.TextButton_1.TextSize = 14
+				ColorPickerInstances.TextButton_1.BackgroundColor3 = Color3.new(1, 0, 0)
+				ColorPickerInstances.TextButton_1.BorderSizePixel = 0
+				ColorPickerInstances.TextButton_1.Position = UDim2.new(-0.0005004853010177612, 0, -0.06299972534179688, 0)
+				ColorPickerInstances.TextButton_1.Size = UDim2.new(1, 0, 1.125, 0)
+				ColorPickerInstances.TextButton_1.AutoButtonColor = false
+
+				ColorPickerInstances.UICorner_1.Parent = ColorPickerInstances.TextButton_1
+				ColorPickerInstances.UICorner_1.CornerRadius = UDim.new(0, 2)
+
+				ColorPickerInstances.Frame_3.Parent = ColorPickerInstances.TextButton_1
+				ColorPickerInstances.Frame_3.BackgroundColor3 = Color3.new(0, 0, 0)
+				ColorPickerInstances.Frame_3.BackgroundTransparency = 1
+				ColorPickerInstances.Frame_3.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+				ColorPickerInstances.Frame_3.BorderSizePixel = 0
+				ColorPickerInstances.Frame_3.Position = UDim2.new(8.477105097881577e-07, 0, 0, 0)
+				ColorPickerInstances.Frame_3.Size = UDim2.new(1, 0, 1.1111111640930176, 0)
+				ColorPickerInstances.Frame_3.ZIndex = 2
+				ColorPickerInstances.Frame_3.Name = 'Shadow'
+
+				ColorPickerInstances.Frame_4.Parent = ColorPickerInstances.TextButton_1
+				ColorPickerInstances.Frame_4.BackgroundColor3 = Color3.new(1, 1, 1)
+				ColorPickerInstances.Frame_4.BackgroundTransparency = 1
+				ColorPickerInstances.Frame_4.BorderSizePixel = 0
+				ColorPickerInstances.Frame_4.Position = UDim2.new(0, -186, 0, 20)
+				ColorPickerInstances.Frame_4.Size = UDim2.new(0, 236, 0, 0)
+				ColorPickerInstances.Frame_4.Name = 'HoldingFrame'
+
+				ColorPickerInstances.TextButton_2.Parent = ColorPickerInstances.Frame_4
+				ColorPickerInstances.TextButton_2.Font = Enum.Font.SourceSans
+				ColorPickerInstances.TextButton_2.Text = ''
+				ColorPickerInstances.TextButton_2.TextColor3 = Color3.new(0, 0, 0)
+				ColorPickerInstances.TextButton_2.TextSize = 14
+				ColorPickerInstances.TextButton_2.BackgroundColor3 = Color3.new(0.27451, 0.27451, 0.27451)
+				ColorPickerInstances.TextButton_2.Size = UDim2.new(0, 236, 0, 15)
+				ColorPickerInstances.TextButton_2.Visible = false
+				ColorPickerInstances.TextButton_2.ZIndex = 2
+				ColorPickerInstances.TextButton_2.AutoButtonColor = false
+
+				ColorPickerInstances.UICorner_2.Parent = ColorPickerInstances.TextButton_2
+				ColorPickerInstances.UICorner_2.CornerRadius = UDim.new(0, 2)
+
+				ColorPickerInstances.Frame_5.Parent = ColorPickerInstances.TextButton_2
+				ColorPickerInstances.Frame_5.BackgroundColor3 = Color3.new(0, 0, 0)
+				ColorPickerInstances.Frame_5.BackgroundTransparency = 1
+				ColorPickerInstances.Frame_5.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+				ColorPickerInstances.Frame_5.BorderSizePixel = 0
+				ColorPickerInstances.Frame_5.Size = UDim2.new(1, 0, 1, 0)
+				ColorPickerInstances.Frame_5.ZIndex = 2
+				ColorPickerInstances.Frame_5.Name = 'Shadow'
+
+				ColorPickerInstances.TextLabel_1.Parent = ColorPickerInstances.TextButton_2
+				ColorPickerInstances.TextLabel_1.Font = Enum.Font.Gotham
+				ColorPickerInstances.TextLabel_1.Text = 'Suicide'
+				ColorPickerInstances.TextLabel_1.TextColor3 = Color3.new(0.952941, 0.952941, 0.952941)
+				ColorPickerInstances.TextLabel_1.TextSize = 15
+				ColorPickerInstances.TextLabel_1.TextXAlignment = Enum.TextXAlignment.Left
+				ColorPickerInstances.TextLabel_1.BackgroundColor3 = Color3.new(1, 1, 1)
+				ColorPickerInstances.TextLabel_1.BackgroundTransparency = 1
+				ColorPickerInstances.TextLabel_1.BorderSizePixel = 0
+				ColorPickerInstances.TextLabel_1.Size = UDim2.new(1, 0, 1, 0)
+
+				ColorPickerInstances.Frame_6.Parent = ColorPickerInstances.Frame_4
+				ColorPickerInstances.Frame_6.BackgroundColor3 = Color3.new(0.0588235, 0.0588235, 0.0588235)
+				ColorPickerInstances.Frame_6.BorderColor3 = Color3.new(0.27451, 0.27451, 0.27451)
+				ColorPickerInstances.Frame_6.BorderSizePixel = 0
+				ColorPickerInstances.Frame_6.Position = UDim2.new(-0.016736401244997978, 0, 0.025641025975346565, 0)
+				ColorPickerInstances.Frame_6.Size = UDim2.new(1, 0, 0.5640000104904175, 0)
+				ColorPickerInstances.Frame_6.ZIndex = 0
+				ColorPickerInstances.Frame_6.Name = 'Outline'
+
+				ColorPickerInstances.Frame_7.Parent = ColorPickerInstances.Frame_6
+				ColorPickerInstances.Frame_7.BackgroundColor3 = Color3.new(1, 1, 1)
+				ColorPickerInstances.Frame_7.BorderSizePixel = 0
+				ColorPickerInstances.Frame_7.Size = UDim2.new(1, 0, 1, 0)
+				ColorPickerInstances.Frame_7.Name = 'ColorPickerArea'
+				
+				ColorPickerInstances.TextButton_3.Parent = ColorPickerInstances.Frame_6
+				ColorPickerInstances.TextButton_3.BackgroundColor3 = Color3.new(1, 1, 1)
+				ColorPickerInstances.TextButton_3.BackgroundTransparency = 1
+				ColorPickerInstances.TextButton_3.Text = ""
+				ColorPickerInstances.TextButton_3.AutoButtonColor = false
+				ColorPickerInstances.TextButton_3.BorderSizePixel = 0
+				ColorPickerInstances.TextButton_3.Size = UDim2.new(1, 0, 1, 0)
+				ColorPickerInstances.TextButton_3.Name = 'ColorPickerAreaB'
+				ColorPickerInstances.TextButton_3.ZIndex = 0
+
+				ColorPickerInstances.Frame_8.Parent = ColorPickerInstances.Frame_7
+				ColorPickerInstances.Frame_8.BackgroundColor3 = Color3.new(1, 1, 1)
+				ColorPickerInstances.Frame_8.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+				ColorPickerInstances.Frame_8.BorderSizePixel = 0
+				ColorPickerInstances.Frame_8.Size = UDim2.new(-0.012636306695640087, 5, 1, 0)
+				ColorPickerInstances.Frame_8.Name = 'Picker'
+
+				ColorPickerInstances.UICorner_3.Parent = ColorPickerInstances.Frame_8
+				ColorPickerInstances.UICorner_3.CornerRadius = UDim.new(1, 0)
+
+				ColorPickerInstances.UIGradient_1.Parent = ColorPickerInstances.Frame_7
+				ColorPickerInstances.UIGradient_1.Color = ColorSequence.new{
+					ColorSequenceKeypoint.new(0, Color3.new(1, 0, 0.0156863)),
+					ColorSequenceKeypoint.new(0.2, Color3.new(1, 1, 0)),
+					ColorSequenceKeypoint.new(0.4, Color3.new(0, 1, 0)),
+					ColorSequenceKeypoint.new(0.6, Color3.new(0, 1, 1)),
+					ColorSequenceKeypoint.new(0.8, Color3.new(0, 0, 1)),
+					ColorSequenceKeypoint.new(1, Color3.new(1, 0, 1))
+				}
+				ColorPickerInstances.UIGradient_1.Name = 'Rainbow'
+
+				ColorPickerInstances.LocalScript_1.Parent = ColorPickerInstances.Frame_7
+				ColorPickerInstances.LocalScript_1.Name = 'ColorPickerLocalTop'
+
+				ColorPickerInstances.LocalScript_2.Parent = ColorPickerInstances.TextButton_1
+
+				ColorPickerInstances.TextLabel_2.Parent = ColorPickerInstances.Frame_1
+				ColorPickerInstances.TextLabel_2.Font = Enum.Font.Gotham
+				ColorPickerInstances.TextLabel_2.Text = btnText
+				ColorPickerInstances.TextLabel_2.TextColor3 = Color3.new(0.952941, 0.952941, 0.952941)
+				ColorPickerInstances.TextLabel_2.TextSize = 14
+				ColorPickerInstances.TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+				ColorPickerInstances.TextLabel_2.BackgroundColor3 = Color3.new(1, 1, 1)
+				ColorPickerInstances.TextLabel_2.BackgroundTransparency = 1
+				ColorPickerInstances.TextLabel_2.Position = UDim2.new(0, 0, 0.2800000011920929, 0)
+				ColorPickerInstances.TextLabel_2.Size = UDim2.new(0, 76, 0, 22)
+				
+				local opened = false
+				local old = ColorPickerInstances.Frame_1.Size.Y.Offset
+
+				ColorPickerInstances.TextButton_1.MouseButton1Click:Connect(function()
+					if opened then
+						opened = false
+						game.TweenService:Create(ColorPickerInstances.Frame_4, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							Size = UDim2.new(0, 236,0, 0)
+						}):Play()
+						game.TweenService:Create(ColorPickerInstances.Frame_1, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							Size = UDim2.new(0, 240, 0, old)
+						}):Play()
+						wait(0.1)
+						ColorPickerInstances.Frame_4.Visible = false
+					else
+						opened = true
+						ColorPickerInstances.Frame_4.Visible = true
+						game.TweenService:Create(ColorPickerInstances.Frame_4, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							Size = UDim2.new(0, 236,0, 25)
+						}):Play()
+						game.TweenService:Create(ColorPickerInstances.Frame_1, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+							Size = UDim2.new(0, 240, 0, old + 25)
+						}):Play()
+					end
+				end)
+				
+				
+				local Player = game.Players.LocalPlayer
+				local UserInputService = game:GetService('UserInputService')
+				local ColorShower = ColorPickerInstances.TextButton_1
+				local PickerArea = ColorPickerInstances.Frame_7
+				local Picker = ColorPickerInstances.Frame_8
+				local Gradient = PickerArea:FindFirstChildOfClass('UIGradient')
+				local selecting = false
+
+				function getColor(percentage, ColorKeyPoints)
+					local closestToLeft = ColorKeyPoints[1]
+					local closestToRight = ColorKeyPoints[#ColorKeyPoints]
+					local LocalPercentage = .5
+					local color = closestToLeft.Value
+
+					for i=1,#ColorKeyPoints-1 do
+						if (ColorKeyPoints[i].Time <= percentage) and (ColorKeyPoints[i+1].Time >= percentage) then
+							closestToLeft = ColorKeyPoints[i]
+							closestToRight = ColorKeyPoints[i+1]
+							LocalPercentage = (percentage-closestToLeft.Time)/(closestToRight.Time-closestToLeft.Time)
+							color = closestToLeft.Value:lerp(closestToRight.Value,LocalPercentage)
+							return color
+						end
+					end
+					return color
+				end
+
+				function beginSelection()
+					selecting = true
+					local ColorKeyPoints = Gradient.Color.Keypoints
+					repeat wait()
+						local minXPos = PickerArea.AbsolutePosition.X
+						local maxXPos = minXPos+PickerArea.AbsoluteSize.X
+
+						local xPixelSize = maxXPos-minXPos
+
+						local mouseX = UserInputService:GetMouseLocation().X
+
+						if mouseX<minXPos then
+							mouseX = minXPos
+						elseif mouseX>maxXPos then
+							mouseX = maxXPos
+						end
+
+						local xPos = (mouseX-minXPos)/xPixelSize
+
+						Picker.Position = UDim2.new(xPos,0,0,0)
+
+						ColorShower.BackgroundColor3 = getColor(xPos,ColorKeyPoints)
+						local Color = ColorSequence.new{
+							ColorSequenceKeypoint.new(0,Color3.fromRGB(255,255,255)),
+							ColorSequenceKeypoint.new(0.5,getColor(xPos,ColorKeyPoints)),
+							ColorSequenceKeypoint.new(1,Color3.fromRGB(0,0,0))
+						}	
+					until not selecting
+				end
+
+				function endSelection()
+					selecting = false
+				end
+
+				local function inputBegan(input)
+					if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+						beginSelection()
+					end
+				end
+				PickerArea.InputBegan:Connect(inputBegan)
+
+				local function inputEnded(input)
+					if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+						endSelection()
+					end
+				end
+				PickerArea.InputEnded:Connect(inputEnded)
+				
+				
+			end
+			
 			return ElementHandler
 			
 		end
@@ -2186,6 +2464,11 @@ return WindowTable
 --local Window = WindowTable:CreateWindow({Title = "Ar Du Galen"})
 --local tab1 = Window:CreateTab({Title = "Free", Default = true, ScrollBar = true})
 --local tab2 = Window:CreateTab({Title = "Paid", ScrollBar = true})
+
+--local sec = tab1:CreateSection({
+--	Title = "OwOski"
+--})
+--sec:CreateColorPicker({Title = "Gay sex"})
 
 
 --Library:CreatePrompt({

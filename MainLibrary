@@ -2350,8 +2350,8 @@ function WindowTable:CreateWindow(config)
 				ColorPickerInstances.TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
 				ColorPickerInstances.TextLabel_2.BackgroundColor3 = Color3.new(1, 1, 1)
 				ColorPickerInstances.TextLabel_2.BackgroundTransparency = 1
-				ColorPickerInstances.TextLabel_2.Position = UDim2.new(0, -4,0, 9)
-				ColorPickerInstances.TextLabel_2.Size = UDim2.new(0, 164, 0, 22)
+				ColorPickerInstances.TextLabel_2.Position = UDim2.new(0, -4, 0.2800000011920929, 0)
+				ColorPickerInstances.TextLabel_2.Size = UDim2.new(0, 76, 0, 22)
 				
 				local opened = false
 				local old = ColorPickerInstances.Frame_1.Size.Y.Offset

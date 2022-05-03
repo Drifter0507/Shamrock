@@ -23,10 +23,10 @@ local WindowTable = {}
 local LibName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
 
 function WindowTable:ToggleUI()
-	if game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled then
-		game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled = false
+	if game:GetService("CoreGui")[_G.FewofiwegngreRG452].Enabled then
+		game:GetService("CoreGui")[_G.FewofiwegngreRG452].Enabled = false
 	else
-		game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled = true
+		game:GetService("CoreGui")[_G.FewofiwegngreRG452].Enabled = true
 	end
 end
 
@@ -94,7 +94,7 @@ function WindowTable:CreatePrompt(config)
 		}
 
 
-		instances.Frame_1.Parent = game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Notifications
+		instances.Frame_1.Parent = game:GetService("CoreGui")[_G.FewofiwegngreRG452].Notifications
 		instances.Frame_1.BackgroundColor3 = Color3.new(0.105882, 0.105882, 0.105882)
 		instances.Frame_1.BorderSizePixel = 0
 		instances.Frame_1.Position = UDim2.new(0,0,0,0)
@@ -523,7 +523,7 @@ function WindowTable:CreatePrompt(config)
 
 		return instances.Frame_1
 	end
-	local Notifications = game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452]:FindFirstChild("Notifications"):GetChildren()
+	local Notifications = game:GetService("CoreGui")[_G.FewofiwegngreRG452]:FindFirstChild("Notifications"):GetChildren()
 	if #Notifications >= 5 then
 		Notifications[1]:TweenPosition(UDim2.new(1.5, 0, Notifications[1].Position.Y.Scale, 0),"InOut","Linear",0.2,true);wait(0.2)
 		Notifications[1]:Destroy()
@@ -611,8 +611,8 @@ end
 
 function WindowTable:CreateWindow(config)
 	function deleteit()
-		if game.Players.LocalPlayer.PlayerGui:FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
-			game.Players.LocalPlayer.PlayerGui[tostring(_G.FewofiwegngreRG452)]:Destroy()
+		if game:GetService("CoreGui"):FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
+			game:GetService("CoreGui")[tostring(_G.FewofiwegngreRG452)]:Destroy()
 		end
 	end
 	spawn(deleteit)
@@ -620,7 +620,7 @@ function WindowTable:CreateWindow(config)
 	_G.FewofiwegngreRG452 = LibName
 	
 	CurrentTheme = config.Theme or config.theme or DefaultTheme
-	local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
+	local screenGui = Instance.new("ScreenGui", game:GetService("CoreGui"))
 	local instances = {
 		["UIListLayout_1"] = Instance.new("UIListLayout"),
 		["Frame_2"] = Instance.new("Frame"),

@@ -674,7 +674,7 @@ function WindowTable:CreateWindow(config)
 		wait(1)
 		screenGui.Enabled = true
 		WindowTable:CreatePrompt({
-			Message = "Version 1.4 Loaded",
+			Message = "Version 1.5 Loaded",
 			Prompt = false,
 			Yes = "Yes Button Text",
 			No = "No Button Text",
@@ -1311,6 +1311,8 @@ function WindowTable:CreateWindow(config)
 				local callback = config.callback or config.Callback or function() end   
 				local ButtonFunction = {}
 				
+				local OrderNumber = config.Order or config.order or 1
+				
 				local buttoninstances = {
 					["UICorner_1"] = Instance.new("UICorner"),
 					["TextLabel_1"] = Instance.new("TextLabel"),
@@ -1329,6 +1331,8 @@ function WindowTable:CreateWindow(config)
 				buttoninstances.Frame_1.Position = UDim2.new(0, 9, 0, 84)
 				buttoninstances.Frame_1.Size = UDim2.new(0, 240, 0, 36)
 				buttoninstances.Frame_1.Name = 'Button'
+				buttoninstances.Frame_1.ZIndex = OrderNumber
+				
 
 				buttoninstances.TextButton_1.Parent = buttoninstances.Frame_1
 				buttoninstances.TextButton_1.AutoButtonColor = false
@@ -1405,6 +1409,7 @@ function WindowTable:CreateWindow(config)
 			function ElementHandler:CreateToggle(config)
 				local btnText = config.Text or config.text or "Toggle"
 				local callback = config.callback or config.Callback or function() end   
+				local OrderNumber = config.Order or config.order or 1
 
 				local toggleinstance = {
 					["TextLabel_1"] = Instance.new("TextLabel"),
@@ -1421,7 +1426,7 @@ function WindowTable:CreateWindow(config)
 				toggleinstance.Frame_1.BorderSizePixel = 0
 				toggleinstance.Frame_1.Position = UDim2.new(0, 0, 0, 93)
 				toggleinstance.Frame_1.Size = UDim2.new(0, 240, 0, 36)
-				toggleinstance.Frame_1.ZIndex = 5
+				toggleinstance.Frame_1.ZIndex = OrderNumber
 				toggleinstance.Frame_1.Name = 'Toggler'
 
 				toggleinstance.Frame_2.Parent = toggleinstance.Frame_1
@@ -1525,6 +1530,9 @@ function WindowTable:CreateWindow(config)
 				local Max = config.Max or config.max or 100
 				local Default = config.Default or config.default or 16
 				
+				local OrderNumber = config.Order or config.order or 1
+
+				
 				local sliderinstances = {
 					["TextLabel_2"] = Instance.new("TextLabel"),
 					["TextLabel_1"] = Instance.new("TextLabel"),
@@ -1544,7 +1552,7 @@ function WindowTable:CreateWindow(config)
 				sliderinstances.Frame_1.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
 				sliderinstances.Frame_1.Position = UDim2.new(0, 9, 0, 4)
 				sliderinstances.Frame_1.Size = UDim2.new(0, 240, 0, 40)
-				sliderinstances.Frame_1.ZIndex = 5
+				sliderinstances.Frame_1.ZIndex = OrderNumber
 				sliderinstances.Frame_1.Name = 'Slider'
 
 				sliderinstances.TextLabel_1.Parent = sliderinstances.Frame_1
@@ -1683,6 +1691,8 @@ function WindowTable:CreateWindow(config)
 				local btnText = config.Text or config.text or "Keybind"
 				local callback = config.callback or config.Callback or function() end   
 				local DefaultKey = Enum.KeyCode[config.Default] or config.default or Enum.KeyCode.Q
+				local OrderNumber = config.Order or config.order or 1
+
 				
 				if not DefaultKey then
 					return
@@ -1712,7 +1722,7 @@ function WindowTable:CreateWindow(config)
 				bindinstances.Frame_1.LayoutOrder = 3
 				bindinstances.Frame_1.Position = UDim2.new(0, 0, 0, 20) 
 				bindinstances.Frame_1.Size = UDim2.new(0, 240, 0, 33)
-				bindinstances.Frame_1.ZIndex = 5
+				bindinstances.Frame_1.ZIndex = OrderNumber
 				bindinstances.Frame_1.Name = 'Keybind'
 
 				bindinstances.Frame_2.Parent = bindinstances.Frame_1
@@ -1829,6 +1839,7 @@ function WindowTable:CreateWindow(config)
 				local callback = config.callback or config.Callback or function() end   
 				local array = config.array or config.Array or {}
 				local opened
+				local OrderNumber = config.Order or config.order or 1
 
 				local dropdown = {
 					["UICorner_1"] = Instance.new("UICorner"),
@@ -1852,14 +1863,15 @@ function WindowTable:CreateWindow(config)
 				dropdown.Frame_1.Position = UDim2.new(0, 1, 0, 84)
 				dropdown.Frame_1.Size = UDim2.new(0, 240, 0, 33)
 				dropdown.Frame_1.Name = 'Dropdown'
-
+				dropdown.Frame_1.ZIndex = OrderNumber
+				
 				dropdown.TextButton_1.Parent = dropdown.Frame_1
 				dropdown.TextButton_1.Font = Enum.Font.SourceSans
 				dropdown.TextButton_1.Text = ''
 				dropdown.TextButton_1.TextColor3 = Color3.new(0, 0, 0)
 				dropdown.TextButton_1.TextSize = 14
 				dropdown.TextButton_1.BackgroundColor3 = CurrentTheme.ThemeColor
-				dropdown.TextButton_1.Position = UDim2.new(0, -2, 0, 7)
+				dropdown.TextButton_1.Position = UDim2.new(0, -4, 0, 7)
 				dropdown.TextButton_1.Size = UDim2.new(0, 240, 0, 20)
 				dropdown.TextButton_1.AutoButtonColor = false
 
@@ -2169,6 +2181,8 @@ function WindowTable:CreateWindow(config)
 				local btnText = config.Text or config.text or "Color Picker"
 				local callback = config.callback or config.Callback or function() end   
 				local opened
+				local OrderNumber = config.Order or config.order or 1
+
 				
 				local ColorPickerInstances = {
 					["Frame_8"] = Instance.new("Frame"),
@@ -2199,7 +2213,7 @@ function WindowTable:CreateWindow(config)
 				ColorPickerInstances.Frame_1.LayoutOrder = 3
 				ColorPickerInstances.Frame_1.Position = UDim2.new(0, 0, 0, 20)
 				ColorPickerInstances.Frame_1.Size = UDim2.new(0, 240, 0, 0) 
-				ColorPickerInstances.Frame_1.ZIndex = 5
+				ColorPickerInstances.Frame_1.ZIndex = OrderNumber
 				ColorPickerInstances.Frame_1.Name = 'ColorPicker'
 
 				ColorPickerInstances.Frame_2.Parent = ColorPickerInstances.Frame_1

@@ -45,7 +45,7 @@ function WindowTable:CreatePrompt(config)
 	end
 	local NotificationDuration = config.Time or config.time or config.Duration or config.duration or 5
 	local callback = config.callback or config.Callback or function() end
-	
+
 	function createUI(name)
 		local instances = {
 			["ImageLabel_20"] = Instance.new("ImageLabel"),
@@ -420,7 +420,7 @@ function WindowTable:CreatePrompt(config)
 		instances.TextButton_1.ZIndex = 3
 		instances.TextButton_1.Name = 'Yes'
 		instances.TextButton_1.AutoButtonColor = false
-		
+
 		instances.UICorner_1.Parent = instances.TextButton_1
 		instances.UICorner_1.CornerRadius = UDim.new(0, 2)
 
@@ -455,7 +455,7 @@ function WindowTable:CreatePrompt(config)
 		instances.TextButton_2.ZIndex = 3
 		instances.TextButton_2.Name = 'No'
 		instances.TextButton_2.AutoButtonColor = false
-		
+
 		instances.UICorner_2.Parent = instances.TextButton_2
 		instances.UICorner_2.CornerRadius = UDim.new(0, 2)
 
@@ -571,8 +571,8 @@ function WindowTable:CreatePrompt(config)
 		wait(0.1)
 		frame:TweenPosition(UDim2.new(1, -209,0.757, 0),"InOut","Linear",0.2,true)
 		wait(0.4)
-		
-		
+
+
 		for i, v in pairs(frame:GetDescendants()) do
 			if v:IsA("TextButton") and v:FindFirstChild("Shadow") then
 				v.MouseEnter:Connect(function()
@@ -592,8 +592,8 @@ function WindowTable:CreatePrompt(config)
 				end)
 			end
 		end
-		
-		
+
+
 		if DoesGoAway then
 			delay(NotificationDuration,function()
 				local pos = frame.Position.Y.Scale
@@ -618,7 +618,7 @@ function WindowTable:CreateWindow(config)
 	spawn(deleteit)
 	wait(0.4)
 	_G.FewofiwegngreRG452 = LibName
-	
+
 	CurrentTheme = config.Theme or config.theme or DefaultTheme
 	local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
 	local instances = {
@@ -664,7 +664,7 @@ function WindowTable:CreateWindow(config)
 		["ImageLabel_6"] = Instance.new("ImageLabel"),
 		["Folder_2"] = Instance.new("Folder",screenGui),
 	}
-	
+
 	instances.Folder_2.Name = "Notifications"
 
 	screenGui.Name = _G.FewofiwegngreRG452
@@ -684,17 +684,17 @@ function WindowTable:CreateWindow(config)
 
 			end,})
 	end)
-	
+
 	instances.Frame_1.Parent = screenGui
 	instances.Frame_1.BackgroundColor3 = CurrentTheme.Background
 	instances.Frame_1.BorderSizePixel = 0
 	instances.Frame_1.Position = UDim2.new(0, 339, 0, 149)
 	instances.Frame_1.Size = UDim2.new(0, 444, 0, 313)
 	instances.Frame_1.Name = 'Main'
-	
+
 	instances.LocalScript_1.Parent = instances.Frame_1
-	
-	
+
+
 	instances.Frame_2.Parent = instances.Frame_1
 	instances.Frame_2.BackgroundColor3 = Color3.new(0.0784314, 0.0784314, 0.0784314)
 	instances.Frame_2.BorderSizePixel = 0
@@ -1031,11 +1031,11 @@ function WindowTable:CreateWindow(config)
 	instances.UIPadding_2.Parent = instances.Frame_8
 	instances.UIPadding_2.PaddingLeft = UDim.new(0, 12)
 	instances.UIPadding_2.PaddingTop = UDim.new(0, 5)
-	
+
 	instances.Folder_1.Parent = instances.Frame_2
 	instances.Folder_1.Name = 'pagesFolder'
-	
-	
+
+
 	function Code_LocalScript_1() --LocalScript
 		local script = instances.LocalScript_1
 
@@ -1080,18 +1080,18 @@ function WindowTable:CreateWindow(config)
 		end)
 	end
 	coroutine.wrap(Code_LocalScript_1)()
-	
-	
+
+
 	local TabHandler = {}
 
 	function TabHandler:CreateTab(config)
 		local tabname = config.Title or "New Tab"
 		local scrollingbar = config.ScrollBar
-		
+
 		--local newPage = Instance.new("ScrollingFrame") 
 		--local elementsListing = Instance.new("UIListLayout") 
 		local uiPadding = Instance.new("UIPadding")
-		
+
 		local TabInstances = {
 			["PageFrame"] = Instance.new("Frame"),
 			["TextButton_1"] = Instance.new("TextButton"),
@@ -1099,9 +1099,9 @@ function WindowTable:CreateWindow(config)
 			["UIListLayout_1"] = Instance.new("UIListLayout"),
 			["ScrollingFrame_1"] = Instance.new("ScrollingFrame")
 		}
-		
+
 		TabInstances.ScrollingFrame_1.BackgroundColor3 = CurrentTheme.BackgroundSubColor
-		
+
 		TabInstances.TextButton_1.Parent = instances.Frame_8
 		TabInstances.TextButton_1.Font = Enum.Font.Gotham
 		TabInstances.TextButton_1.Text = tabname
@@ -1141,11 +1141,11 @@ function WindowTable:CreateWindow(config)
 			TabInstances.PageFrame.Position = UDim2.new(0, 0, 0, 24)
 			TabInstances.PageFrame.Size = UDim2.new(0, 0, 0.07407407462596893, 0)
 		end
-		
 
-		
+
+
 		local newPage = TabInstances.ScrollingFrame_1
-		
+
 		TabInstances.UICorner_1.Parent = instances.PageFrame
 		TabInstances.UICorner_1.CornerRadius = UDim.new(0, 4)
 		TabInstances.TextButton_1.MouseButton1Click:Connect(function()
@@ -1172,8 +1172,8 @@ function WindowTable:CreateWindow(config)
 				Size = UDim2.new(0.25, 0, 0.07407407462596893, 0)
 			}):Play()
 		end)
-		
-		
+
+
 		--TabInstances.ScrollingFrame_1.Name = "newPage"
 		--TabInstances.ScrollingFrame_1.Parent = instances.Folder_1.Parent
 		--TabInstances.ScrollingFrame_1.Active = true
@@ -1182,7 +1182,7 @@ function WindowTable:CreateWindow(config)
 		--TabInstances.ScrollingFrame_1.Size = UDim2.new(1, 0, 1, 0)
 		--TabInstances.ScrollingFrame_1.ScrollBarThickness = 0
 		--TabInstances.ScrollingFrame_1.ZIndex = 5
-		
+
 		TabInstances.ScrollingFrame_1.Name = "newPage"
 		TabInstances.ScrollingFrame_1.Parent = instances.Folder_1
 		TabInstances.ScrollingFrame_1.Active = true
@@ -1193,7 +1193,7 @@ function WindowTable:CreateWindow(config)
 		TabInstances.ScrollingFrame_1.CanvasPosition = Vector2.new(0, 0)
 		TabInstances.ScrollingFrame_1.CanvasSize = UDim2.new(0, 0, 0, 419)
 		TabInstances.ScrollingFrame_1.ScrollBarThickness = 0
-		
+
 		if scrollingbar == true then
 			newPage.ScrollBarThickness = 5
 		end
@@ -1203,17 +1203,17 @@ function WindowTable:CreateWindow(config)
 		TabInstances.UIListLayout_1.HorizontalAlignment = Enum.HorizontalAlignment.Center
 		TabInstances.UIListLayout_1.SortOrder = Enum.SortOrder.LayoutOrder
 		TabInstances.UIListLayout_1.Padding = UDim.new(0, 15)
-		
+
 		uiPadding.Parent = newPage
 		uiPadding.PaddingLeft = UDim.new(0, 8)
 		uiPadding.PaddingTop = UDim.new(0, 20)
-		
+
 		local SectionHandler = {}
 
 		function SectionHandler:CreateSection(config, callback)
 			local Title = config.Title or "Untitled"
-			local OrderNumber = config.Order or config.order or 20
-			
+			local OrderNumber = config.Order or config.order or 10
+
 			local sectioninstances = {
 				["TextLabel_1"] = Instance.new("TextLabel"),
 				["UIListLayout_1"] = Instance.new("UIListLayout"),
@@ -1223,7 +1223,7 @@ function WindowTable:CreateWindow(config)
 				["Frame_2"] = Instance.new("Frame"),
 				["Frame_1"] = Instance.new("Frame"),
 			}
-			
+
 			sectioninstances.Frame_1.Parent = newPage
 			sectioninstances.Frame_1.BackgroundColor3 = CurrentTheme.SectionColor
 			sectioninstances.Frame_1.BorderSizePixel = 0
@@ -1268,7 +1268,7 @@ function WindowTable:CreateWindow(config)
 
 			sectioninstances.UIListLayout_1.Parent = sectioninstances.Frame_3
 			sectioninstances.UIListLayout_1.SortOrder = Enum.SortOrder.LayoutOrder
-			
+
 			--newPage.CanvasSize = Vector2.new(0,0,0,TabInstances.UIListLayout_1.AbsoluteContentSize + 30)
 			--coroutine.wrap(function()
 			--	while wait(0.5) do
@@ -1280,7 +1280,7 @@ function WindowTable:CreateWindow(config)
 			--		newPage.CanvasSize = UDim2.new(0, size.X, 0, size.Y)
 			--	end
 			--end)()
-			
+
 			sectioninstances.Frame_3:FindFirstChildOfClass("UIListLayout"):GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 				local size = sectioninstances.Frame_3:FindFirstChildOfClass("UIListLayout").AbsoluteContentSize
 				local padding = sectioninstances.Frame_3:FindFirstChildOfClass("UIListLayout").Parent.UIPadding
@@ -1293,7 +1293,7 @@ function WindowTable:CreateWindow(config)
 					Size = UDim2.new(1,0, 0, size.Y - 26)
 				}):Play()
 			end)			
-			
+
 			TabInstances.ScrollingFrame_1:FindFirstChild("elementsListing"):GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 				local size = TabInstances.ScrollingFrame_1:FindFirstChild("elementsListing").AbsoluteContentSize
 				local padding = TabInstances.ScrollingFrame_1:FindFirstChild("elementsListing").Parent.UIPadding
@@ -1303,16 +1303,16 @@ function WindowTable:CreateWindow(config)
 					CanvasSize = UDim2.new(0, size.X, 0, size.Y)
 				}):Play()
 			end)
-			
+
 			local ElementHandler = {}
 
 			function ElementHandler:CreateButton(config)
 				local btnText = config.Text or config.text or "Text Button"
 				local callback = config.callback or config.Callback or function() end   
 				local ButtonFunction = {}
-				
-				local OrderNumber = config.Order or config.order or 20
-				
+
+				local OrderNumber = config.Order or config.order or 1
+
 				local buttoninstances = {
 					["UICorner_1"] = Instance.new("UICorner"),
 					["TextLabel_1"] = Instance.new("TextLabel"),
@@ -1322,7 +1322,7 @@ function WindowTable:CreateWindow(config)
 					["TextButton_1"] = Instance.new("TextButton"),
 					["ImageLabel_1"] = Instance.new("ImageLabel"),
 				}
-				
+
 				buttoninstances.Frame_1.Parent = sectioninstances.Frame_3
 				buttoninstances.Frame_1.BackgroundColor3 = Color3.new(1, 1, 1)
 				buttoninstances.Frame_1.BackgroundTransparency = 1
@@ -1332,7 +1332,7 @@ function WindowTable:CreateWindow(config)
 				buttoninstances.Frame_1.Size = UDim2.new(0, 240, 0, 36)
 				buttoninstances.Frame_1.Name = 'Button'
 				buttoninstances.Frame_1.LayoutOrder = OrderNumber
-				
+
 
 				buttoninstances.TextButton_1.Parent = buttoninstances.Frame_1
 				buttoninstances.TextButton_1.AutoButtonColor = false
@@ -1343,7 +1343,7 @@ function WindowTable:CreateWindow(config)
 				buttoninstances.TextButton_1.TextSize = 14
 				buttoninstances.TextButton_1.BackgroundColor3 = CurrentTheme.ThemeColor-- Color3.new(0, 0.588235, 0.27451)
 				buttoninstances.TextButton_1.Size = UDim2.new(0, 241, 0, 20)
-				
+
 				buttoninstances.TextButton_1.MouseEnter:Connect(function()
 					game.TweenService:Create(buttoninstances.TextButton_1:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 						BackgroundTransparency = 0.8
@@ -1354,8 +1354,8 @@ function WindowTable:CreateWindow(config)
 						BackgroundTransparency = 1
 					}):Play()
 				end)
-				
-				
+
+
 				buttoninstances.UICorner_1.Parent = buttoninstances.TextButton_1
 				buttoninstances.UICorner_1.CornerRadius = UDim.new(0, 2)
 
@@ -1385,7 +1385,7 @@ function WindowTable:CreateWindow(config)
 				buttoninstances.TextLabel_1.BorderSizePixel = 0
 				buttoninstances.TextLabel_1.Position = UDim2.new(0, 7, 0, 0)
 				buttoninstances.TextLabel_1.Size = UDim2.new(0, 232, 0, 19)
-				
+
 				buttoninstances.Frame_2.Parent = buttoninstances.TextButton_1
 				buttoninstances.Frame_2.BackgroundColor3 = Color3.new(0, 0, 0)
 				buttoninstances.Frame_2.BackgroundTransparency = 1
@@ -1394,22 +1394,22 @@ function WindowTable:CreateWindow(config)
 				buttoninstances.Frame_2.Size = UDim2.new(0, 240, 0, 20)
 				buttoninstances.Frame_2.ZIndex = 2
 				buttoninstances.Frame_2.Name = 'Shadow'
-				
+
 				buttoninstances.TextButton_1.MouseButton1Click:Connect(function()
 					callback()
 				end)
-				
+
 				function ButtonFunction:UpdateButton(str)
 					str = tostring(str) or "Button"
 					buttoninstances.TextLabel_1.Text = tostring(str)
 				end
 				return ButtonFunction
 			end
-			
+
 			function ElementHandler:CreateToggle(config)
 				local btnText = config.Text or config.text or "Toggle"
 				local callback = config.callback or config.Callback or function() end   
-				local OrderNumber = config.Order or config.order or 20
+				local OrderNumber = config.Order or config.order or 1
 
 				local toggleinstance = {
 					["TextLabel_1"] = Instance.new("TextLabel"),
@@ -1462,7 +1462,7 @@ function WindowTable:CreateWindow(config)
 				toggleinstance.TextLabel_1.BackgroundTransparency = 1
 				toggleinstance.TextLabel_1.Position = UDim2.new(0.12916666269302368, 0, 0.29797980189323425, 0)
 				toggleinstance.TextLabel_1.Size = UDim2.new(0, 76, 0, 18)
-				
+
 
 				local Shadow = Instance.new("Frame")
 
@@ -1477,7 +1477,7 @@ function WindowTable:CreateWindow(config)
 				Shadow.ZIndex = 2
 				Shadow.BackgroundTransparency = 1
 
-				
+
 				if config.Default and config.Default == true then
 					tog = true
 					toggleinstance.ImageButton_1.BackgroundTransparency = 0
@@ -1502,7 +1502,7 @@ function WindowTable:CreateWindow(config)
 						BackgroundTransparency = 1
 					}):Play()
 				end)				
-				
+
 				toggleinstance.ImageButton_1.MouseButton1Click:Connect(function()
 					tog = not tog
 					if tog then 
@@ -1529,10 +1529,10 @@ function WindowTable:CreateWindow(config)
 				local Min = config.Min or config.min or 0
 				local Max = config.Max or config.max or 100
 				local Default = config.Default or config.default or 16
-				
-				local OrderNumber = config.Order or config.order or 20
 
-				
+				local OrderNumber = config.Order or config.order or 1
+
+
 				local sliderinstances = {
 					["TextLabel_2"] = Instance.new("TextLabel"),
 					["TextLabel_1"] = Instance.new("TextLabel"),
@@ -1545,7 +1545,7 @@ function WindowTable:CreateWindow(config)
 					["Frame_1"] = Instance.new("Frame"),
 					["UICorner_3"] = Instance.new("UICorner"),
 				}
-				
+
 				sliderinstances.Frame_1.Parent = sectioninstances.Frame_3
 				sliderinstances.Frame_1.BackgroundColor3 = Color3.new(1, 1, 1)
 				sliderinstances.Frame_1.BackgroundTransparency = 1
@@ -1612,7 +1612,7 @@ function WindowTable:CreateWindow(config)
 
 				sliderinstances.UICorner_3.Parent = sliderinstances.Frame_4
 				sliderinstances.UICorner_3.CornerRadius = UDim.new(0, 2)
-				
+
 				local Val = sliderinstances.TextLabel_1
 				local SliderFrame = sliderinstances.TextButton_1
 				local MousePressed = false
@@ -1684,26 +1684,26 @@ function WindowTable:CreateWindow(config)
 						end
 					end
 				end)
-				
+
 			end
-			
+
 			function ElementHandler:CreateKeybind(config)
 				local btnText = config.Text or config.text or "Keybind"
 				local callback = config.callback or config.Callback or function() end   
 				local DefaultKey = Enum.KeyCode[config.Default] or config.default or Enum.KeyCode.Q
-				local OrderNumber = config.Order or config.order or 20
+				local OrderNumber = config.Order or config.order or 1
 
-				
+
 				if not DefaultKey then
 					return
 				end
-				
+
 				if not table.find(BlacklistedKeys,DefaultKey) then
 					DefaultKey = DefaultKey
 				else
 					DefaultKey = Enum.KeyCode.Q
 				end
-				
+
 				local bindinstances = {
 					["TextLabel_1"] = Instance.new("TextLabel"),
 					["Frame_2"] = Instance.new("Frame"),
@@ -1713,7 +1713,7 @@ function WindowTable:CreateWindow(config)
 					["TextButton_1"] = Instance.new("TextButton"),
 					["LocalScript_1"] = Instance.new("LocalScript"),
 				}
-				
+
 				bindinstances.Frame_1.Parent = sectioninstances.Frame_3
 				bindinstances.Frame_1.BackgroundColor3 = Color3.new(1, 1, 1)
 				bindinstances.Frame_1.BackgroundTransparency = 1
@@ -1771,7 +1771,7 @@ function WindowTable:CreateWindow(config)
 				bindinstances.TextLabel_2.BackgroundTransparency = 1
 				bindinstances.TextLabel_2.Position = UDim2.new(0.18299999833106995, 0, 0.2800000011920929, 0)
 				bindinstances.TextLabel_2.Size = UDim2.new(0, 76, 0, 22)
-				
+
 				local Shadow = Instance.new("Frame")
 
 				Shadow.Name = "Shadow"
@@ -1783,7 +1783,7 @@ function WindowTable:CreateWindow(config)
 				Shadow.Position = UDim2.new(8.4771051e-07, 0, 0, 0)
 				Shadow.Size = UDim2.new(0, 36, 0, 20)
 				Shadow.ZIndex = 2
-				
+
 
 				bindinstances.TextButton_1.MouseEnter:Connect(function()
 					game.TweenService:Create(bindinstances.TextButton_1:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
@@ -1795,7 +1795,7 @@ function WindowTable:CreateWindow(config)
 						BackgroundTransparency = 1
 					}):Play()
 				end)		
-				
+
 				local Key = DefaultKey
 				local Listening = false
 				game:GetService("UserInputService").InputBegan:Connect(function(Input, IsTyping)
@@ -1830,16 +1830,16 @@ function WindowTable:CreateWindow(config)
 					Listening = true
 					bindinstances.TextLabel_1.Text = ".."
 				end)
-				
+
 			end
-			
+
 			function ElementHandler:CreateDropdown(config)
 				local DropdownFunction = {}
 				local btnText = config.Text or config.text or "Dropdown"
 				local callback = config.callback or config.Callback or function() end   
 				local array = config.array or config.Array or {}
 				local opened
-				local OrderNumber = config.Order or config.order or 20
+				local OrderNumber = config.Order or config.order or 1
 
 				local dropdown = {
 					["UICorner_1"] = Instance.new("UICorner"),
@@ -1864,7 +1864,7 @@ function WindowTable:CreateWindow(config)
 				dropdown.Frame_1.Size = UDim2.new(0, 240, 0, 33)
 				dropdown.Frame_1.Name = 'Dropdown'
 				dropdown.Frame_1.LayoutOrder = OrderNumber
-				
+
 				dropdown.TextButton_1.Parent = dropdown.Frame_1
 				dropdown.TextButton_1.Font = Enum.Font.SourceSans
 				dropdown.TextButton_1.Text = ''
@@ -1923,9 +1923,9 @@ function WindowTable:CreateWindow(config)
 
 				dropdown.UIListLayout_1.Parent = dropdown.Frame_3
 				dropdown.UIListLayout_1.SortOrder = Enum.SortOrder.LayoutOrder
-				
+
 				dropdown.UIPadding_1.Parent = dropdown.Frame_3
-				
+
 
 				local UIPadding = Instance.new("UIPadding")
 				local UIListLayout = Instance.new("UIListLayout")
@@ -1936,13 +1936,13 @@ function WindowTable:CreateWindow(config)
 
 				UIListLayout.Parent = dropdown.Frame_1
 				UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-				
+
 				for i,v in next, array do
 					local TextButton = Instance.new("TextButton")
 					local UICorner = Instance.new("UICorner")
 					local Shadow = Instance.new("Frame")
 					local TextLabel = Instance.new("TextLabel")
-					
+
 					TextButton.Name = tostring(v)
 					TextButton.Parent = dropdown.Frame_3
 					TextButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
@@ -1954,7 +1954,7 @@ function WindowTable:CreateWindow(config)
 					TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
 					TextButton.TextSize = 14.000
 					TextButton.Visible = true
-					
+
 					UICorner.CornerRadius = UDim.new(0, 2)
 					UICorner.Parent = TextButton
 
@@ -1978,7 +1978,7 @@ function WindowTable:CreateWindow(config)
 					TextLabel.TextSize = 15.000
 					TextLabel.TextTransparency = 1
 					TextLabel.TextXAlignment = Enum.TextXAlignment.Left
-					
+
 					TextButton.MouseEnter:Connect(function()
 						game.TweenService:Create(TextButton:FindFirstChild("Shadow"), TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 							BackgroundTransparency = 0.8
@@ -2021,7 +2021,7 @@ function WindowTable:CreateWindow(config)
 				--	end
 				--end
 				--UpdateList()
-				
+
 				dropdown.Frame_3:FindFirstChildOfClass("UIListLayout"):GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 					local size = dropdown.Frame_3:FindFirstChildOfClass("UIListLayout").AbsoluteContentSize
 					local padding = dropdown.Frame_3:FindFirstChildOfClass("UIListLayout").Parent.UIPadding
@@ -2034,7 +2034,7 @@ function WindowTable:CreateWindow(config)
 						Size = UDim2.new(0, 240, 0, size.Y + 33)
 					}):Play()
 				end)
-				
+
 				dropdown.TextButton_1.MouseButton1Click:Connect(function()
 					--UpdateList()
 					if opened then
@@ -2084,7 +2084,7 @@ function WindowTable:CreateWindow(config)
 						BackgroundTransparency = 1
 					}):Play()
 				end)		
-				
+
 				function DropdownFunction:UpdateDropdown(newList)
 					newList = newList or {}
 					dropdown.TextLabel_1.Text = btnText
@@ -2176,30 +2176,31 @@ function WindowTable:CreateWindow(config)
 				return DropdownFunction
 
 			end
-			
+
 			function ElementHandler:CreateColorPicker(config)
 				local btnText = config.Text or config.text or "Color Picker"
 				local callback = config.callback or config.Callback or function() end   
 				local opened
-				local OrderNumber = config.Order or config.order or 20
+				local OrderNumber = config.Order or config.order or 1
 
 				local ColorPickerInstances = {
-					["Frame_7"] = Instance.new("Frame"),
-					["UICorner_1"] = Instance.new("UICorner"),
-					["TextLabel_1"] = Instance.new("TextLabel"),
 					["UICorner_2"] = Instance.new("UICorner"),
-					["Frame_6"] = Instance.new("Frame"),
-					["LocalScript_2"] = Instance.new("LocalScript"),
-					["Frame_2"] = Instance.new("Frame"),
-					["UIGradient_1"] = Instance.new("UIGradient"),
 					["Frame_3"] = Instance.new("Frame"),
-					["Frame_5"] = Instance.new("Frame"),
 					["Frame_4"] = Instance.new("Frame"),
 					["TextButton_1"] = Instance.new("TextButton"),
-					["UIPadding_1"] = Instance.new("UIPadding"),
-					["UIListLayout_1"] = Instance.new("UIListLayout"),
+					["LocalScript_2"] = Instance.new("LocalScript"),
+					["Frame_6"] = Instance.new("Frame"),
 					["LocalScript_1"] = Instance.new("LocalScript"),
+					["UIGradient_1"] = Instance.new("UIGradient"),
+					["Frame_7"] = Instance.new("Frame"),
+					["Frame_5"] = Instance.new("Frame"),
+					["TextLabel_1"] = Instance.new("TextLabel"),
+					["Frame_2"] = Instance.new("Frame"),
+					["UIPadding_1"] = Instance.new("UIPadding"),
+					["UICorner_1"] = Instance.new("UICorner"),
 					["Frame_1"] = Instance.new("Frame"),
+					["TextButton_2"] = Instance.new("TextButton"),
+					["UIListLayout_1"] = Instance.new("UIListLayout"),
 				}
 
 				ColorPickerInstances.Frame_1.Parent = sectioninstances.Frame_3
@@ -2253,8 +2254,9 @@ function WindowTable:CreateWindow(config)
 				ColorPickerInstances.Frame_4.BackgroundTransparency = 1
 				ColorPickerInstances.Frame_4.BorderSizePixel = 0
 				ColorPickerInstances.Frame_4.Position = UDim2.new(0, -188, 0, 20)
-				ColorPickerInstances.Frame_4.Size = UDim2.new(0, 236, 0, 25)
+				ColorPickerInstances.Frame_4.Size = UDim2.new(0, 236, 0, 0)
 				ColorPickerInstances.Frame_4.Name = 'HoldingFrame'
+				ColorPickerInstances.Frame_4.Visible = false
 
 				ColorPickerInstances.UIListLayout_1.Parent = ColorPickerInstances.Frame_4
 				ColorPickerInstances.UIListLayout_1.SortOrder = Enum.SortOrder.LayoutOrder
@@ -2272,7 +2274,19 @@ function WindowTable:CreateWindow(config)
 				ColorPickerInstances.Frame_5.ZIndex = 4
 				ColorPickerInstances.Frame_5.Name = 'Outline'
 
-				ColorPickerInstances.Frame_6.Parent = ColorPickerInstances.Frame_5
+				ColorPickerInstances.TextButton_2.Parent = ColorPickerInstances.Frame_5
+				ColorPickerInstances.TextButton_2.Font = Enum.Font.SourceSans
+				ColorPickerInstances.TextButton_2.Text = ''
+				ColorPickerInstances.TextButton_2.TextColor3 = Color3.new(0, 0, 0)
+				ColorPickerInstances.TextButton_2.TextSize = 14
+				ColorPickerInstances.TextButton_2.BackgroundColor3 = Color3.new(1, 1, 1)
+				ColorPickerInstances.TextButton_2.BackgroundTransparency = 2
+				ColorPickerInstances.TextButton_2.BorderSizePixel = 0
+				ColorPickerInstances.TextButton_2.Size = UDim2.new(1, 0, 1, 0)
+				ColorPickerInstances.TextButton_2.ZIndex = 9
+				ColorPickerInstances.TextButton_2.AutoButtonColor = false
+
+				ColorPickerInstances.Frame_6.Parent = ColorPickerInstances.TextButton_2
 				ColorPickerInstances.Frame_6.BackgroundColor3 = Color3.new(1, 1, 1)
 				ColorPickerInstances.Frame_6.BorderSizePixel = 0
 				ColorPickerInstances.Frame_6.Size = UDim2.new(1, 0, 1, 0)
@@ -2312,7 +2326,7 @@ function WindowTable:CreateWindow(config)
 				ColorPickerInstances.TextLabel_1.BackgroundTransparency = 1
 				ColorPickerInstances.TextLabel_1.Position = UDim2.new(0, -3, 0, 9)
 				ColorPickerInstances.TextLabel_1.Size = UDim2.new(0, 163, 0, 22)
-				
+
 				local opened = false
 				local old = ColorPickerInstances.Frame_1.Size.Y.Offset
 
@@ -2338,13 +2352,13 @@ function WindowTable:CreateWindow(config)
 						}):Play()
 					end
 				end)
-				
-				
+
+
 				local Player = game.Players.LocalPlayer
 				local UserInputService = game:GetService('UserInputService')
 				local ColorShower = ColorPickerInstances.TextButton_1
-				local PickerArea = ColorPickerInstances.Frame_7
-				local Picker = ColorPickerInstances.Frame_8
+				local PickerArea = ColorPickerInstances.Frame_6
+				local Picker = ColorPickerInstances.Frame_7
 				local Gradient = PickerArea:FindFirstChildOfClass('UIGradient')
 				local selecting = false
 
@@ -2413,26 +2427,30 @@ function WindowTable:CreateWindow(config)
 					end
 				end
 				PickerArea.InputEnded:Connect(inputEnded)
-				
-				
+
+
 			end
-			
+
 			return ElementHandler
-			
+
 		end
 
 		return SectionHandler
-		
-		
+
+
 	end
-	
-	
+
+
 	return TabHandler
-	
+
 end
 
 return WindowTable
 
+
+--local Window = WindowTable:CreateWindow({Title = "Ar Du Galen"})
+--local tab1 = Window:CreateTab({Title = "Free", Default = true, ScrollBar = true})
+--local tab2 = Window:CreateTab({Title = "Paid", ScrollBar = true})
 
 --local sec = tab1:CreateSection({
 --	Title = "OwOski"

@@ -2213,7 +2213,8 @@ function WindowTable:CreateWindow(config)
 				ColorPickerInstances.Frame_1.Size = UDim2.new(0, 240, 0, 36)
 				ColorPickerInstances.Frame_1.ZIndex = 5
 				ColorPickerInstances.Frame_1.Name = 'ColorPicker'
-
+				ColorPickerInstances.Frame_1.LayoutOrder = OrderNumber
+				
 				ColorPickerInstances.Frame_2.Parent = ColorPickerInstances.Frame_1
 				ColorPickerInstances.Frame_2.BackgroundColor3 = Color3.new(0.0588235, 0.0588235, 0.0588235)
 				ColorPickerInstances.Frame_2.BorderColor3 = Color3.new(0.27451, 0.27451, 0.27451)

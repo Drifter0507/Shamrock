@@ -2210,7 +2210,7 @@ function WindowTable:CreateWindow(config)
 				ColorPickerInstances.Frame_1.BorderSizePixel = 0
 				ColorPickerInstances.Frame_1.LayoutOrder = 3
 				ColorPickerInstances.Frame_1.Position = UDim2.new(0, 0, 0, 20)
-				ColorPickerInstances.Frame_1.Size = UDim2.new(0, 240, 0, 58)
+				ColorPickerInstances.Frame_1.Size = UDim2.new(0, 240, 0, 36)
 				ColorPickerInstances.Frame_1.ZIndex = 5
 				ColorPickerInstances.Frame_1.Name = 'ColorPicker'
 
@@ -2359,10 +2359,10 @@ function WindowTable:CreateWindow(config)
 				local ColorShower = ColorPickerInstances.TextButton_1
 				local PickerArea = ColorPickerInstances.Frame_6
 				local Picker = ColorPickerInstances.Frame_7
-				local Gradient = PickerArea:FindFirstChildOfClass('UIGradient')
+				local Gradient = ColorPickerInstances.UIGradient_1
 				local selecting = false
 
-				function getColor(percentage, ColorKeyPoints)
+				local function getColor(percentage, ColorKeyPoints)
 					local closestToLeft = ColorKeyPoints[1]
 					local closestToRight = ColorKeyPoints[#ColorKeyPoints]
 					local LocalPercentage = .5
@@ -2379,8 +2379,9 @@ function WindowTable:CreateWindow(config)
 					end
 					return color
 				end
-
-				function beginSelection()
+				
+				local selecting
+				local function beginSelection()
 					selecting = true
 					local ColorKeyPoints = Gradient.Color.Keypoints
 					repeat wait()
@@ -2410,7 +2411,7 @@ function WindowTable:CreateWindow(config)
 					until not selecting
 				end
 
-				function endSelection()
+				local function endSelection()
 					selecting = false
 				end
 
@@ -2458,6 +2459,24 @@ return WindowTable
 --sec:CreateColorPicker({Title = "Gay sex", callback = function(returnval)
 --	print(returnval)
 --end,})
+--local OreEspToggle = sec:CreateToggle({
+--	Title = "Ore ESP",
+--	Order = 1,
+--	Callback = function(state)
+
+--	end})
+
+--sec:CreateColorPicker({Text = "Player ESP Color", Order = 4, callback = function(returnval)
+
+--end,})
+
+--local PlrEspToggle = sec:CreateToggle({
+--	Title = "Player ESP",
+--	Order = 3,
+--	Callback = function(state)
+
+--	end})
+
 
 
 --Library:CreatePrompt({

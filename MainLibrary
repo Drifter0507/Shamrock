@@ -2318,7 +2318,7 @@ function WindowTable:CreateWindow(config)
 
 				ColorPickerInstances.TextLabel_1.Parent = ColorPickerInstances.Frame_1
 				ColorPickerInstances.TextLabel_1.Font = Enum.Font.Gotham
-				ColorPickerInstances.TextLabel_1.Text = 'ESP Color Wheel'
+				ColorPickerInstances.TextLabel_1.Text = btnText
 				ColorPickerInstances.TextLabel_1.TextColor3 = Color3.new(0.952941, 0.952941, 0.952941)
 				ColorPickerInstances.TextLabel_1.TextSize = 14
 				ColorPickerInstances.TextLabel_1.TextXAlignment = Enum.TextXAlignment.Left

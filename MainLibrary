@@ -1212,7 +1212,7 @@ function WindowTable:CreateWindow(config)
 
 		function SectionHandler:CreateSection(config, callback)
 			local Title = config.Title or "Untitled"
-			local OrderNumber = config.Order or config.order or 10
+			local OrderNumber = config.Order or config.order or 20
 
 			local sectioninstances = {
 				["TextLabel_1"] = Instance.new("TextLabel"),
@@ -1311,7 +1311,7 @@ function WindowTable:CreateWindow(config)
 				local callback = config.callback or config.Callback or function() end   
 				local ButtonFunction = {}
 
-				local OrderNumber = config.Order or config.order or 1
+				local OrderNumber = config.Order or config.order or 20
 
 				local buttoninstances = {
 					["UICorner_1"] = Instance.new("UICorner"),
@@ -1409,7 +1409,7 @@ function WindowTable:CreateWindow(config)
 			function ElementHandler:CreateToggle(config)
 				local btnText = config.Text or config.text or "Toggle"
 				local callback = config.callback or config.Callback or function() end   
-				local OrderNumber = config.Order or config.order or 1
+				local OrderNumber = config.Order or config.order or 20
 
 				local toggleinstance = {
 					["TextLabel_1"] = Instance.new("TextLabel"),
@@ -1530,7 +1530,7 @@ function WindowTable:CreateWindow(config)
 				local Max = config.Max or config.max or 100
 				local Default = config.Default or config.default or 16
 
-				local OrderNumber = config.Order or config.order or 1
+				local OrderNumber = config.Order or config.order or 20
 
 
 				local sliderinstances = {
@@ -1691,7 +1691,7 @@ function WindowTable:CreateWindow(config)
 				local btnText = config.Text or config.text or "Keybind"
 				local callback = config.callback or config.Callback or function() end   
 				local DefaultKey = Enum.KeyCode[config.Default] or config.default or Enum.KeyCode.Q
-				local OrderNumber = config.Order or config.order or 1
+				local OrderNumber = config.Order or config.order or 20
 
 
 				if not DefaultKey then
@@ -1839,7 +1839,7 @@ function WindowTable:CreateWindow(config)
 				local callback = config.callback or config.Callback or function() end   
 				local array = config.array or config.Array or {}
 				local opened
-				local OrderNumber = config.Order or config.order or 1
+				local OrderNumber = config.Order or config.order or 20
 
 				local dropdown = {
 					["UICorner_1"] = Instance.new("UICorner"),
@@ -2181,7 +2181,7 @@ function WindowTable:CreateWindow(config)
 				local btnText = config.Text or config.text or "Color Picker"
 				local callback = config.callback or config.Callback or function() end   
 				local opened
-				local OrderNumber = config.Order or config.order or 1
+				local OrderNumber = config.Order or config.order or 20
 
 				local ColorPickerInstances = {
 					["UICorner_2"] = Instance.new("UICorner"),

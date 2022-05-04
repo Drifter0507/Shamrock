@@ -674,7 +674,7 @@ function WindowTable:CreateWindow(config)
 		wait(1)
 		screenGui.Enabled = true
 		WindowTable:CreatePrompt({
-			Message = "Version 1.5 Loaded",
+			Message = "Version 1.6 Loaded",
 			Prompt = false,
 			Yes = "Yes Button Text",
 			No = "No Button Text",

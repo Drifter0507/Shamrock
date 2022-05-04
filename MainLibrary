@@ -674,7 +674,7 @@ function WindowTable:CreateWindow(config)
 		wait(1)
 		screenGui.Enabled = true
 		WindowTable:CreatePrompt({
-			Message = "Version 1.6 Loaded",
+			Message = "Version 1.5 Loaded",
 			Prompt = false,
 			Yes = "Yes Button Text",
 			No = "No Button Text",
@@ -2431,37 +2431,8 @@ function WindowTable:CreateWindow(config)
 	
 end
 
---return WindowTable
+return WindowTable
 
-
-local Window = WindowTable:CreateWindow({Title = "Ar Du Galen"})
-local tab1 = Window:CreateTab({Title = "Free", Default = true, ScrollBar = true})
-local tab2 = Window:CreateTab({Title = "Paid", ScrollBar = true})
-local sec = tab1:CreateSection({
-	Title = "OwOski"
-})
-sec:CreateColorPicker({Text = "ESP Color", Order = 2, callback = function(returnval)
-	Settings.OreEspColor = returnval
-end,})
-
-local OreEspToggle = sec:CreateToggle({
-	Title = "Ore ESP",
-	Order = 1,
-	Callback = function(state)
-		OreESP = state
-	end})
-local WallbangToggle = sec:CreateToggle({
-	Title = "Wallbang",
-	Callback = function(state)
-		Wallbang = state
-	end
-})
-
-local BulletSpreadToggle = sec:CreateToggle({
-	Title = "No Bullet Spread",
-	Callback = function(state)
-		BulletSpread = state
-	end})
 
 --local sec = tab1:CreateSection({
 --	Title = "OwOski"

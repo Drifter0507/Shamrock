@@ -2102,39 +2102,39 @@ function WindowTable:CreateWindow(config)
 
 end
 
---return WindowTable
+return WindowTable
 
-local Window = WindowTable:CreateWindow({
-	Title = "Ar Du Galen", -- Required: UI title text.
-	Speed = 10, -- Not required, defaults to 16, how fast the ui moves when you drag
-	Theme = "Normal", -- Not required, defaults to normal, sets the theme of the ui.
-})
-local tab1 = Window:CreateTab({
-	Title = "Free", -- Required: Page button text.
-	ScrollBar = true -- Not required, defaults to true, Shows scrollbar within each page(highly recommended)
-})
-local Section1 = tab1:CreateSection({
-	Title = "Section1" -- Required: Title for the section
-})
+--local Window = WindowTable:CreateWindow({
+--	Title = "Ar Du Galen", -- Required: UI title text.
+--	Speed = 10, -- Not required, defaults to 16, how fast the ui moves when you drag
+--	Theme = "Normal", -- Not required, defaults to normal, sets the theme of the ui.
+--})
+--local tab1 = Window:CreateTab({
+--	Title = "Free", -- Required: Page button text.
+--	ScrollBar = true -- Not required, defaults to true, Shows scrollbar within each page(highly recommended)
+--})
+--local Section1 = tab1:CreateSection({
+--	Title = "Section1" -- Required: Title for the section
+--})
 
 
-local Dropdown1 = Section1:CreateDropdown({
-	Text = "Showed Dropdown Text", -- -- Required: Keybind text.
-	Array = game.Players:GetPlayers(), -- Required: array dropdown uses
-	Show = true, -- Not required, defaults to false, shows selected child within dropdown, ex: DropdownButtonText: banana // banana was selected within the dropdown
-	Order = 1, -- Not required: What order you want it to be placed within the section. (If nil it will randomize)
-	Callback = function(state) -- Returns what was selected
-		print(state)
-	end,
-})
-local Keybind1 = Section1:CreateKeybind({
-	Text = "Keybind Text", -- Required: Keybind text.
-	Default = "K", -- Required: Starting key for the keybind, defaults to Q
-	Order = 1, -- Not required: What order you want it to be placed within the section. (If nil it will randomize)
-	Callback = function() -- Boop!
-		WindowTable:ToggleUI()
-	end
-})
+--local Dropdown1 = Section1:CreateDropdown({
+--	Text = "Showed Dropdown Text", -- -- Required: Keybind text.
+--	Array = game.Players:GetPlayers(), -- Required: array dropdown uses
+--	Show = true, -- Not required, defaults to false, shows selected child within dropdown, ex: DropdownButtonText: banana // banana was selected within the dropdown
+--	Order = 1, -- Not required: What order you want it to be placed within the section. (If nil it will randomize)
+--	Callback = function(state) -- Returns what was selected
+--		print(state)
+--	end,
+--})
+--local Keybind1 = Section1:CreateKeybind({
+--	Text = "Keybind Text", -- Required: Keybind text.
+--	Default = "K", -- Required: Starting key for the keybind, defaults to Q
+--	Order = 1, -- Not required: What order you want it to be placed within the section. (If nil it will randomize)
+--	Callback = function() -- Boop!
+--		WindowTable:ToggleUI()
+--	end
+--})
 
 
 

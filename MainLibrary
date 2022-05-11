@@ -905,7 +905,7 @@ function WindowTable:CreateWindow(config)
 				local changing = false
 				Val:GetPropertyChangedSignal("Text"):Connect(function()
 					if changing then return end
-					Val.Text = Val.Text:gsub("%f", '')
+					Val.Text = Val.Text:gsub('%D+', '')
 					Val.PlaceholderText = tostring(Val.Text)
 					if tonumber(Val.Text) > Max then
 						Val.Text = tostring(Max)

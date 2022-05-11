@@ -257,6 +257,35 @@ function WindowTable:CreateWindow(config)
 	instances.Frame_8.Position = UDim2.new(0.9676550030708313, 0, 0, 0)
 	instances.Frame_8.Size = UDim2.new(0.03504043072462082, 0, 0.055737704038619995, 0)
 	instances.Frame_8.Name = 'ignore'
+	
+	local Button = instances.TextButton_1
+
+	Button.MouseEnter:Connect(function()
+		for i, v in pairs(Button:GetChildren()) do
+			if v:IsA("Frame") then
+				game.TweenService:Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					BackgroundColor3 = Color3.fromRGB(223,87,74)
+				}):Play()
+			end
+		end
+		game.TweenService:Create(Button, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+			BackgroundColor3 = Color3.fromRGB(223,87,74)
+		}):Play()
+	end)
+
+	Button.MouseLeave:Connect(function()
+		for i, v in pairs(Button:GetChildren()) do
+			if v:IsA("Frame") then
+				game.TweenService:Create(v, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					BackgroundColor3 = Color3.fromRGB(12, 11, 12)
+				}):Play()
+			end
+		end
+		game.TweenService:Create(Button, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+			BackgroundColor3 = Color3.fromRGB(12, 11, 12)
+		}):Play()
+	end)
+
 
 	local TabHandler = {}
 

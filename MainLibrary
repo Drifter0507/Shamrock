@@ -2071,6 +2071,7 @@ function WindowTable:CreateWindow(config)
 							Rainbow = true
 							RainbowToggle.Frame:TweenPosition(UDim2.new(0,30,0,0),"InOut","Sine",0.2)
 							repeat
+								wait()
 								for i = 0,1,0.001*tonumber(speed) do
 									if not Rainbow then break end
 									UpdateFillIns(Color3.fromHSV(i,1,1))

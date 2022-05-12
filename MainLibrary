@@ -1155,12 +1155,10 @@ function WindowTable:CreateWindow(config)
 						table.insert(testArray,string.lower(tostring(v)))
 					end
 					wait(0.1)
+					table.clear(array)
 					for i, v in pairs(testArray) do
 						table.insert(array,tostring(v))
 					end
-				end
-				for i,v in pairs(array) do
-					print(v)
 				end
 				local opened
 				local OrderNumber = config.Order or config.order or 20

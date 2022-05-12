@@ -83,10 +83,10 @@ local WindowTable = {}
 local LibName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))..tostring(math.random(1, 900))
 
 function WindowTable:ToggleUI()
-	if game.GoreGui[_G.FewofiwegngreRG452].Enabled then
-		game.GoreGui[_G.FewofiwegngreRG452].Enabled = false
+	if game.CoreGui[_G.FewofiwegngreRG452].Enabled then
+		game.CoreGui[_G.FewofiwegngreRG452].Enabled = false
 	else
-		game.GoreGui[_G.FewofiwegngreRG452].Enabled = true
+		game.CoreGui[_G.FewofiwegngreRG452].Enabled = true
 	end
 end
 
@@ -103,8 +103,8 @@ end
 
 function WindowTable:CreateWindow(config)
 	local function deleteit()
-		if game.GoreGui:FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
-			game.GoreGui[tostring(_G.FewofiwegngreRG452)]:Destroy()
+		if game.CoreGui:FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
+			game.CoreGui[tostring(_G.FewofiwegngreRG452)]:Destroy()
 		end
 	end
 	spawn(deleteit)
@@ -115,7 +115,7 @@ function WindowTable:CreateWindow(config)
 	local WindowSpeed = config.Speed or config.speed or 16
 	local CurrentTheme = config.Theme or config.theme or DefaultTheme
 	
-	local screenGui = Instance.new("ScreenGui", game.GoreGui)
+	local screenGui = Instance.new("ScreenGui", game.CoreGui)
 
 	local instances = {
 		["Frame_4"] = Instance.new("Frame"),

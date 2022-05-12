@@ -83,10 +83,10 @@ local WindowTable = {}
 local LibName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))..tostring(math.random(1, 900))
 
 function WindowTable:ToggleUI()
-	if game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled then
-		game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled = false
+	if game.GoreGui[_G.FewofiwegngreRG452].Enabled then
+		game.GoreGui[_G.FewofiwegngreRG452].Enabled = false
 	else
-		game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled = true
+		game.GoreGui[_G.FewofiwegngreRG452].Enabled = true
 	end
 end
 
@@ -103,8 +103,8 @@ end
 
 function WindowTable:CreateWindow(config)
 	local function deleteit()
-		if game.Players.LocalPlayer.PlayerGui:FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
-			game.Players.LocalPlayer.PlayerGui[tostring(_G.FewofiwegngreRG452)]:Destroy()
+		if game.GoreGui:FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
+			game.GoreGui[tostring(_G.FewofiwegngreRG452)]:Destroy()
 		end
 	end
 	spawn(deleteit)
@@ -115,7 +115,7 @@ function WindowTable:CreateWindow(config)
 	local WindowSpeed = config.Speed or config.speed or 16
 	local CurrentTheme = config.Theme or config.theme or DefaultTheme
 	
-	local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
+	local screenGui = Instance.new("ScreenGui", game.GoreGui)
 
 	local instances = {
 		["Frame_4"] = Instance.new("Frame"),
@@ -371,7 +371,17 @@ function WindowTable:CreateWindow(config)
 		TabInstances.UIPadding_1.PaddingLeft = UDim.new(0, 6)
 		TabInstances.UIPadding_1.PaddingTop = UDim.new(0, 10)
 		
+		
+		TabInstances.ScrollingFrame_1:FindFirstChildOfClass("UIListLayout"):GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+			local size = TabInstances.ScrollingFrame_1:FindFirstChildOfClass("UIListLayout").AbsoluteContentSize
+			local padding = TabInstances.ScrollingFrame_1:FindFirstChildOfClass("UIListLayout").Parent.UIPadding
 
+			size = size + Vector2.new(0, padding.PaddingBottom.Offset + (padding.PaddingTop.Offset))
+			game.TweenService:Create(TabInstances.ScrollingFrame_1, TweenInfo.new(0.2, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+				CanvasSize = UDim2.new(1,0, 0, size.Y + 30)
+			}):Play()
+		end)	
+		
 		local newPage = TabInstances.ScrollingFrame_1
 		newPage.Visible = false
 
@@ -2154,7 +2164,7 @@ return WindowTable
 --})
 --local Dropdown1 = Section1:CreateDropdown({
 --	Text = "Showed Dropdown Text", -- -- Required: Keybind text.
---	Array = {"ff","kk","pp"}, -- Required: array dropdown uses
+--	Array = {"ff","kk","pp","ff","kk","pp","ff","kk","pp","ff","kk","pp","ff","kk","pp","ff","kk","pp","ff","kk","pp","ff","kk","pp",}, -- Required: array dropdown uses
 --	Show = true, -- Not required, defaults to false, shows selected child within dropdown, ex: DropdownButtonText: banana // banana was selected within the dropdown
 --	Order = 1, -- Not required: What order you want it to be placed within the section. (If nil it will randomize)
 --	Callback = function(state) -- Returns what was selected

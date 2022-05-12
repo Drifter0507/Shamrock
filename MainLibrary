@@ -966,11 +966,11 @@ function WindowTable:CreateWindow(config)
 							Size = UDim2.new(percentage,-(White.Size.X.Offset*0.5),0, 11)
 						}):Play()
 						Val.PlaceholderText = final
+						if Min >= final then
+							Val.PlaceholderText = tostring(Min)
+							final = Min
+						end
 						callback(final)
-						--if Min >= final then
-						--	Val.PlaceholderText = Val.PlaceholderText..Min
-						--	callback(final)
-						--end
 					end
 				end)
 				

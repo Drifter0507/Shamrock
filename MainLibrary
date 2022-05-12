@@ -83,10 +83,10 @@ local WindowTable = {}
 local LibName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))..tostring(math.random(1, 900))
 
 function WindowTable:ToggleUI()
-	if game.CoreGui[_G.FewofiwegngreRG452].Enabled then
-		game.CoreGui[_G.FewofiwegngreRG452].Enabled = false
+	if game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled then
+		game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled = false
 	else
-		game.CoreGui[_G.FewofiwegngreRG452].Enabled = true
+		game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled = true
 	end
 end
 
@@ -103,8 +103,8 @@ end
 
 function WindowTable:CreateWindow(config)
 	local function deleteit()
-		if game.CoreGui:FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
-			game.CoreGui[tostring(_G.FewofiwegngreRG452)]:Destroy()
+		if game.Players.LocalPlayer.PlayerGui:FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
+			game.Players.LocalPlayer.PlayerGui[tostring(_G.FewofiwegngreRG452)]:Destroy()
 		end
 	end
 	spawn(deleteit)
@@ -115,7 +115,7 @@ function WindowTable:CreateWindow(config)
 	local WindowSpeed = config.Speed or config.speed or 16
 	local CurrentTheme = config.Theme or config.theme or DefaultTheme
 	
-	local screenGui = Instance.new("ScreenGui", game.CoreGui)
+	local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui)
 
 	local instances = {
 		["Frame_4"] = Instance.new("Frame"),
@@ -1149,11 +1149,18 @@ function WindowTable:CreateWindow(config)
 				local btnText = config.Title or config.title or config.text or config.Text or "Dropdown"
 				local callback = config.callback or config.Callback or function() end   
 				local array = config.array or config.Array or config.list or config.List or {}
+				local testArray = {}
 				if array then
 					for i, v in pairs(array) do
-						table.clear(array)
-						table.insert(array,string.lower(tostring(v)))
+						table.insert(testArray,string.lower(tostring(v)))
 					end
+					wait(0.1)
+					for i, v in pairs(testArray) do
+						table.insert(array,tostring(v))
+					end
+				end
+				for i,v in pairs(array) do
+					print(v)
 				end
 				local opened
 				local OrderNumber = config.Order or config.order or 20
@@ -1344,10 +1351,10 @@ function WindowTable:CreateWindow(config)
 					local padding = HF:FindFirstChildOfClass("UIListLayout").Parent.Parent.Parent.UIPadding
 
 					size = size + Vector2.new(0, padding.PaddingBottom.Offset + (padding.PaddingTop.Offset))
-					game.TweenService:Create(DropdownInstances.Frame_1, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					game.TweenService:Create(DropdownInstances.Frame_1, TweenInfo.new(0.05, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 						Size = UDim2.new(0, 328, 0, size.Y + 28)
 					}):Play()
-					game.TweenService:Create(HF, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+					game.TweenService:Create(HF, TweenInfo.new(0.05, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 						Size = UDim2.new(0, 328, 0, size.Y + 2)
 					}):Play()
 				end)
@@ -2146,6 +2153,15 @@ return WindowTable
 --})
 --local Section1 = tab1:CreateSection({
 --	Title = "Section1" -- Required: Title for the section
+--})
+--local Dropdown1 = Section1:CreateDropdown({
+--	Text = "Showed Dropdown Text", -- -- Required: Keybind text.
+--	Array = {"ff","kk","pp"}, -- Required: array dropdown uses
+--	Show = true, -- Not required, defaults to false, shows selected child within dropdown, ex: DropdownButtonText: banana // banana was selected within the dropdown
+--	Order = 1, -- Not required: What order you want it to be placed within the section. (If nil it will randomize)
+--	Callback = function(state) -- Returns what was selected
+--		print(state)
+--	end,
 --})
 
 

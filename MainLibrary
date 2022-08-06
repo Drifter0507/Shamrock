@@ -285,8 +285,8 @@ function Draggify(frame)
 end
 
 
-local Whitelisted = {}
-local Targets = {}
+local getgenv().Whitelisted = {}
+local getgenv().Targets = {}
 
 local WindowTable = {} 
 
@@ -1019,14 +1019,14 @@ function WindowTable:CreateWindow(config)
 		end
 
 		PlayerPopup.ForPlayers.ScrollingFrame.WhitelistBut.MouseButton1Click:Connect(function()
-			if not table.find(Whitelisted,tostring(SelectedPlayer.Value)) then
-				table.insert(Whitelisted,tostring(SelectedPlayer.Value))
+			if not table.find(getgenv().Whitelisted,tostring(SelectedPlayer.Value)) then
+				table.insert(getgenv().Whitelisted,tostring(SelectedPlayer.Value))
 				Util:Tween(PlayerPopup.ForPlayers.ScrollingFrame.WhitelistBut,{BackgroundColor3 = Color3.fromRGB(0,170,126)},0.3)
 				Util:Tween(PlayerPopup.ForPlayers.ScrollingFrame.WhitelistBut.buttonShadow,{BackgroundColor3 = Color3.fromRGB(0,113,84)},0.3)
 			else
-				for i,v in pairs(Whitelisted) do
+				for i,v in pairs(getgenv().Whitelisted) do
 					if v == tostring(SelectedPlayer.Value) then
-						table.remove(Whitelisted, i)
+						table.remove(getgenv().Whitelisted, i)
 					end
 				end
 				Util:Tween(PlayerPopup.ForPlayers.ScrollingFrame.WhitelistBut,{BackgroundColor3 = Color3.fromRGB(254, 86, 86)},0.3)
@@ -1035,14 +1035,14 @@ function WindowTable:CreateWindow(config)
 		end)
 
 		PlayerPopup.ForPlayers.ScrollingFrame.TargetBut.MouseButton1Click:Connect(function()
-			if not table.find(Targets,tostring(SelectedPlayer.Value)) then
-				table.insert(Targets,tostring(SelectedPlayer.Value))
+			if not table.find(getgenv().Targets,tostring(SelectedPlayer.Value)) then
+				table.insert(getgenv().Targets,tostring(SelectedPlayer.Value))
 				Util:Tween(PlayerPopup.ForPlayers.ScrollingFrame.TargetBut,{BackgroundColor3 = Color3.fromRGB(0,170,126)},0.3)
 				Util:Tween(PlayerPopup.ForPlayers.ScrollingFrame.TargetBut.buttonShadow,{BackgroundColor3 = Color3.fromRGB(0,113,84)},0.3)
 			else
-				for i,v in pairs(Targets) do
+				for i,v in pairs(getgenv().Targets) do
 					if v == tostring(SelectedPlayer.Value) then
-						table.remove(Targets, i)
+						table.remove(getgenv().Targets, i)
 					end
 				end
 				Util:Tween(PlayerPopup.ForPlayers.ScrollingFrame.TargetBut,{BackgroundColor3 = Color3.fromRGB(254, 86, 86)},0.3)
@@ -1081,14 +1081,14 @@ function WindowTable:CreateWindow(config)
 
 
 		SelectedPlayer.Changed:Connect(function()
-			if table.find(Whitelisted,tostring(SelectedPlayer.Value)) then
+			if table.find(getgenv().Whitelisted,tostring(SelectedPlayer.Value)) then
 				Util:Tween(PlayerPopup.ForPlayers.ScrollingFrame.WhitelistBut,{BackgroundColor3 = Color3.fromRGB(0,170,126)},0.3)
 				Util:Tween(PlayerPopup.ForPlayers.ScrollingFrame.WhitelistBut.buttonShadow,{BackgroundColor3 = Color3.fromRGB(0,113,84)},0.3)
 			else
 				Util:Tween(PlayerPopup.ForPlayers.ScrollingFrame.WhitelistBut,{BackgroundColor3 = Color3.fromRGB(254, 86, 86)},0.3)
 				Util:Tween(PlayerPopup.ForPlayers.ScrollingFrame.WhitelistBut.buttonShadow,{BackgroundColor3 = Color3.fromRGB(161, 59, 60)},0.3)
 			end
-			if table.find(Targets,tostring(SelectedPlayer.Value)) then
+			if table.find(getgenv().Targets,tostring(SelectedPlayer.Value)) then
 				Util:Tween(PlayerPopup.ForPlayers.ScrollingFrame.TargetBut,{BackgroundColor3 = Color3.fromRGB(0,170,126)},0.3)
 				Util:Tween(PlayerPopup.ForPlayers.ScrollingFrame.TargetBut.buttonShadow,{BackgroundColor3 = Color3.fromRGB(0,113,84)},0.3)
 			else

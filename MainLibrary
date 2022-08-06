@@ -1063,7 +1063,7 @@ function WindowTable:CreateWindow(config)
 				end)
 				if not tween then return err end
 			end
-			tp(Vector3.new(game.Players[tostring(SelectedPlayer.Value)].Character.HumanoidRootPart.Position) + Vector3.new(0,5,0))
+			tp(game.Players[tostring(SelectedPlayer.Value)].Character.HumanoidRootPart.CFrame * CFrame.new(0,5,0))
 
 		end)
 

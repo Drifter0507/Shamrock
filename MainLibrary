@@ -2200,6 +2200,7 @@ function WindowTable:CreateWindow(config)
 				SliderInstance.ScrollingFrame_1.Position = UDim2.new(0, 201, 0, -19)
 				SliderInstance.ScrollingFrame_1.Size = UDim2.new(0, 46, 0, 29)
 				SliderInstance.ScrollingFrame_1.Name = 'TextFrame'
+				SliderInstance.ScrollingFrame_1.ZIndex = 10
 
 				SliderInstance.Frame_4.Parent = SliderInstance.ScrollingFrame_1
 				SliderInstance.Frame_4.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)

@@ -2037,9 +2037,9 @@ function WindowTable:CreateWindow(config)
 				end
 
 				if value == true then
-					toggle.ImageLabel.Image = "http://www.roblox.com/asset/?id=6031068433"
-				else
 					toggle.ImageLabel.Image = "http://www.roblox.com/asset/?id=6031068426"
+				else
+					toggle.ImageLabel.Image = "http://www.roblox.com/asset/?id=6031068433"
 				end
 
 			end
@@ -3428,3 +3428,181 @@ end
 
 warn("Loaded 1.0")
 return WindowTable
+
+
+--local Window = WindowTable:CreateWindow({Title = "Ar Du Galen"})
+--local tab1 = Window:CreateTab({Title = "Free", ScrollBar = true})
+--local tab2 = Window:CreateTab({Title = "Paid", ScrollBar = true})
+
+--local sec = tab1:CreateSection({
+--	Title = "Section1"
+--})
+
+--sec:CreateSlider({
+--	Text = "Slider Text",
+--	Min = 50,
+--	Max = 100,
+--	Default = 66,
+--	Callback = function()
+--		print("hi")
+--	end
+--})
+
+--sec:CreateButton({
+--	Text = "Button",
+--	Order = 3,
+--	Callback = function()
+--		print("hi")
+--	end
+--})
+--local Label = sec:CreateLabel({
+--	Title = "[STILL A WORK IN PROGRESS]",
+--	Order = 1,
+--})
+--sec:CreateDropdown({
+--	Text = "Dropdown",
+--	Array = {"Orange","Bananas"},
+--	Callback = function(val)
+--		print(val)
+--	end,
+--})
+
+--sec:CreateDropdown({
+--	Text = "Dropdown",
+--	Array = {"GGGgg","Ttttt","ggggg"},
+--	Callback = function(val)
+--		print(val)
+--	end,
+--})
+
+--local OreEspToggle = sec:CreateToggle({
+--	Title = "Kill Aura",
+--	Order = 4,
+--	Callback = function(state)
+--		print(state)
+--	end
+--})
+--local OreEspToggle = sec:CreateToggle({
+--	Title = "Defaulted Toggle",
+--	Order = 1,
+--	Default = true,
+--	Callback = function(state)
+--		print(state)
+--	end
+--})
+--local Label = sec:CreateLabel({
+--	Title = "Label",
+--	Order = 1,
+--})
+--sec:CreateSlider({
+--	Text = "Slider",
+--	Min = 0,
+--	Max = 100,
+--	Default = 16,
+--	Callback = function(val)
+--		print(val)
+--	end
+--})
+--sec:CreateSlider({
+--	Text = "Slider",
+--	Min = 16,
+--	Max = 100,
+--	Default = 50,
+--	Callback = function(val)
+--		print(val)
+--	end
+--})
+
+--sec:CreateColorPicker({Title = "Gay sex", callback = function(returnval)
+--	print(returnval)
+--end,})
+
+--sec:CreateColorPicker({Title = "Gay sex", callback = function(returnval)
+--	print(returnval)
+--end,})
+--local OreEspToggle = sec:CreateToggle({
+--	Title = "Ore ESP",
+--	Order = 1,
+--	Callback = function(state)
+
+--	end})
+
+--sec:CreateColorPicker({Text = "Player ESP Color", Order = 4, callback = function(returnval)
+
+--end,})
+
+--local PlrEspToggle = sec:CreateToggle({
+--	Title = "Player ESP",
+--	Order = 3,
+--	Callback = function(state)
+
+--	end})
+
+
+
+--Library:CreatePrompt({
+--	Message = "Text Here",
+--	Prompt = true,
+--	Yes = "Yes Button Text",
+--	No = "No Button Text",
+--	GoAway = false,
+--	Duration = 5,
+--	Callback = function()
+
+--	end,
+--}) 
+
+--Library:ToggleUI()
+
+--Library:CreateWindow({
+--	Title = "Title Text Here"
+--})
+
+--Window:CreateTab({
+--	Title = "Tab Text Here", 
+--	Default = true, --only set one to true
+--	ScrollBar = true -- shows(doesnt) scrollbar
+--})
+
+--Tab:CreateSection({
+--	Title = "OwOski"
+--})
+--Section:CreateButton({
+--	Text = "fe",
+--	Callback = function()
+--		print("hi")
+--	end
+--})
+--Section:CreateToggle({
+--	Title = "fe",
+--	Callback = function()
+--		print("hi")
+--	end
+--})
+
+--Section:CreateSlider({
+--	Text = "Slider Text",
+--	Min = 0,
+--	Max = 100,
+--	Default = 16,
+--	Callback = function()
+--		print("hi")
+--	end
+--})
+--sec:CreateKeybind({
+--	Text = "Keybind Text",
+--	Default = "K",
+--	Callback = function()
+--		print("hi")
+--	end
+--})
+--Section:CreateDropdown({
+--	Text = "Dropdown Text",
+--	Array = {"Orange","Bananas"},
+--	Callback = function()
+
+--	end,
+--})
+
+--Dropdown:UpdateDropdown(NewArray)
+

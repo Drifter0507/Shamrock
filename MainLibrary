@@ -1646,15 +1646,17 @@ function WindowTable:CreateWindow(config)
 
 		TabInstance.ScrollingFrame_1.Parent = instances.Folder_1
 		TabInstance.ScrollingFrame_1.CanvasSize = UDim2.new(0, 0, 0, 550)
-		TabInstance.ScrollingFrame_1.ScrollBarImageColor3 = Color3.new(0, 0, 0)
-		TabInstance.ScrollingFrame_1.ScrollBarThickness = 0
+		TabInstance.ScrollingFrame_1.ScrollBarImageColor3 = Color3.new(255,255,255)
+		TabInstance.ScrollingFrame_1.ScrollBarThickness = 12
 		TabInstance.ScrollingFrame_1.Active = true
 		TabInstance.ScrollingFrame_1.BackgroundColor3 = Color3.new(1, 1, 1)
 		TabInstance.ScrollingFrame_1.BackgroundTransparency = 1
 		TabInstance.ScrollingFrame_1.BorderSizePixel = 0
 		TabInstance.ScrollingFrame_1.Size = UDim2.new(1, 0, 1, 0)
 		TabInstance.ScrollingFrame_1.Name = 'Page'
-		if ScrollBar == false then
+		TabInstance.ScrollingFrame_1.ScrollingDirection = Enum.ScrollingDirection.Y
+		TabInstance.ScrollingFrame_1.ElasticBehavior = Enum.ElasticBehavior.WhenScrollable
+		if ScrollBar == true then
 			TabInstance.ScrollingFrame_1.ScrollBarThickness = 0
 		end
 		
@@ -1669,6 +1671,15 @@ function WindowTable:CreateWindow(config)
 
 		local newPage = TabInstance.ScrollingFrame_1
 		newPage.Visible = false
+		
+		newPage:FindFirstChildOfClass("UIListLayout"):GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+			local size = newPage:FindFirstChildOfClass("UIListLayout").AbsoluteContentSize
+			local padding = newPage:FindFirstChildOfClass("UIListLayout").Parent.UIPadding
+
+			size = size + Vector2.new(0, padding.PaddingBottom.Offset + (padding.PaddingTop.Offset))
+			Util:Tween(newPage,{CanvasSize = UDim2.new(1, 0, 0, size.Y + 80)},0.1)
+
+		end)
 		
 		if #instances.ScrollingFrame_1:GetChildren() == 3 then
 			Util:Tween(TabInstance.TextButton_1, {BackgroundColor3 = Color3.fromRGB(0, 170, 126)},0.2)
@@ -1791,7 +1802,6 @@ function WindowTable:CreateWindow(config)
 				size = size + Vector2.new(0, padding.PaddingBottom.Offset + (padding.PaddingTop.Offset))
 				Util:Tween(Section,{Size = UDim2.new(0, 301, 0, size.Y + 42)},0.1)
 				Util:Tween(FWorkspace,{Size = UDim2.new(0, 301, 0, size.Y + 2)},0.1)
-				Util:Tween(Section.Parent,{CanvasSize = UDim2.new(1, 0, 0, size.Y + 160)},0.1)
 
 			end)
 
@@ -3448,6 +3458,59 @@ warn("Loaded 1.0")
 --		print("hi")
 --	end
 --})
+--local sec2 = tab1:CreateSection({
+--	Title = "Section1",
+--	Order = 1,
+--})
+
+--sec:CreateSlider({
+--	Text = "Slider Text",
+--	Min = 50,
+--	Max = 100,
+--	Default = 66,
+--	Callback = function()
+--		print("hi")
+--	end
+--})
+--local sec = tab1:CreateSection({
+--	Title = "Section1"
+--})
+
+--sec:CreateSlider({
+--	Text = "Slider Text",
+--	Min = 50,
+--	Max = 100,
+--	Default = 66,
+--	Callback = function()
+--		print("hi")
+--	end
+--})
+--local sec = tab1:CreateSection({
+--	Title = "Section1"
+--})
+
+--sec:CreateSlider({
+--	Text = "Slider Text",
+--	Min = 50,
+--	Max = 100,
+--	Default = 66,
+--	Callback = function()
+--		print("hi")
+--	end
+--})
+--local sec = tab1:CreateSection({
+--	Title = "Section1"
+--})
+
+--sec2:CreateSlider({
+--	Text = "Slider Text",
+--	Min = 50,
+--	Max = 100,
+--	Default = 66,
+--	Callback = function()
+--		print("hi")
+--	end
+--})
 
 --sec:CreateButton({
 --	Text = "Button",
@@ -3460,7 +3523,7 @@ warn("Loaded 1.0")
 --	Title = "[STILL A WORK IN PROGRESS]",
 --	Order = 1,
 --})
---sec:CreateDropdown({
+--sec2:CreateDropdown({
 --	Text = "Dropdown",
 --	Array = {"Orange","Bananas"},
 --	Callback = function(val)

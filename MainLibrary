@@ -237,7 +237,7 @@ function Draggify(frame)
 	local dragStart
 	local startPos
 
-	function local Lerp(a, b, m)
+	function Lerp(a, b, m)
 		return a + (b - a) * m
 	end;
 

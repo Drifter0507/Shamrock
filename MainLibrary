@@ -237,14 +237,14 @@ function Draggify(frame)
 	local dragStart
 	local startPos
 
-	function Lerp(a, b, m)
+	function local Lerp(a, b, m)
 		return a + (b - a) * m
 	end;
 
 	local lastMousePos
 	local lastGoalPos
 	local DRAG_SPEED = (16); -- // The speed of the UI darg.
-	function Update(dt)
+	local function Update(dt)
 		if not (startPos) then return end;
 		if (ColorPicking) then return end;
 		if not (dragging) and (lastGoalPos) then
@@ -285,8 +285,8 @@ function Draggify(frame)
 end
 
 
-local getgenv().Whitelisted = {}
-local getgenv().Targets = {}
+getgenv().Whitelisted = {}
+getgenv().Targets = {}
 
 local WindowTable = {} 
 

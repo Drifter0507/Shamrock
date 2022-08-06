@@ -3438,7 +3438,7 @@ function WindowTable:CreateWindow(config)
 end
 
 warn("Loaded 1.0")
---return WindowTable
+return WindowTable
 
 
 --local Window = WindowTable:CreateWindow({Title = "Ar Du Galen"})

@@ -1051,7 +1051,7 @@ function WindowTable:CreateWindow(config)
 		end)
 
 		PlayerPopup.ForPlayers.ScrollingFrame.TeleportBut.MouseButton1Click:Connect(function()
-			Client.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players[tostring(SelectedPlayer.Value)].Character.HumanoidRootPart.CFrame) * CFrame.new(0,5,0)
+			Client.Character.HumanoidRootPart.CFrame = CFrame.new(game.Players[tostring(SelectedPlayer.Value)].Character.HumanoidRootPart.Position) * CFrame.new(0,5,0)
 		end)
 
 		local Players = game:GetService("Players")

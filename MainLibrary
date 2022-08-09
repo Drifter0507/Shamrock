@@ -303,8 +303,8 @@ end
 
 function WindowTable:CreateWindow(config)
 	function deleteit()
-		if game.Players.LocalPlayer.PlayerGui:FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
-			game.Players.LocalPlayer.PlayerGui[tostring(_G.FewofiwegngreRG452)]:Destroy()
+		if game:GetService("CoreGui"):FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
+			game:GetService("CoreGui")[tostring(_G.FewofiwegngreRG452)]:Destroy()
 		end
 	end
 	spawn(deleteit)

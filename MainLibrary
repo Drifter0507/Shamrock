@@ -2220,6 +2220,7 @@ function WindowTable:CreateWindow(config)
 				SliderInstance.TextLabel_2.BackgroundColor3 = Color3.new(1, 1, 1)
 				SliderInstance.TextLabel_2.BackgroundTransparency = 1
 				SliderInstance.TextLabel_2.Size = UDim2.new(1, 0, 1, 0)
+				SliderInstance.TextLabel_2.ZIndex = 10
 
 				SliderInstance.Frame_5.Parent = SliderInstance.Frame_4
 				SliderInstance.Frame_5.BackgroundColor3 = Color3.new(0.121569, 0.121569, 0.121569)
@@ -2297,7 +2298,7 @@ function WindowTable:CreateWindow(config)
 				end
 
 				percent = math.clamp(percent, 0, 1)
-				value = value or math.floor(min + (max - min) * percent)
+				value = value or (min + (max - min) * percent)
 
 				slider.Parent.TextFrame.Frame.TextLabel.Text = value
 				Util:Tween(slider.Frame, {Size = UDim2.new(percent, 0, 1, 0)}, 0.1)
@@ -3441,18 +3442,13 @@ return WindowTable
 --	Title = "Section1"
 --})
 
-
---sec:CreateColorPicker({Title = "Color",Default = Color3.fromRGB(0,255,0), callback = function(returnval)
---	print(returnval)
---end,})
-
 --sec:CreateSlider({
 --	Text = "Slider Text",
---	Min = 50,
---	Max = 100,
---	Default = 66,
---	Callback = function()
---		print("hi")
+--	Min = 0,
+--	Max = 3,
+--	Default = 0.5,
+--	Callback = function(n)
+--		print(n)
 --	end
 --})
 --local sec2 = tab1:CreateSection({

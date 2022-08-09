@@ -285,8 +285,8 @@ function Draggify(frame)
 end
 
 
-getgenv().Whitelisted = {}
-getgenv().Targets = {}
+--getgenv().Whitelisted = {}
+--getgenv().Targets = {}
 
 local WindowTable = {} 
 
@@ -495,7 +495,7 @@ function WindowTable:CreateWindow(config)
 	instances.TextButton_2.Size = UDim2.new(0, 117, 0, 32)
 	instances.TextButton_2.AutoButtonColor = false
 	instances.TextButton_2.Name = 'Settings'
-	
+
 	instances.UICorner_3.Parent = instances.TextButton_2
 	instances.UICorner_3.CornerRadius = UDim.new(0, 4)
 
@@ -540,7 +540,8 @@ function WindowTable:CreateWindow(config)
 	instances.Frame_8.Position = UDim2.new(0.5, 0, 0.5, 0)
 	instances.Frame_8.Size = UDim2.new(1, 0, 1, 0)
 	instances.Frame_8.Name = 'Background'
-
+	Util:Ripple(instances.TextButton_2)
+	
 	instances.UICorner_6.Parent = instances.Frame_8
 	instances.UICorner_6.CornerRadius = UDim.new(0, 4)
 	instances.UICorner_6.Name = 'CornerRadius'
@@ -1643,7 +1644,7 @@ function WindowTable:CreateWindow(config)
 		TabInstance.ScrollingFrame_1.Name = 'Page'
 		TabInstance.ScrollingFrame_1.ScrollingDirection = Enum.ScrollingDirection.Y
 		TabInstance.ScrollingFrame_1.ElasticBehavior = Enum.ElasticBehavior.WhenScrollable
-		if not ScrollBar == true then
+		if ScrollBar == false then
 			TabInstance.ScrollingFrame_1.ScrollBarThickness = 0
 		end
 		
@@ -2481,7 +2482,8 @@ function WindowTable:CreateWindow(config)
 				local List = config.array or config.Array or config.Table or config.List or config.list or {}
 				local opened
 				local OrderNumber = config.Order or config.order or 20
-
+				
+				
 				local DropInstance = {
 					["UICorner_5"] = Instance.new("UICorner"),
 					["UICorner_4"] = Instance.new("UICorner"),
@@ -2794,7 +2796,8 @@ function WindowTable:CreateWindow(config)
 				local callback = config.callback or config.Callback or function() end   
 				local opened
 				local OrderNumber = config.Order or config.order or 20
-
+				local Default = config.Default or config.default or Color3.fromRGB(255,0,0)
+				
 				local ColorInstance = {
 					["TextLabel_1"] = Instance.new("TextLabel"),
 					["TextLabel_4"] = Instance.new("TextLabel"),
@@ -3273,8 +3276,8 @@ function WindowTable:CreateWindow(config)
 					end
 				end
 
-				local function UpdateColorWithRGB()
-					local color = Color3.fromRGB(Tonumber(RGB.R.Value.Text), Tonumber(RGB.G.Value.Text), Tonumber(RGB.B.Value.Text))
+				local function UpdateColorWithRGB(r,g,b)
+					local color = Color3.fromRGB(Tonumber(r) *255, Tonumber(g)*255, Tonumber(b)*255)
 					CurrentDisplay.BackgroundColor3 = color
 					callback(color)
 					return color
@@ -3292,7 +3295,9 @@ function WindowTable:CreateWindow(config)
 						UpdateCursorPosition(h, s)
 					end
 				end
-
+				UpdateFillIns(UpdateColorWithRGB(Default.R,Default.G,Default.B))
+				
+				
 				local function GetColor()
 					if InBounds() then
 						local gradientSize = Gradient.AbsoluteSize
@@ -3354,7 +3359,7 @@ function WindowTable:CreateWindow(config)
 
 							if #text ~= 0 then
 								R.Text = SanitizeNumber(text, true)
-								UpdateFillIns(UpdateColorWithRGB())
+								UpdateFillIns(UpdateColorWithRGB(R,G,B))
 							end
 						end)
 
@@ -3363,7 +3368,7 @@ function WindowTable:CreateWindow(config)
 
 							if #text ~= 0 then
 								G.Text = SanitizeNumber(text, true)
-								UpdateFillIns(UpdateColorWithRGB())
+								UpdateFillIns(UpdateColorWithRGB(R,G,B))
 							end
 						end)
 
@@ -3372,7 +3377,7 @@ function WindowTable:CreateWindow(config)
 
 							if #text ~= 0 then
 								B.Text = SanitizeNumber(text, true)
-								UpdateFillIns(UpdateColorWithRGB())
+								UpdateFillIns(UpdateColorWithRGB(R,G,B))
 							end
 						end)
 					end
@@ -3424,7 +3429,7 @@ function WindowTable:CreateWindow(config)
 
 end
 
-warn("Loaded 1.0")
+warn("Loaded 1.1")
 return WindowTable
 
 
@@ -3435,6 +3440,11 @@ return WindowTable
 --local sec = tab1:CreateSection({
 --	Title = "Section1"
 --})
+
+
+--sec:CreateColorPicker({Title = "Color",Default = Color3.fromRGB(0,255,0), callback = function(returnval)
+--	print(returnval)
+--end,})
 
 --sec:CreateSlider({
 --	Text = "Slider Text",

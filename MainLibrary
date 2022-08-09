@@ -313,7 +313,7 @@ function WindowTable:CreateWindow(config)
 	
 	local Title = config.Title or config.title or config.text or config.Text or "Made By Drifter!"
 	
-	local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui) --game:GetService("CoreGui")
+	local screenGui = Instance.new("ScreenGui", game:GetService("CoreGui")) --game:GetService("CoreGui")
 
 	local instances = {
 		["UICorner_5"] = Instance.new("UICorner"),

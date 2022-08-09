@@ -285,8 +285,8 @@ function Draggify(frame)
 end
 
 
---getgenv().Whitelisted = {}
---getgenv().Targets = {}
+getgenv().Whitelisted = {}
+getgenv().Targets = {}
 
 local WindowTable = {} 
 

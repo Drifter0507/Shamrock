@@ -1643,7 +1643,7 @@ function WindowTable:CreateWindow(config)
 		TabInstance.ScrollingFrame_1.Name = 'Page'
 		TabInstance.ScrollingFrame_1.ScrollingDirection = Enum.ScrollingDirection.Y
 		TabInstance.ScrollingFrame_1.ElasticBehavior = Enum.ElasticBehavior.WhenScrollable
-		if ScrollBar == true then
+		if not ScrollBar == true then
 			TabInstance.ScrollingFrame_1.ScrollBarThickness = 0
 		end
 		

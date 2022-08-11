@@ -3439,26 +3439,26 @@ function WindowTable:CreateWindow(config)
 end
 
 warn("Loaded 1.1")
---return WindowTable
+return WindowTable
 
 
-local Window = WindowTable:CreateWindow({Title = "Ar Du Galen"})
-local tab1 = Window:CreateTab({Title = "Free", ScrollBar = true})
-local tab2 = Window:CreateTab({Title = "Paid", ScrollBar = true})
+--local Window = WindowTable:CreateWindow({Title = "Ar Du Galen"})
+--local tab1 = Window:CreateTab({Title = "Free", ScrollBar = true})
+--local tab2 = Window:CreateTab({Title = "Paid", ScrollBar = true})
 
-local sec = tab1:CreateSection({
-	Title = "Section1"
-})
+--local sec = tab1:CreateSection({
+--	Title = "Section1"
+--})
 
-sec:CreateSlider({
-	Text = "Slider Text",
-	Min = 0,
-	Max = 3,
-	Default = 1,
-	Callback = function(n)
-		print(n)
-	end
-})
+--sec:CreateSlider({
+--	Text = "Slider Text",
+--	Min = 0,
+--	Max = 3,
+--	Default = 1,
+--	Callback = function(n)
+--		print(n)
+--	end
+--})
 --local sec2 = tab1:CreateSection({
 --	Title = "Section1",
 --	Order = 1,

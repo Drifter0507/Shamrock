@@ -303,8 +303,8 @@ end
 
 function WindowTable:CreateWindow(config)
 	function deleteit()
-		if game:GetService("CoreGui"):FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
-			game:GetService("CoreGui")[tostring(_G.FewofiwegngreRG452)]:Destroy()
+		if game.Players.LocalPlayer.PlayerGui:FindFirstChild(tostring(_G.FewofiwegngreRG452)) then
+			game.Players.LocalPlayer.PlayerGui[tostring(_G.FewofiwegngreRG452)]:Destroy()
 		end
 	end
 	spawn(deleteit)
@@ -313,7 +313,7 @@ function WindowTable:CreateWindow(config)
 	
 	local Title = config.Title or config.title or config.text or config.Text or "Made By Drifter!"
 	
-	local screenGui = Instance.new("ScreenGui", game:GetService("CoreGui")) --game:GetService("CoreGui")
+	local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui) --game:GetService("CoreGui")
 
 	local instances = {
 		["UICorner_5"] = Instance.new("UICorner"),
@@ -2298,7 +2298,7 @@ function WindowTable:CreateWindow(config)
 				end
 
 				percent = math.clamp(percent, 0, 1)
-				value = value or (min + (max - min) * percent)
+				value = value or math.floor(min + (max - min) * percent)
 
 				slider.Parent.TextFrame.Frame.TextLabel.Text = value
 				Util:Tween(slider.Frame, {Size = UDim2.new(percent, 0, 1, 0)}, 0.1)
@@ -2481,6 +2481,14 @@ function WindowTable:CreateWindow(config)
 				local btnText = config.Title or config.title or config.text or config.Text or "Dropdown"
 				local callback = config.callback or config.Callback or function() end   
 				local List = config.array or config.Array or config.Table or config.List or config.list or {}
+				if List == "Players" then
+					List = game.Players:GetPlayers()
+					game.Players.PlayerAdded:Connect(function()
+						wait(1)
+						List = game.Players:GetPlayers()
+					end)
+				end
+				
 				local opened
 				local OrderNumber = config.Order or config.order or 20
 				
@@ -3431,26 +3439,26 @@ function WindowTable:CreateWindow(config)
 end
 
 warn("Loaded 1.1")
-return WindowTable
+--return WindowTable
 
 
---local Window = WindowTable:CreateWindow({Title = "Ar Du Galen"})
---local tab1 = Window:CreateTab({Title = "Free", ScrollBar = true})
---local tab2 = Window:CreateTab({Title = "Paid", ScrollBar = true})
+local Window = WindowTable:CreateWindow({Title = "Ar Du Galen"})
+local tab1 = Window:CreateTab({Title = "Free", ScrollBar = true})
+local tab2 = Window:CreateTab({Title = "Paid", ScrollBar = true})
 
---local sec = tab1:CreateSection({
---	Title = "Section1"
---})
+local sec = tab1:CreateSection({
+	Title = "Section1"
+})
 
---sec:CreateSlider({
---	Text = "Slider Text",
---	Min = 0,
---	Max = 3,
---	Default = 0.5,
---	Callback = function(n)
---		print(n)
---	end
---})
+sec:CreateSlider({
+	Text = "Slider Text",
+	Min = 0,
+	Max = 3,
+	Default = 1,
+	Callback = function(n)
+		print(n)
+	end
+})
 --local sec2 = tab1:CreateSection({
 --	Title = "Section1",
 --	Order = 1,

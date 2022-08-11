@@ -293,10 +293,10 @@ local WindowTable = {}
 local LibName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
 
 function WindowTable:ToggleUI()
-	if game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled then
-		game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled = false
+	if game:GetService("CoreGui")[_G.FewofiwegngreRG452].Enabled then
+		game:GetService("CoreGui")[_G.FewofiwegngreRG452].Enabled = false
 	else
-		game.Players.LocalPlayer.PlayerGui[_G.FewofiwegngreRG452].Enabled = true
+		game:GetService("CoreGui")[_G.FewofiwegngreRG452].Enabled = true
 	end
 end
 
@@ -313,7 +313,7 @@ function WindowTable:CreateWindow(config)
 	
 	local Title = config.Title or config.title or config.text or config.Text or "Made By Drifter!"
 	
-	local screenGui = Instance.new("ScreenGui", game.Players.LocalPlayer.PlayerGui) --game:GetService("CoreGui")
+	local screenGui = Instance.new("ScreenGui", game:GetService("CoreGui")) --game:GetService("CoreGui")
 
 	local instances = {
 		["UICorner_5"] = Instance.new("UICorner"),

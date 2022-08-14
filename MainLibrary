@@ -2487,6 +2487,10 @@ function WindowTable:CreateWindow(config)
 						wait(1)
 						List = game.Players:GetPlayers()
 					end)
+					game.Players.PlayerRemoving:Connect(function()
+						wait(1)
+						List = game.Players:GetPlayers()
+					end)
 				end
 				
 				local opened

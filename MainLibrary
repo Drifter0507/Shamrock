@@ -310,9 +310,9 @@ function WindowTable:CreateWindow(config)
 	spawn(deleteit)
 	wait(0.4)
 	_G.FewofiwegngreRG452 = LibName
-	
+
 	local Title = config.Title or config.title or config.text or config.Text or "Made By Drifter!"
-	
+
 	local screenGui = Instance.new("ScreenGui", game:GetService("CoreGui")) --game:GetService("CoreGui")
 
 	local instances = {
@@ -389,10 +389,10 @@ function WindowTable:CreateWindow(config)
 
 	screenGui.Name = _G.FewofiwegngreRG452
 	screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-	
+
 	instances.StringValue_1.Parent = screenGui
 	instances.StringValue_1.Name = 'SelectedPlayer'
-	
+
 	instances.Frame_1.Parent = screenGui
 	instances.Frame_1.BackgroundColor3 = Color3.new(0.219608, 0.219608, 0.219608)
 	instances.Frame_1.Position = UDim2.new(0, 289, 0, 181)
@@ -400,7 +400,7 @@ function WindowTable:CreateWindow(config)
 	instances.Frame_1.Name = 'MainUI'
 	instances.Frame_1.Visible = true
 	Draggify(instances.Frame_1)
-	
+
 	instances.UICorner_1.Parent = instances.Frame_1
 	instances.UICorner_1.CornerRadius = UDim.new(0, 6)
 
@@ -460,10 +460,10 @@ function WindowTable:CreateWindow(config)
 	instances.Frame_5.Size = UDim2.new(0.23204420506954193, 0, 1, 0)
 	instances.Frame_5.ZIndex = 0
 	instances.Frame_5.Name = 'PageButtonHolders'
-	
+
 	instances.Folder_1.Parent = instances.Frame_4
 	instances.Folder_1.Name = "pageHolder"
-	
+
 	instances.UICorner_2.Parent = instances.Frame_5
 	instances.UICorner_2.CornerRadius = UDim.new(0, 6)
 
@@ -541,7 +541,7 @@ function WindowTable:CreateWindow(config)
 	instances.Frame_8.Size = UDim2.new(1, 0, 1, 0)
 	instances.Frame_8.Name = 'Background'
 	Util:Ripple(instances.TextButton_2)
-	
+
 	instances.UICorner_6.Parent = instances.Frame_8
 	instances.UICorner_6.CornerRadius = UDim.new(0, 4)
 	instances.UICorner_6.Name = 'CornerRadius'
@@ -846,7 +846,7 @@ function WindowTable:CreateWindow(config)
 	instances.ScrollingFrame_3.Position = UDim2.new(0, 0, 0, 44)
 	instances.ScrollingFrame_3.Size = UDim2.new(0, 211, 0, 299)
 	instances.ScrollingFrame_3.Name = 'ContentSF'
-	
+
 	local function QHCOSQZ_fake_script() -- ContentSF.Main 
 		local script = Instance.new('LocalScript', instances.ScrollingFrame_3)
 
@@ -1086,7 +1086,7 @@ function WindowTable:CreateWindow(config)
 		end)
 	end
 	coroutine.wrap(QHCOSQZ_fake_script)()
-	
+
 	local OptionInstance = {
 		["ImageLabel_1"] = Instance.new("ImageLabel"),
 		["Frame_3"] = Instance.new("Frame"),
@@ -1285,8 +1285,8 @@ function WindowTable:CreateWindow(config)
 	OptionInstance.Frame_9.LayoutOrder = 2
 	OptionInstance.Frame_9.Size = UDim2.new(0, 283, 0, 34)
 	OptionInstance.Frame_9.Name = 'Keybind'
-	
-	
+
+
 	OptionInstance.TextButton_3.Parent = OptionInstance.Frame_9
 	OptionInstance.TextButton_3.Font = Enum.Font.SourceSansSemibold
 	OptionInstance.TextButton_3.Text = ''
@@ -1298,8 +1298,8 @@ function WindowTable:CreateWindow(config)
 	OptionInstance.TextButton_3.Size = UDim2.new(1, 0, 1, 0)
 	OptionInstance.TextButton_3.AutoButtonColor = false
 	OptionInstance.TextButton_3.Name = 'KeybindButton'
-	
-	
+
+
 	OptionInstance.UICorner_8.Parent = OptionInstance.TextButton_3
 	OptionInstance.UICorner_8.CornerRadius = UDim.new(0, 4)
 
@@ -1429,7 +1429,7 @@ function WindowTable:CreateWindow(config)
 	OptionInstance.TextLabel_6.Position = UDim2.new(0.029900332912802696, 0, 0, 0)
 	OptionInstance.TextLabel_6.Size = UDim2.new(0.8852940797805786, 0, 1, 0)
 	OptionInstance.TextLabel_6.Name = 'Title'
-	
+
 	local Main = OptionInstance.TextButton_3
 	local ChangeBind = Main.TextButton
 	local Label = ChangeBind.TextLabel
@@ -1472,11 +1472,11 @@ function WindowTable:CreateWindow(config)
 		Listening = true
 		Label.Text = ".."
 	end)
-	
+
 	OptionInstance.TextButton_1.MouseButton1Click:Connect(function()
 		screenGui:Destroy()
 	end)
-	
+
 	OptionInstance.TextButton_3.MouseEnter:Connect(function()
 		Util:Tween(OptionInstance.TextButton_3.Background,{BackgroundTransparency = 0.8},0.2)
 	end)
@@ -1490,7 +1490,7 @@ function WindowTable:CreateWindow(config)
 		Util:Tween(OptionInstance.TextButton_1.Background,{BackgroundTransparency = 1},0.2)
 	end)
 
-	
+
 	instances.TextButton_2.MouseButton1Click:Connect(function()
 		for i,v in next, instances.Folder_1:GetChildren() do
 			v.Visible = false
@@ -1506,7 +1506,7 @@ function WindowTable:CreateWindow(config)
 		Util:Tween(instances.TextButton_2, {BackgroundColor3 = Color3.fromRGB(0, 170, 126)},0.2)
 		Util:Tween(instances.TextButton_2.buttonShadow, {BackgroundColor3 = Color3.fromRGB(0, 134, 84)},0.2)
 	end)
-	
+
 	local Button =  instances.TextButton_1
 	local Image = Button.ImageLabel
 
@@ -1539,7 +1539,7 @@ function WindowTable:CreateWindow(config)
 	Button.MouseButton1Click:Connect(function()
 		Clicked()
 	end)
-	
+
 
 	local TabHandler = {}
 
@@ -1577,7 +1577,7 @@ function WindowTable:CreateWindow(config)
 		TabInstance.TextButton_1.Size = UDim2.new(0, 117, 0, 32)
 		TabInstance.TextButton_1.AutoButtonColor = false
 		TabInstance.TextButton_1.Name = tostring(tabname)
-		
+
 		TabInstance.UICorner_1.Parent = TabInstance.TextButton_1
 		TabInstance.UICorner_1.CornerRadius = UDim.new(0, 4)
 
@@ -1621,7 +1621,7 @@ function WindowTable:CreateWindow(config)
 		TabInstance.Frame_3.Size = UDim2.new(1, 0, 1, 0)
 		TabInstance.Frame_3.Name = 'Background'
 		Util:Ripple(TabInstance.TextButton_1)
-		
+
 		TabInstance.UICorner_4.Parent = TabInstance.Frame_3
 		TabInstance.UICorner_4.CornerRadius = UDim.new(0, 4)
 		TabInstance.UICorner_4.Name = 'CornerRadius'
@@ -1647,7 +1647,7 @@ function WindowTable:CreateWindow(config)
 		if ScrollBar == false then
 			TabInstance.ScrollingFrame_1.ScrollBarThickness = 0
 		end
-		
+
 		TabInstance.UIPadding_1.Parent = TabInstance.ScrollingFrame_1
 		TabInstance.UIPadding_1.PaddingLeft = UDim.new(0, 15)
 		TabInstance.UIPadding_1.PaddingTop = UDim.new(0, 15)
@@ -1655,11 +1655,11 @@ function WindowTable:CreateWindow(config)
 		TabInstance.UIListLayout_1.Parent = TabInstance.ScrollingFrame_1
 		TabInstance.UIListLayout_1.Padding = UDim.new(0, 15)
 		TabInstance.UIListLayout_1.SortOrder = Enum.SortOrder.LayoutOrder
-		
+
 
 		local newPage = TabInstance.ScrollingFrame_1
 		newPage.Visible = false
-		
+
 		newPage:FindFirstChildOfClass("UIListLayout"):GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
 			local size = newPage:FindFirstChildOfClass("UIListLayout").AbsoluteContentSize
 			local padding = newPage:FindFirstChildOfClass("UIListLayout").Parent.UIPadding
@@ -1668,7 +1668,7 @@ function WindowTable:CreateWindow(config)
 			Util:Tween(newPage,{CanvasSize = UDim2.new(1, 0, 0, size.Y + 80)},0.1)
 
 		end)
-		
+
 		if #instances.ScrollingFrame_1:GetChildren() == 3 then
 			Util:Tween(TabInstance.TextButton_1, {BackgroundColor3 = Color3.fromRGB(0, 170, 126)},0.2)
 			Util:Tween(TabInstance.TextButton_1.buttonShadow, {BackgroundColor3 = Color3.fromRGB(0, 134, 84)},0.2)
@@ -1678,7 +1678,7 @@ function WindowTable:CreateWindow(config)
 			Util:Tween(TabInstance.TextButton_1.buttonShadow, {BackgroundColor3 = Color3.fromRGB(71, 71, 71)},0.2)
 			TabInstance.ScrollingFrame_1.Visible = false
 		end
-		
+
 		TabInstance.TextButton_1.MouseEnter:Connect(function()
 			Util:Tween(TabInstance.TextButton_1.Background,{BackgroundTransparency = 0.8},0.2)
 		end)
@@ -1801,7 +1801,7 @@ function WindowTable:CreateWindow(config)
 				local callback = config.callback or config.Callback or function() end   
 
 				local OrderNumber = config.Order or config.order or 20
-				
+
 				local ButtonInstance = {
 					["LocalScript_2"] = Instance.new("LocalScript"),
 					["Frame_3"] = Instance.new("Frame"),
@@ -1837,7 +1837,7 @@ function WindowTable:CreateWindow(config)
 				ButtonInstance.TextButton_1.Size = UDim2.new(1, 0, 1, 0)
 				ButtonInstance.TextButton_1.AutoButtonColor = false
 				ButtonInstance.TextButton_1.Name = 'AntiFallButton'
-				
+
 				ButtonInstance.UICorner_1.Parent = ButtonInstance.TextButton_1
 				ButtonInstance.UICorner_1.CornerRadius = UDim.new(0, 4)
 
@@ -1877,7 +1877,7 @@ function WindowTable:CreateWindow(config)
 				ButtonInstance.Frame_3.Size = UDim2.new(1, 0, 1, 0)
 				ButtonInstance.Frame_3.Name = 'Background'
 				Util:Ripple(ButtonInstance.TextButton_1)
-				
+
 				ButtonInstance.UICorner_3.Parent = ButtonInstance.Frame_3
 				ButtonInstance.UICorner_3.CornerRadius = UDim.new(0, 4)
 				ButtonInstance.UICorner_3.Name = 'CornerRadius'
@@ -1887,7 +1887,7 @@ function WindowTable:CreateWindow(config)
 				ButtonInstance.UIStroke_1.Thickness = 0
 				ButtonInstance.UIStroke_1.Transparency = 0.5
 				ButtonInstance.UIStroke_1.Name = 'Border'
-				
+
 				local Button = ButtonInstance.TextButton_1
 				local Debounce
 
@@ -1899,7 +1899,7 @@ function WindowTable:CreateWindow(config)
 					Util:Tween(Button.Background,{BackgroundTransparency = 1},0.1)
 				end)
 
-				
+
 				local LastClick = tick()
 				Button.MouseButton1Click:Connect(function()
 					if tick() - LastClick > 0.4 then
@@ -1919,7 +1919,7 @@ function WindowTable:CreateWindow(config)
 				local callback = config.callback or config.Callback or function() end   
 				local OrderNumber = config.Order or config.order or 20
 				local Default = config.Default or config.default or false
-				
+
 				local ToggleInstance = {
 					["ImageLabel_1"] = Instance.new("ImageLabel"),
 					["UICorner_1"] = Instance.new("UICorner"),
@@ -1951,7 +1951,7 @@ function WindowTable:CreateWindow(config)
 				ToggleInstance.TextButton_1.Size = UDim2.new(1, 0, 1, 0)
 				ToggleInstance.TextButton_1.AutoButtonColor = false
 				ToggleInstance.TextButton_1.Name = 'Togglebutton'
-				
+
 				ToggleInstance.UICorner_1.Parent = ToggleInstance.TextButton_1
 				ToggleInstance.UICorner_1.CornerRadius = UDim.new(0, 4)
 
@@ -1992,7 +1992,7 @@ function WindowTable:CreateWindow(config)
 				ToggleInstance.Frame_3.Size = UDim2.new(1, 0, 1, 0)
 				ToggleInstance.Frame_3.Name = 'Background'
 				Util:Ripple(ToggleInstance.TextButton_1)
-				
+
 				ToggleInstance.UICorner_3.Parent = ToggleInstance.Frame_3
 				ToggleInstance.UICorner_3.CornerRadius = UDim.new(0, 4)
 				ToggleInstance.UICorner_3.Name = 'CornerRadius'
@@ -2044,7 +2044,7 @@ function WindowTable:CreateWindow(config)
 			function ElementHandler:CreateLabel(config)
 				local Text = config.Title or config.title or config.text or config.Text or "TextLabel"
 				local OrderNumber = config.Order or config.order or 20
-				
+
 				local LabelInstance = {
 					["UICorner_1"] = Instance.new("UICorner"),
 					["Frame_1"] = Instance.new("Frame"),
@@ -2062,8 +2062,8 @@ function WindowTable:CreateWindow(config)
 				LabelInstance.Frame_1.Size = UDim2.new(0, 283, 0, 24)
 				LabelInstance.Frame_1.Name = tostring(Text)
 				LabelInstance.Frame_1.LayoutOrder = tonumber(OrderNumber)
-				
-				
+
+
 				LabelInstance.Frame_2.Parent = LabelInstance.Frame_1
 				LabelInstance.Frame_2.BackgroundColor3 = Color3.new(0.392157, 0.392157, 0.392157)
 				LabelInstance.Frame_2.BackgroundTransparency = 1
@@ -2081,7 +2081,7 @@ function WindowTable:CreateWindow(config)
 
 				LabelInstance.UICorner_1.Parent = LabelInstance.Frame_2
 				LabelInstance.UICorner_1.CornerRadius = UDim.new(0, 4)
-				
+
 			end
 			function ElementHandler:updateLabel(label, title, value)
 				if label then
@@ -2095,7 +2095,7 @@ function WindowTable:CreateWindow(config)
 				local Max = config.Max or config.max or 100
 				local Default = config.Default or config.default or 16
 				local OrderNumber = config.Order or config.order or 20
-				
+
 				local SliderInstance = {
 					["UICorner_4"] = Instance.new("UICorner"),
 					["UICorner_1"] = Instance.new("UICorner"),
@@ -2231,7 +2231,7 @@ function WindowTable:CreateWindow(config)
 
 				SliderInstance.UICorner_6.Parent = SliderInstance.Frame_5
 				SliderInstance.UICorner_6.CornerRadius = UDim.new(0, 4)
-	
+
 				local Slider = SliderInstance.TextButton_1
 
 				local TextHover = Slider.Parent.TextFrame
@@ -2288,7 +2288,7 @@ function WindowTable:CreateWindow(config)
 					end
 				end)
 			end
-			
+
 			function ElementHandler:updateSlider(slider, title, value, min, max, lvalue)
 				local bar = slider
 				local percent = (Mouse.X - bar.AbsolutePosition.X) / bar.AbsoluteSize.X
@@ -2321,7 +2321,7 @@ function WindowTable:CreateWindow(config)
 				else
 					DefaultKey = Enum.KeyCode.Q
 				end
-				
+
 
 				local KeybindInstance = {
 					["UICorner_3"] = Instance.new("UICorner"),
@@ -2356,7 +2356,7 @@ function WindowTable:CreateWindow(config)
 				KeybindInstance.TextButton_1.Size = UDim2.new(1, 0, 1, 0)
 				KeybindInstance.TextButton_1.AutoButtonColor = false
 				KeybindInstance.TextButton_1.Name = 'KeybindButton'
-				
+
 				KeybindInstance.UICorner_1.Parent = KeybindInstance.TextButton_1
 				KeybindInstance.UICorner_1.CornerRadius = UDim.new(0, 4)
 
@@ -2422,13 +2422,13 @@ function WindowTable:CreateWindow(config)
 				KeybindInstance.TextLabel_2.BackgroundTransparency = 1
 				KeybindInstance.TextLabel_2.Position = UDim2.new(0, 17, 0, 3)
 				KeybindInstance.TextLabel_2.Size = UDim2.new(0, 26, 0, 26)
-				
+
 
 				local Button = KeybindInstance.TextButton_1
 
 				local ChangeBind = Button.TextButton
 				local Label = ChangeBind.TextLabel
-				
+
 				local opened = false
 
 
@@ -2492,11 +2492,11 @@ function WindowTable:CreateWindow(config)
 						List = game.Players:GetPlayers()
 					end)
 				end
-				
+
 				local opened
 				local OrderNumber = config.Order or config.order or 20
-				
-				
+
+
 				local DropInstance = {
 					["UICorner_5"] = Instance.new("UICorner"),
 					["UICorner_4"] = Instance.new("UICorner"),
@@ -2531,7 +2531,7 @@ function WindowTable:CreateWindow(config)
 				DropInstance.Frame_1.Size = UDim2.new(0, 283, 0, 34)
 				DropInstance.Frame_1.Name = tostring(btnText)
 				DropInstance.Frame_1.LayoutOrder = tonumber(OrderNumber)
-				
+
 				DropInstance.UIListLayout_1.Parent = DropInstance.Frame_1
 				DropInstance.UIListLayout_1.SortOrder = Enum.SortOrder.LayoutOrder
 
@@ -2547,7 +2547,7 @@ function WindowTable:CreateWindow(config)
 				DropInstance.TextButton_1.Size = UDim2.new(0, 283, 0, 34)
 				DropInstance.TextButton_1.AutoButtonColor = false
 				DropInstance.TextButton_1.Name = 'Dropdown'
-				
+
 				DropInstance.UICorner_1.Parent = DropInstance.TextButton_1
 				DropInstance.UICorner_1.CornerRadius = UDim.new(0, 4)
 
@@ -2660,8 +2660,8 @@ function WindowTable:CreateWindow(config)
 				DropInstance.UIListLayout_2.Parent = DropInstance.Frame_4
 				DropInstance.UIListLayout_2.Padding = UDim.new(0, 2)
 				DropInstance.UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
-				
-				
+
+
 				local Dropdown = DropInstance.TextButton_1
 				local HoldingFrame = Dropdown.HoldingFrame
 				local Holder = Dropdown.Parent
@@ -2698,16 +2698,16 @@ function WindowTable:CreateWindow(config)
 					end
 				end)
 			end
-			
-			
+
+
 			function ElementHandler:updateDropdown(dropdown, title, list, callback,selected,text)
 				if dropdown.ImageLabel.Rotation == 180 then
 					Util:Tween(dropdown.ImageLabel,{Rotation = 0},0.2)
 				else
 					Util:Tween(dropdown.ImageLabel,{Rotation = 180},0.2)
 				end
-				
-				
+
+
 				for i, button in pairs(dropdown.HoldingFrame:GetChildren()) do
 					if button:IsA("TextButton") then
 						button:Destroy()
@@ -2803,14 +2803,14 @@ function WindowTable:CreateWindow(config)
 				end
 
 			end
-			
+
 			function ElementHandler:CreateColorPicker(config)
 				local btnText = config.Title or config.title or config.text or config.Text or "Color Picker"
 				local callback = config.callback or config.Callback or function() end   
 				local opened
 				local OrderNumber = config.Order or config.order or 20
 				local Default = config.Default or config.default or Color3.fromRGB(255,0,0)
-				
+
 				local ColorInstance = {
 					["TextLabel_1"] = Instance.new("TextLabel"),
 					["TextLabel_4"] = Instance.new("TextLabel"),
@@ -2864,7 +2864,7 @@ function WindowTable:CreateWindow(config)
 				ColorInstance.Frame_1.Size = UDim2.new(0, 283, 0, 34)
 				ColorInstance.Frame_1.Name = tostring(btnText)
 				ColorInstance.Frame_1.LayoutOrder = tonumber(OrderNumber)
-				
+
 				ColorInstance.TextButton_1.Parent = ColorInstance.Frame_1
 				ColorInstance.TextButton_1.Font = Enum.Font.SourceSansSemibold
 				ColorInstance.TextButton_1.Text = ''
@@ -2877,7 +2877,7 @@ function WindowTable:CreateWindow(config)
 				ColorInstance.TextButton_1.Size = UDim2.new(0, 283, 0, 34)
 				ColorInstance.TextButton_1.AutoButtonColor = false
 				ColorInstance.TextButton_1.Name = 'ColorButton'
-				
+
 				ColorInstance.UICorner_1.Parent = ColorInstance.TextButton_1
 				ColorInstance.UICorner_1.CornerRadius = UDim.new(0, 4)
 
@@ -2969,6 +2969,7 @@ function WindowTable:CreateWindow(config)
 				ColorInstance.Frame_5.Position = UDim2.new(0, 0, 0.34545454382896423, 0)
 				ColorInstance.Frame_5.Size = UDim2.new(0.2935323417186737, 0, 0.9636363387107849, 0)
 				ColorInstance.Frame_5.Name = 'R'
+				ColorInstance.Frame_5.LayoutOrder = 1
 
 				ColorInstance.TextBox_1.Parent = ColorInstance.Frame_5
 				ColorInstance.TextBox_1.Font = Enum.Font.SourceSans
@@ -3004,7 +3005,8 @@ function WindowTable:CreateWindow(config)
 				ColorInstance.Frame_6.Position = UDim2.new(0.35323384404182434, 0, 0.036363635212183, 0)
 				ColorInstance.Frame_6.Size = UDim2.new(0.2935323417186737, 0, 0.9636363387107849, 0)
 				ColorInstance.Frame_6.Name = 'B'
-
+				ColorInstance.Frame_6.LayoutOrder = 3
+				
 				ColorInstance.TextBox_2.Parent = ColorInstance.Frame_6
 				ColorInstance.TextBox_2.Font = Enum.Font.SourceSans
 				ColorInstance.TextBox_2.PlaceholderText = '255'
@@ -3039,7 +3041,9 @@ function WindowTable:CreateWindow(config)
 				ColorInstance.Frame_7.Position = UDim2.new(0.7064676880836487, 0, 0.036363635212183, 0)
 				ColorInstance.Frame_7.Size = UDim2.new(0.2935323417186737, 0, 0.9636363387107849, 0)
 				ColorInstance.Frame_7.Name = 'G'
-
+				ColorInstance.Frame_7.LayoutOrder = 2
+				
+				
 				ColorInstance.TextBox_3.Parent = ColorInstance.Frame_7
 				ColorInstance.TextBox_3.Font = Enum.Font.SourceSans
 				ColorInstance.TextBox_3.PlaceholderText = '255'
@@ -3192,7 +3196,7 @@ function WindowTable:CreateWindow(config)
 				ColorInstance.UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
 
 				ColorInstance.UIPadding_1.Parent = ColorInstance.Frame_1
-				
+
 				local Button = ColorInstance.TextButton_1
 
 				Button.MouseEnter:Connect(function()
@@ -3201,7 +3205,7 @@ function WindowTable:CreateWindow(config)
 				Button.MouseLeave:Connect(function()
 					Util:Tween(Button.Background,{BackgroundTransparency = 1},0.1)
 				end)
-				
+
 
 				local Shower = ColorInstance.TextButton_2
 				local HF = Shower.HoldingFrame
@@ -3232,7 +3236,7 @@ function WindowTable:CreateWindow(config)
 						opened = true
 					end
 				end)
-				
+
 				local Players = game:GetService("Players")
 				local TextService = game:GetService("TextService")
 				local UserInputService = game:GetService("UserInputService")
@@ -3279,7 +3283,7 @@ function WindowTable:CreateWindow(config)
 
 				local function SanitizeNumber(value, rgbValue, isHue)
 					if value then
-						value = (value ~= value and 0) or (Tonumber(value) or 0)
+						value = (value ~= value and 0) or (tonumber(value) or 0)
 
 						if isHue then
 							return Clamp(value, 0, 360)
@@ -3289,8 +3293,8 @@ function WindowTable:CreateWindow(config)
 					end
 				end
 
-				local function UpdateColorWithRGB(r,g,b)
-					local color = Color3.fromRGB(Tonumber(r) *255, Tonumber(g)*255, Tonumber(b)*255)
+				local function UpdateColorWithRGB()
+					local color = Color3.fromRGB(Tonumber(RGB.R.Value.Text), Tonumber(RGB.G.Value.Text), Tonumber(RGB.B.Value.Text))
 					CurrentDisplay.BackgroundColor3 = color
 					callback(color)
 					return color
@@ -3308,8 +3312,10 @@ function WindowTable:CreateWindow(config)
 						UpdateCursorPosition(h, s)
 					end
 				end
-				UpdateFillIns(UpdateColorWithRGB(Default.R,Default.G,Default.B))
-				
+				RGB.R.Value.Text = math.floor(math.clamp(Default.R * 255,0,255), RGB.R.Value.Text)
+				RGB.G.Value.Text = math.floor(math.clamp(Default.G * 255,0,255), RGB.G.Value.Text)
+				RGB.B.Value.Text = math.floor(math.clamp(Default.B * 255,0,255), RGB.B.Value.Text)
+				UpdateColorWithRGB()
 				
 				local function GetColor()
 					if InBounds() then
@@ -3372,7 +3378,7 @@ function WindowTable:CreateWindow(config)
 
 							if #text ~= 0 then
 								R.Text = SanitizeNumber(text, true)
-								UpdateFillIns(UpdateColorWithRGB(R,G,B))
+								UpdateFillIns(UpdateColorWithRGB())
 							end
 						end)
 
@@ -3381,7 +3387,7 @@ function WindowTable:CreateWindow(config)
 
 							if #text ~= 0 then
 								G.Text = SanitizeNumber(text, true)
-								UpdateFillIns(UpdateColorWithRGB(R,G,B))
+								UpdateFillIns(UpdateColorWithRGB())
 							end
 						end)
 
@@ -3390,7 +3396,7 @@ function WindowTable:CreateWindow(config)
 
 							if #text ~= 0 then
 								B.Text = SanitizeNumber(text, true)
-								UpdateFillIns(UpdateColorWithRGB(R,G,B))
+								UpdateFillIns(UpdateColorWithRGB())
 							end
 						end)
 					end
@@ -3425,7 +3431,7 @@ function WindowTable:CreateWindow(config)
 					end
 				end)
 
-				
+
 			end
 
 			return ElementHandler
@@ -3453,7 +3459,14 @@ return WindowTable
 --local sec = tab1:CreateSection({
 --	Title = "Section1"
 --})
-
+--local CircColor = sec:CreateColorPicker({
+--	Title = "Circle Color",
+--	Order = 4, 
+--	Default = Color3.fromRGB(109,40,150),
+--	callback = function(color)
+--		print(color)
+--	end
+--});
 --sec:CreateSlider({
 --	Text = "Slider Text",
 --	Min = 0,

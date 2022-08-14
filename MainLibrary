@@ -98,6 +98,7 @@ function Util:Sort(pattern, values)
 	return new
 end
 
+local Ripplin
 function Util:Ripple(ui)
 	local Players = game:GetService("Players")
 	local RunService = game:GetService("RunService")
@@ -149,7 +150,7 @@ function Util:Ripple(ui)
 		local bottomRight = CalculateDistance(mouseRelativePosition, buttonAbsoluteSize)
 		local bottomLeft = CalculateDistance(mouseRelativePosition, Vector2.new(0, buttonAbsoluteSize.Y + 2))
 
-		local size = math.max(topLeft, topRight, bottomRight, bottomLeft) --* 2
+		local size = math.max(topLeft-15, topRight-15, bottomRight-15, bottomLeft-15)-- * 2
 
 		local tweenTime = 0.3 -- seconds
 		local startedTimestamp
@@ -1445,7 +1446,6 @@ function WindowTable:CreateWindow(config)
 		if Listening == true then
 			if not table.find(BlacklistedKeys,Input.KeyCode) then
 				Key = Input.KeyCode
-				print(Input.KeyCode)
 			else
 				Key = Enum.KeyCode.P
 			end
@@ -1726,10 +1726,10 @@ function WindowTable:CreateWindow(config)
 
 
 			SectionInstance.Frame_1.Parent = newPage
-			SectionInstance.Frame_1.AutomaticSize = Enum.AutomaticSize.Y
+			SectionInstance.Frame_1.AutomaticSize = Enum.AutomaticSize.None
 			SectionInstance.Frame_1.BackgroundColor3 = Color3.new(0.176471, 0.176471, 0.176471)
 			SectionInstance.Frame_1.Position = UDim2.new(0, 0, -0.5136986374855042, 0)
-			SectionInstance.Frame_1.Size = UDim2.new(0, 301, 0, 298)
+			SectionInstance.Frame_1.Size = UDim2.new(0, 301, 0, 30)
 			SectionInstance.Frame_1.Name = 'Section'
 			SectionInstance.Frame_1.LayoutOrder = tonumber(OrderNumber)
 
@@ -1737,7 +1737,7 @@ function WindowTable:CreateWindow(config)
 			SectionInstance.Frame_2.BackgroundColor3 = Color3.new(0.176471, 0.176471, 0.176471)
 			SectionInstance.Frame_2.LayoutOrder = 2
 			SectionInstance.Frame_2.Position = UDim2.new(0, 0, 0, 30)
-			SectionInstance.Frame_2.Size = UDim2.new(0, 301, 0, 268)
+			SectionInstance.Frame_2.Size = UDim2.new(0, 301, 0, 0)
 			SectionInstance.Frame_2.Name = 'Workspace'
 
 			SectionInstance.UIListLayout_1.Parent = SectionInstance.Frame_2
@@ -1784,6 +1784,15 @@ function WindowTable:CreateWindow(config)
 			local Section = FWorkspace.Parent
 
 			FWorkspace:FindFirstChildOfClass("UIListLayout"):GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+				if FWorkspace:FindFirstChildOfClass("UIListLayout").AbsoluteContentSize.Y > FWorkspace.Size.Y.Offset then
+					if FWorkspace:FindFirstChildOfClass("UIListLayout").AbsoluteContentSize.Y - FWorkspace.Size.Y.Offset < 9 then
+						return
+					end
+				else
+					if FWorkspace.Size.Y.Offset - FWorkspace:FindFirstChildOfClass("UIListLayout").AbsoluteContentSize.Y < 9 then
+						return
+					end
+				end
 				local size = FWorkspace:FindFirstChildOfClass("UIListLayout").AbsoluteContentSize
 				local padding = FWorkspace:FindFirstChildOfClass("UIListLayout").Parent.UIPadding
 
@@ -3006,7 +3015,7 @@ function WindowTable:CreateWindow(config)
 				ColorInstance.Frame_6.Size = UDim2.new(0.2935323417186737, 0, 0.9636363387107849, 0)
 				ColorInstance.Frame_6.Name = 'B'
 				ColorInstance.Frame_6.LayoutOrder = 3
-				
+
 				ColorInstance.TextBox_2.Parent = ColorInstance.Frame_6
 				ColorInstance.TextBox_2.Font = Enum.Font.SourceSans
 				ColorInstance.TextBox_2.PlaceholderText = '255'
@@ -3042,8 +3051,8 @@ function WindowTable:CreateWindow(config)
 				ColorInstance.Frame_7.Size = UDim2.new(0.2935323417186737, 0, 0.9636363387107849, 0)
 				ColorInstance.Frame_7.Name = 'G'
 				ColorInstance.Frame_7.LayoutOrder = 2
-				
-				
+
+
 				ColorInstance.TextBox_3.Parent = ColorInstance.Frame_7
 				ColorInstance.TextBox_3.Font = Enum.Font.SourceSans
 				ColorInstance.TextBox_3.PlaceholderText = '255'
@@ -3316,7 +3325,7 @@ function WindowTable:CreateWindow(config)
 				RGB.G.Value.Text = math.floor(math.clamp(Default.G * 255,0,255), RGB.G.Value.Text)
 				RGB.B.Value.Text = math.floor(math.clamp(Default.B * 255,0,255), RGB.B.Value.Text)
 				UpdateColorWithRGB()
-				
+
 				local function GetColor()
 					if InBounds() then
 						local gradientSize = Gradient.AbsoluteSize
@@ -3448,7 +3457,7 @@ function WindowTable:CreateWindow(config)
 
 end
 
-warn("Loaded 1.1")
+warn("Loaded 1.2".." Wasted 2 hours fixing a bug when it was 1 line.")
 return WindowTable
 
 
@@ -3459,96 +3468,11 @@ return WindowTable
 --local sec = tab1:CreateSection({
 --	Title = "Section1"
 --})
---local CircColor = sec:CreateColorPicker({
---	Title = "Circle Color",
---	Order = 4, 
---	Default = Color3.fromRGB(109,40,150),
---	callback = function(color)
---		print(color)
---	end
---});
---sec:CreateSlider({
---	Text = "Slider Text",
---	Min = 0,
---	Max = 3,
---	Default = 1,
---	Callback = function(n)
---		print(n)
---	end
---})
---local sec2 = tab1:CreateSection({
---	Title = "Section1",
---	Order = 1,
---})
 
---sec:CreateSlider({
---	Text = "Slider Text",
---	Min = 50,
---	Max = 100,
---	Default = 66,
---	Callback = function()
---		print("hi")
---	end
---})
---local sec = tab1:CreateSection({
---	Title = "Section1"
---})
-
---sec:CreateSlider({
---	Text = "Slider Text",
---	Min = 50,
---	Max = 100,
---	Default = 66,
---	Callback = function()
---		print("hi")
---	end
---})
---local sec = tab1:CreateSection({
---	Title = "Section1"
---})
-
---sec:CreateSlider({
---	Text = "Slider Text",
---	Min = 50,
---	Max = 100,
---	Default = 66,
---	Callback = function()
---		print("hi")
---	end
---})
---local sec = tab1:CreateSection({
---	Title = "Section1"
---})
-
---sec2:CreateSlider({
---	Text = "Slider Text",
---	Min = 50,
---	Max = 100,
---	Default = 66,
---	Callback = function()
---		print("hi")
---	end
---})
-
---sec:CreateButton({
---	Text = "Button",
---	Order = 3,
---	Callback = function()
---		print("hi")
---	end
---})
 --local Label = sec:CreateLabel({
 --	Title = "[STILL A WORK IN PROGRESS]",
 --	Order = 1,
 --})
---sec2:CreateDropdown({
---	Text = "Dropdown",
---	Array = {"Orange","Bananas"},
---	Callback = function(val)
---		print(val)
---	end,
---})
-
 --sec:CreateDropdown({
 --	Text = "Dropdown",
 --	Array = {"GGGgg","Ttttt","ggggg"},
@@ -3557,13 +3481,6 @@ return WindowTable
 --	end,
 --})
 
---local OreEspToggle = sec:CreateToggle({
---	Title = "Kill Aura",
---	Order = 4,
---	Callback = function(state)
---		print(state)
---	end
---})
 --local OreEspToggle = sec:CreateToggle({
 --	Title = "Defaulted Toggle",
 --	Order = 1,
@@ -3594,10 +3511,6 @@ return WindowTable
 --		print(val)
 --	end
 --})
-
---sec:CreateColorPicker({Title = "Gay sex", callback = function(returnval)
---	print(returnval)
---end,})
 
 --sec:CreateColorPicker({Title = "Gay sex", callback = function(returnval)
 --	print(returnval)

@@ -2489,15 +2489,20 @@ function WindowTable:CreateWindow(config)
 			function ElementHandler:CreateDropdown(config)
 				local btnText = config.Title or config.title or config.text or config.Text or "Dropdown"
 				local callback = config.callback or config.Callback or function() end   
-				local List = config.array or config.Array or config.Table or config.List or config.list or {}
+				local List
+				List = config.array or config.Array or config.Table or config.List or config.list or {}
 				if List == "Players" then
 					List = game.Players:GetPlayers()
 					game.Players.PlayerAdded:Connect(function()
 						wait(1)
+						List = nil
+						wait()
 						List = game.Players:GetPlayers()
 					end)
 					game.Players.PlayerRemoving:Connect(function()
 						wait(1)
+						List = nil
+						wait()
 						List = game.Players:GetPlayers()
 					end)
 				end

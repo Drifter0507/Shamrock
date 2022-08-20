@@ -2094,12 +2094,14 @@ function WindowTable:CreateWindow(config)
 				return LabelInstance.Frame_1
 			end
 			function ElementHandler:updateLabel(label, title, color)
-				if label then
-					label.Frame.TextLabel.Text = tostring(title)
+			    if label then
+				if title then
+				    label:FindFirstChildOfClass("Frame").TextLabel.Text = tostring(title)
 				end
 				if color then
-					label.Frame.TextLabel.TextColor3 = color
+				    label:FindFirstChildOfClass("Frame").TextLabel.TextColor3 = color
 				end
+			    end
 			end
 			function ElementHandler:CreateSlider(config)
 				local btnText = config.Title or config.title or config.text or config.Text or "Slider"

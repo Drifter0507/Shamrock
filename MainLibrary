@@ -3466,7 +3466,7 @@ function WindowTable:CreateWindow(config)
 
 end
 
-warn("Loaded 1.2".." Wasted 2 hours fixing a bug when it was 1 line.")
+warn("Loaded 1.3")
 return WindowTable
 
 

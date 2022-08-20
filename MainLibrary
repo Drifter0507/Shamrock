@@ -2090,7 +2090,8 @@ function WindowTable:CreateWindow(config)
 
 				LabelInstance.UICorner_1.Parent = LabelInstance.Frame_2
 				LabelInstance.UICorner_1.CornerRadius = UDim.new(0, 4)
-
+				
+				return LabelInstance.Frame_1
 			end
 			function ElementHandler:updateLabel(label, title, color)
 				if label then

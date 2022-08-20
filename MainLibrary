@@ -1524,7 +1524,7 @@ function WindowTable:CreateWindow(config)
 			Util:Tween(Image,{Rotation = 0},0.2)
 		end
 	end
-
+	Clicked()
 
 	Button.MouseEnter:Connect(function()
 		Util:Tween(Image,{ImageColor3 = Color3.fromRGB(160,160,160)},0.2)

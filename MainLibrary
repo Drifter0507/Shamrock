@@ -2090,18 +2090,15 @@ function WindowTable:CreateWindow(config)
 
 				LabelInstance.UICorner_1.Parent = LabelInstance.Frame_2
 				LabelInstance.UICorner_1.CornerRadius = UDim.new(0, 4)
-				
-				return LabelInstance.Frame_1
+
 			end
 			function ElementHandler:updateLabel(label, title, color)
-			    if label then
-				if title then
-				    label:FindFirstChildOfClass("Frame").TextLabel.Text = tostring(title)
+				if label then
+					label.Frame.TextLabel.Text = tostring(title)
 				end
 				if color then
-				    label:FindFirstChildOfClass("Frame").TextLabel.TextColor3 = color
+					label.Frame.TextLabel.TextColor3 = color
 				end
-			    end
 			end
 			function ElementHandler:CreateSlider(config)
 				local btnText = config.Title or config.title or config.text or config.Text or "Slider"
@@ -2440,7 +2437,11 @@ function WindowTable:CreateWindow(config)
 
 
 				local Button = KeybindInstance.TextButton_1
-
+				
+				Button.MouseButton1Click:Connect(function()
+					callback()
+				end)
+				
 				local ChangeBind = Button.TextButton
 				local Label = ChangeBind.TextLabel
 
@@ -3468,7 +3469,7 @@ function WindowTable:CreateWindow(config)
 
 end
 
-warn("Loaded 1.4")
+warn("Loaded 1.2".." Wasted 2 hours fixing a bug when it was 1 line.")
 return WindowTable
 
 

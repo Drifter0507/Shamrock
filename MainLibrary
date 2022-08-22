@@ -2091,7 +2091,6 @@ function WindowTable:CreateWindow(config)
 				LabelInstance.UICorner_1.Parent = LabelInstance.Frame_2
 				LabelInstance.UICorner_1.CornerRadius = UDim.new(0, 4)
 				return LabelInstance.Frame_1
-
 			end
 			function ElementHandler:updateLabel(label, title, color)
 				if label then
@@ -2300,6 +2299,7 @@ function WindowTable:CreateWindow(config)
 						Util:Tween(TextHover:FindFirstChild("TextLabel",true), {TextTransparency = 1}, 0.1)
 					end
 				end)
+				return SliderInstance.Frame_1
 			end
 
 			function ElementHandler:updateSlider(slider, title, value, min, max, lvalue)
@@ -2719,6 +2719,7 @@ function WindowTable:CreateWindow(config)
 						self:updateDropdown(Dropdown, nil, nil, callback,Selected,btnText)
 					end
 				end)
+				return DropInstance.Frame_1
 			end
 
 

@@ -2922,6 +2922,7 @@ function WindowTable:CreateWindow(config)
 				ColorInstance.ImageLabel_1.BorderSizePixel = 0
 				ColorInstance.ImageLabel_1.Position = UDim2.new(0.9151942729949951, 0, 0.20588237047195435, 0)
 				ColorInstance.ImageLabel_1.Size = UDim2.new(0, 19, 0, 19)
+				ColorInstance.ImageLabel_1.ZIndex = 2
 
 				ColorInstance.Frame_2.Parent = ColorInstance.TextButton_1
 				ColorInstance.Frame_2.AnchorPoint = Vector2.new(0.5, 0.5)

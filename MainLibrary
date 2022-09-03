@@ -528,7 +528,7 @@ function WindowTable:CreateWindow(config)
 	instances.TextLabel_2.BackgroundColor3 = Color3.new(1, 1, 1)
 	instances.TextLabel_2.BackgroundTransparency = 1
 	instances.TextLabel_2.Size = UDim2.new(1, 0, 1, 0)
-	instances.TextLabel_2.ZIndex = 0
+	instances.TextLabel_2.ZIndex = 1
 
 	instances.LocalScript_2.Parent = instances.TextButton_2
 	instances.LocalScript_2.Name = 'RippleEffect'
@@ -1609,7 +1609,7 @@ function WindowTable:CreateWindow(config)
 		TabInstance.TextLabel_1.BackgroundColor3 = Color3.new(1, 1, 1)
 		TabInstance.TextLabel_1.BackgroundTransparency = 1
 		TabInstance.TextLabel_1.Size = UDim2.new(1, 0, 1, 0)
-		TabInstance.TextLabel_1.ZIndex = 0
+		TabInstance.TextLabel_1.ZIndex = 1
 
 
 		TabInstance.Frame_3.Parent = TabInstance.TextButton_1
@@ -2198,7 +2198,7 @@ function WindowTable:CreateWindow(config)
 				SliderInstance.ImageLabel_2.BorderSizePixel = 0
 				SliderInstance.ImageLabel_2.Position = UDim2.new(0, 161, 0, -6)
 				SliderInstance.ImageLabel_2.Size = UDim2.new(0, 19, 0, 19)
-				SliderInstance.ImageLabel_2.ZIndex = 6
+				SliderInstance.ImageLabel_2.ZIndex = 1
 
 				SliderInstance.ScrollingFrame_1.Parent = SliderInstance.Frame_1
 				SliderInstance.ScrollingFrame_1.CanvasSize = UDim2.new(0, 0, 0, 0)
@@ -2210,7 +2210,7 @@ function WindowTable:CreateWindow(config)
 				SliderInstance.ScrollingFrame_1.Position = UDim2.new(0, 201, 0, -19)
 				SliderInstance.ScrollingFrame_1.Size = UDim2.new(0, 46, 0, 29)
 				SliderInstance.ScrollingFrame_1.Name = 'TextFrame'
-				SliderInstance.ScrollingFrame_1.ZIndex = 10
+				SliderInstance.ScrollingFrame_1.ZIndex = 1
 
 				SliderInstance.Frame_4.Parent = SliderInstance.ScrollingFrame_1
 				SliderInstance.Frame_4.BackgroundColor3 = Color3.new(0.196078, 0.196078, 0.196078)
@@ -2232,7 +2232,7 @@ function WindowTable:CreateWindow(config)
 				SliderInstance.TextLabel_2.BackgroundColor3 = Color3.new(1, 1, 1)
 				SliderInstance.TextLabel_2.BackgroundTransparency = 1
 				SliderInstance.TextLabel_2.Size = UDim2.new(1, 0, 1, 0)
-				SliderInstance.TextLabel_2.ZIndex = 10
+				SliderInstance.TextLabel_2.ZIndex = 2
 
 				SliderInstance.Frame_5.Parent = SliderInstance.Frame_4
 				SliderInstance.Frame_5.BackgroundColor3 = Color3.new(0.121569, 0.121569, 0.121569)
@@ -2651,7 +2651,7 @@ function WindowTable:CreateWindow(config)
 				DropInstance.Frame_5.BackgroundTransparency = 1
 				DropInstance.Frame_5.BorderColor3 = Color3.new(1, 1, 1)
 				DropInstance.Frame_5.Size = UDim2.new(1, 0, 1, 0)
-				DropInstance.Frame_5.ZIndex = 2
+				DropInstance.Frame_5.ZIndex = 0
 				DropInstance.Frame_5.Name = 'Shadow'
 
 				DropInstance.TextLabel_2.Parent = DropInstance.TextButton_2
@@ -2673,7 +2673,7 @@ function WindowTable:CreateWindow(config)
 				DropInstance.Frame_6.BorderSizePixel = 0
 				DropInstance.Frame_6.Position = UDim2.new(0, 0, 0.9583333134651184, 0)
 				DropInstance.Frame_6.Size = UDim2.new(0, 278, 0, 0)
-				DropInstance.Frame_6.ZIndex = 2
+				DropInstance.Frame_6.ZIndex = 0
 				DropInstance.Frame_6.Name = 'buttonShadow'
 
 				DropInstance.UICorner_6.Parent = DropInstance.Frame_6
@@ -2751,7 +2751,7 @@ function WindowTable:CreateWindow(config)
 					TextButton.BorderSizePixel = 0
 					TextButton.Position = UDim2.new(0, 0, 0, 0)
 					TextButton.Size = UDim2.new(1, 0, 0, 24)
-					TextButton.ZIndex = 2
+					TextButton.ZIndex = 0
 					TextButton.AutoButtonColor = false
 					TextButton.Font = Enum.Font.SourceSans
 					TextButton.Name = tostring(value)
@@ -2766,7 +2766,7 @@ function WindowTable:CreateWindow(config)
 					Shadow.BackgroundTransparency = 1.000
 					Shadow.BorderColor3 = Color3.fromRGB(255, 255, 255)
 					Shadow.Size = UDim2.new(1, 0, 1, 0)
-					Shadow.ZIndex = 2
+					Shadow.ZIndex = 1
 
 					TextLabel.Parent = TextButton
 					TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -2778,6 +2778,7 @@ function WindowTable:CreateWindow(config)
 					TextLabel.TextColor3 = Color3.fromRGB(243, 243, 243)
 					TextLabel.TextSize = 15.000
 					TextLabel.TextTransparency = 0
+					TextLabel.ZIndex = 3
 
 					UICorner.CornerRadius = UDim.new(0, 2)
 					UICorner.Parent = TextButton
@@ -3117,7 +3118,7 @@ function WindowTable:CreateWindow(config)
 				ColorInstance.ImageLabel_2.Position = UDim2.new(0.04336318373680115, 0, -0.02036517858505249, 0)
 				ColorInstance.ImageLabel_2.Size = UDim2.new(1, 0, 1, 0)
 				ColorInstance.ImageLabel_2.SizeConstraint = Enum.SizeConstraint.RelativeYY
-				ColorInstance.ImageLabel_2.ZIndex = 2
+				ColorInstance.ImageLabel_2.ZIndex = 0
 				ColorInstance.ImageLabel_2.Name = 'Gradient'
 
 				ColorInstance.Frame_9.Parent = ColorInstance.ImageLabel_2
@@ -3125,7 +3126,7 @@ function WindowTable:CreateWindow(config)
 				ColorInstance.Frame_9.BorderColor3 = Color3.new(0, 0, 0)
 				ColorInstance.Frame_9.BorderSizePixel = 0
 				ColorInstance.Frame_9.Position = UDim2.new(1, 0, 0, 1)
-				ColorInstance.Frame_9.ZIndex = 2
+				ColorInstance.Frame_9.ZIndex = 0
 				ColorInstance.Frame_9.Name = 'Cursor'
 
 				ColorInstance.Frame_10.Parent = ColorInstance.Frame_9
@@ -3134,7 +3135,7 @@ function WindowTable:CreateWindow(config)
 				ColorInstance.Frame_10.BorderColor3 = Color3.new(0, 0, 0)
 				ColorInstance.Frame_10.BorderSizePixel = 0
 				ColorInstance.Frame_10.Size = UDim2.new(0, 2, 0, 20)
-				ColorInstance.Frame_10.ZIndex = 2
+				ColorInstance.Frame_10.ZIndex = 0
 				ColorInstance.Frame_10.Name = 'Vertical'
 
 				ColorInstance.Frame_11.Parent = ColorInstance.Frame_9
@@ -3143,7 +3144,7 @@ function WindowTable:CreateWindow(config)
 				ColorInstance.Frame_11.BorderColor3 = Color3.new(0, 0, 0)
 				ColorInstance.Frame_11.BorderSizePixel = 0
 				ColorInstance.Frame_11.Size = UDim2.new(0, 20, 0, 2)
-				ColorInstance.Frame_11.ZIndex = 2
+				ColorInstance.Frame_11.ZIndex = 0
 				ColorInstance.Frame_11.Name = 'Horizontal'
 
 				ColorInstance.TextButton_3.Parent = ColorInstance.Frame_3

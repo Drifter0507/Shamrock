@@ -2719,7 +2719,7 @@ function WindowTable:CreateWindow(config)
 						self:updateDropdown(Dropdown, nil, nil, callback,Selected,btnText)
 					end
 				end)
-				return DropInstance.Frame_1
+				return DropInstance.TextButton_1
 			end
 
 

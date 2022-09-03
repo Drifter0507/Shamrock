@@ -389,7 +389,7 @@ function WindowTable:CreateWindow(config)
 
 
 	screenGui.Name = _G.FewofiwegngreRG452
-	screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 
 	instances.StringValue_1.Parent = screenGui
 	instances.StringValue_1.Name = 'SelectedPlayer'
